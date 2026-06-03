@@ -1,0 +1,594 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model Role {
+  id          Int          @id @default(autoincrement())
+  name        String       @unique @db.VarChar(50)
+  description String?
+  users       User[]
+  permissions Permission[] @relation("RolePermissions")
+
+  @@map("roles")
+}
+
+model Permission {
+  id          Int     @id @default(autoincrement())
+  action      String  @unique @db.VarChar(100)
+  description String?
+  roles       Role[]  @relation("RolePermissions")
+
+  @@map("permissions")
+}
+
+model User {
+  id                 String                   @id @default(uuid()) @db.Uuid
+  fullName           String                   @map("full_name") @db.VarChar(150)
+  username           String                   @unique @db.VarChar(50)
+  passwordHash       String                   @map("password_hash") @db.VarChar(255)
+  roleId             Int?                     @map("role_id")
+  department         String?                  @db.VarChar(150)
+  isActive           Boolean                  @default(true) @map("is_active")
+  securityClassification SecurityClassificationLevel @default(RESTRICTED) @map("security_classification")
+  createdAt          DateTime                 @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt          DateTime                 @updatedAt @map("updated_at") @db.Timestamp(6)
+  inspections        Inspection[]
+  role               Role?                    @relation(fields: [roleId], references: [id])
+  
+  // العلاقات الجديدة للمتابعة
+  assignedTrackings  RecommendationTracking[] @relation("UserAssignedTrackings")
+  actionLogs         RecommendationActionLog[] @relation("UserActionLogs")
+  uploadedEvidence   RecommendationEvidence[]  @relation("UserUploadedEvidence")
+  recommendationComments RecommendationComment[] @relation("UserRecommendationComments")
+  inboxNotifications InboxNotification[] @relation("UserInboxNotifications")
+
+  @@map("users")
+}
+
+model Entity {
+  id                     String                   @id @default(uuid()) @db.Uuid
+  name                   String                   @db.VarChar(200)
+  parentId               String?                  @map("parent_id") @db.Uuid
+  level                  String                   @db.VarChar(20)
+  isAssistant            Boolean                  @default(false) @map("is_assistant")
+  createdAt              DateTime                 @default(now()) @map("created_at") @db.Timestamp(6)
+  campaigns              Campaign[]
+  parent                 Entity?                  @relation("EntityHierarchy", fields: [parentId], references: [id])
+  children               Entity[]                 @relation("EntityHierarchy")
+  positions              EntityPosition[]
+  inspections            Inspection[]
+  
+  // العلاقات الجديدة للمتابعة
+  assignedTrackings      RecommendationTracking[]
+
+  @@map("entities")
+}
+
+model EntityPosition {
+  id                String    @id @default(uuid()) @db.Uuid
+  entityId          String    @map("entity_id") @db.Uuid
+  positionName      String    @map("position_name") @db.VarChar(150)
+  positionStatus    String    @map("position_status") @db.VarChar(20)
+  statisticalNumber String    @map("statistical_number") @db.VarChar(50)
+  positionHolder    String    @map("position_holder") @db.VarChar(150)
+  joinedDate        DateTime? @map("joined_date") @db.Date
+  isActive          Boolean   @default(true) @map("is_active")
+  updatedAt         DateTime  @updatedAt @map("updated_at") @db.Timestamp(6)
+  cadreStatus       String?   @map("cadre_status") @db.VarChar(100)
+  education         String?   @db.VarChar(150)
+  evaluation        String?   @db.VarChar(50)
+  notes             String?
+  rank              String?   @db.VarChar(50)
+  yearsOfService    Int?      @map("years_of_service")
+  entity            Entity    @relation(fields: [entityId], references: [id], onDelete: Cascade)
+
+  @@map("entity_positions")
+}
+
+model PrimaryCriteria {
+  id                Int                    @id @default(autoincrement())
+  title             String                 @db.VarChar(200)
+  maxGrade          Decimal                @map("max_grade") @db.Decimal(5, 2)
+  sortOrder         Int                    @default(0) @map("sort_order")
+  templateItems     CriteriaTemplateItem[]
+  secondaryCriteria SecondaryCriteria[]
+
+  @@map("primary_criteria")
+}
+
+model SecondaryCriteria {
+  id        Int              @id @default(autoincrement())
+  primaryId Int              @map("primary_id")
+  title     String           @db.VarChar(200)
+  maxGrade  Decimal          @map("max_grade") @db.Decimal(5, 2)
+  sortOrder Int              @default(0) @map("sort_order")
+  details   CriteriaDetail[]
+  primary   PrimaryCriteria  @relation(fields: [primaryId], references: [id], onDelete: Cascade)
+
+  @@map("secondary_criteria")
+}
+
+model CriteriaDetail {
+  id          Int               @id @default(autoincrement())
+  secondaryId Int               @map("secondary_id")
+  detailText  String            @map("detail_text")
+  maxGrade    Decimal           @map("max_grade") @db.Decimal(5, 2)
+  inputType   String            @default("single") @map("input_type") @db.VarChar(20)
+  tableSchema Json?             @map("table_schema")
+  sortOrder   Int               @default(0) @map("sort_order")
+  secondary   SecondaryCriteria @relation(fields: [secondaryId], references: [id], onDelete: Cascade)
+  options     CriteriaOption[]
+  grades      InspectionGrade[]
+
+  @@map("criteria_details")
+}
+
+model CriteriaTemplate {
+  id          String                 @id @default(uuid()) @db.Uuid
+  name        String                 @db.VarChar(200)
+  description String?
+  isDefault   Boolean                @default(false) @map("is_default")
+  isActive    Boolean                @default(true) @map("is_active")
+  createdAt   DateTime               @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt   DateTime               @updatedAt @map("updated_at") @db.Timestamp(6)
+  campaigns   Campaign[]
+  items       CriteriaTemplateItem[]
+
+  @@map("criteria_templates")
+}
+
+model CriteriaTemplateItem {
+  id         String           @id @default(uuid()) @db.Uuid
+  templateId String           @map("template_id") @db.Uuid
+  primaryId  Int              @map("primary_id")
+  sortOrder  Int              @default(0) @map("sort_order")
+  primary    PrimaryCriteria  @relation(fields: [primaryId], references: [id], onDelete: Cascade)
+  template   CriteriaTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+
+  @@unique([templateId, primaryId])
+  @@map("criteria_template_items")
+}
+
+model Campaign {
+  id                     String                   @id @default(uuid()) @db.Uuid
+  name                   String                   @db.VarChar(255)
+  type                   String                   @db.VarChar(20)
+  assignmentText         String                   @map("assignment_text")
+  assignmentReference    String                   @map("assignment_reference") @db.VarChar(100)
+  assignmentDate         DateTime                 @map("assignment_date") @db.Date
+  leaderId               String?                  @map("leader_id") @db.Uuid
+  deputyId               String?                  @map("deputy_id") @db.Uuid
+  purpose                String?
+  entityId               String?                  @map("entity_id") @db.Uuid
+  formationNumber        String?                  @map("formation_number") @db.VarChar(100)
+  startDate              DateTime                 @map("start_date") @db.Date
+  endDate                DateTime?                @map("end_date") @db.Date
+  status                 String                   @default("active") @db.VarChar(20)
+  createdAt              DateTime                 @default(now()) @map("created_at") @db.Timestamp(6)
+  templateId             String?                  @map("template_id") @db.Uuid
+  appendices             CampaignAppendix[]
+  members                CampaignMember[]
+  notes                  CampaignNote[]
+  recommendations        CampaignRecommendation[]
+  deputy                 Inspector?               @relation("CampaignDeputyInspector", fields: [deputyId], references: [id])
+  entity                 Entity?                  @relation(fields: [entityId], references: [id])
+  leader                 Inspector?               @relation("CampaignLeaderInspector", fields: [leaderId], references: [id])
+  template               CriteriaTemplate?        @relation(fields: [templateId], references: [id])
+  inspections            Inspection[]
+  reportPresentation     ReportPresentation?
+  
+  // العلاقات الجديدة للمتابعة
+  recommendationTrackings RecommendationTracking[]
+
+  @@map("campaigns")
+}
+
+model CampaignMember {
+  campaignId  String    @map("campaign_id") @db.Uuid
+  inspectorId String    @map("inspector_id") @db.Uuid
+  campaign    Campaign  @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  inspector   Inspector @relation(fields: [inspectorId], references: [id], onDelete: Cascade)
+
+  @@id([campaignId, inspectorId])
+  @@map("campaign_members")
+}
+
+model Inspector {
+  id                 String           @id @default(uuid()) @db.Uuid
+  fullName           String           @map("full_name") @db.VarChar(150)
+  department         String?          @db.VarChar(150)
+  phone              String?          @db.VarChar(50)
+  notes              String?
+  isActive           Boolean          @default(true) @map("is_active")
+  createdAt          DateTime         @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt          DateTime         @updatedAt @map("updated_at") @db.Timestamp(6)
+  
+  campaignsDeputized Campaign[]       @relation("CampaignDeputyInspector")
+  campaignsLed       Campaign[]       @relation("CampaignLeaderInspector")
+  campaignMembers    CampaignMember[]
+  
+  @@map("inspectors")
+}
+
+model Inspection {
+  id                String            @id @default(uuid()) @db.Uuid
+  campaignId        String            @map("campaign_id") @db.Uuid
+  inspectorId       String?           @map("inspector_id") @db.Uuid
+  entityId          String            @map("entity_id") @db.Uuid
+  location          String?           @db.VarChar(255)
+  findings          String?
+  totalScore        Decimal?          @map("total_score") @db.Decimal(5, 2)
+  performanceRating String?           @map("performance_rating") @db.VarChar(50)
+  status            String            @default("pendingReview") @map("status") @db.VarChar(20)
+  createdAt         DateTime          @default(now()) @map("created_at") @db.Timestamp(6)
+  officerCredentials Json?            @map("officer_credentials")
+  grades            InspectionGrade[]
+  campaign          Campaign          @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  entity            Entity            @relation(fields: [entityId], references: [id], onDelete: Cascade)
+  inspector         User?             @relation(fields: [inspectorId], references: [id])
+
+  @@map("inspections")
+}
+
+model InspectionGrade {
+  id               String                     @id @default(uuid()) @db.Uuid
+  inspectionId     String                     @map("inspection_id") @db.Uuid
+  detailId         Int                        @map("detail_id")
+  gradeEarned      Decimal                    @map("grade_earned") @db.Decimal(5, 2)
+  notes            String?
+  createdAt        DateTime                   @default(now()) @map("created_at") @db.Timestamp(6)
+  quantitativeData Json?                      @map("quantitative_data")
+  instanceName     String?                    @map("instance_name") @db.VarChar(200)
+  criteriaDetail   CriteriaDetail             @relation(fields: [detailId], references: [id])
+  inspection       Inspection                 @relation(fields: [inspectionId], references: [id], onDelete: Cascade)
+  selectedOptions  InspectionSelectedOption[]
+
+  @@map("inspection_grades")
+}
+
+model CriteriaOption {
+  id              Int                        @id @default(autoincrement())
+  detailId        Int                        @map("detail_id")
+  optionText      String                     @map("option_text")
+  type            String                     @db.VarChar(20)
+  optionTypeId    Int?                       @map("option_type_id")
+  scoreValue      Decimal?                   @map("score_value") @db.Decimal(5, 2)
+  detail          CriteriaDetail             @relation(fields: [detailId], references: [id], onDelete: Cascade)
+  optionType      EvaluationOptionType?      @relation(fields: [optionTypeId], references: [id])
+  selectedOptions InspectionSelectedOption[]
+
+  @@map("criteria_options")
+}
+
+model EvaluationOptionType {
+  id              Int              @id @default(autoincrement())
+  code            String           @unique @db.VarChar(50)
+  nameAr          String           @map("name_ar") @db.VarChar(100)
+  nameEn          String?          @map("name_en") @db.VarChar(100)
+  color           String?          @db.VarChar(30)
+  icon            String?          @db.VarChar(50)
+  sortOrder       Int              @default(0) @map("sort_order")
+  affectsScore    Boolean          @default(true) @map("affects_score")
+  scoreMultiplier Decimal          @default(1.00) @map("score_multiplier") @db.Decimal(5, 2)
+  isActive        Boolean          @default(true) @map("is_active")
+  createdAt       DateTime         @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt       DateTime         @updatedAt @map("updated_at") @db.Timestamp(6)
+  options         CriteriaOption[]
+
+  @@map("evaluation_option_types")
+}
+
+model RiskLevelOption {
+  id              Int      @id @default(autoincrement())
+  code            String   @unique @db.VarChar(50)
+  nameAr          String   @map("name_ar") @db.VarChar(100)
+  color           String   @db.VarChar(30)
+  sortOrder       Int      @default(0) @map("sort_order")
+  isActive        Boolean  @default(true) @map("is_active")
+  severityWeight  Int?     @default(0) @map("severity_weight")
+  createdAt       DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt       DateTime @updatedAt @map("updated_at") @db.Timestamp(6)
+
+  @@map("risk_level_options")
+}
+
+model InspectionSelectedOption {
+  id                String          @id @default(uuid()) @db.Uuid
+  inspectionGradeId String          @map("inspection_grade_id") @db.Uuid
+  optionId          Int             @map("option_id")
+  inspectionGrade   InspectionGrade @relation(fields: [inspectionGradeId], references: [id], onDelete: Cascade)
+  option            CriteriaOption  @relation(fields: [optionId], references: [id], onDelete: Cascade)
+
+  @@unique([inspectionGradeId, optionId])
+  @@map("inspection_selected_options")
+}
+
+model CampaignNote {
+  id           String         @id @default(uuid()) @db.Uuid
+  campaignId   String         @map("campaign_id") @db.Uuid
+  type         String         @db.VarChar(20)
+  text         String
+  parentNoteId String?        @map("parent_note_id") @db.Uuid
+  sortOrder    Int            @map("sort_order")
+  campaign     Campaign       @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  parent       CampaignNote?  @relation("NoteHierarchy", fields: [parentNoteId], references: [id], onDelete: Cascade)
+  children     CampaignNote[] @relation("NoteHierarchy")
+
+  @@map("campaign_notes")
+}
+
+model CampaignRecommendation {
+  id                 String                   @id @default(uuid()) @db.Uuid
+  campaignId         String                   @map("campaign_id") @db.Uuid
+  authorityName      String                   @map("authority_name") @db.VarChar(150)
+  recommendationText String                   @map("recommendation_text")
+  parentRecId        String?                  @map("parent_rec_id") @db.Uuid
+  sortOrder          Int                      @map("sort_order")
+  campaign           Campaign                 @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  parent             CampaignRecommendation?  @relation("RecHierarchy", fields: [parentRecId], references: [id], onDelete: Cascade)
+  children           CampaignRecommendation[] @relation("RecHierarchy")
+  
+  // الحقول والعلاقات الجديدة للمتابعة والمشتقات
+  riskLevel          RiskLevel?               @map("risk_level")
+  impactCategory     ImpactCategory?          @map("impact_category")
+  tracking           RecommendationTracking?
+
+  @@map("campaign_recommendations")
+}
+
+model CampaignAppendix {
+  id         String   @id @default(uuid()) @db.Uuid
+  campaignId String   @map("campaign_id") @db.Uuid
+  symbol     String   @db.VarChar(5)
+  text       String
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  @@map("campaign_appendices")
+}
+
+model SystemAuditLog {
+  id         BigInt   @id @default(autoincrement())
+  userId     String   @map("user_id") @db.Uuid
+  username   String   @db.VarChar(50)
+  actionType String   @map("action_type") @db.VarChar(100)
+  ipAddress  String?  @map("ip_address") @db.VarChar(45)
+  userAgent  String?  @map("user_agent")
+  timestamp  DateTime @default(now()) @map("timestamp") @db.Timestamp(6)
+  details    Json?
+
+  @@map("system_audit_logs")
+}
+
+model CampaignType {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String   @unique @db.VarChar(100)
+  key       String   @unique @db.VarChar(50)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+
+  @@map("campaign_types")
+}
+
+model ReportPresentation {
+  id         String   @id @default(uuid()) @db.Uuid
+  campaignId String   @unique @map("campaign_id") @db.Uuid
+  payload    Json     @map("payload")
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt  DateTime @updatedAt @map("updated_at") @db.Timestamp(6)
+  history    Json?    @map("history")
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  @@map("report_presentations")
+}
+
+// ----------------------------------------------------
+// موديول تتبع التوصيات - النماذج والمشتقات الجديدة
+// ----------------------------------------------------
+
+enum RecommendationStatus {
+  ISSUED
+  FORWARDED
+  UNDER_PROCESSING
+  PARTIALLY_COMPLETED
+  COMPLETED
+  NEEDS_CLARIFICATION
+  VERIFIED
+  CLOSED
+  REJECTED
+  OVERDUE
+}
+
+enum RiskLevel {
+  CRITICAL
+  HIGH
+  MEDIUM
+  LOW
+}
+
+enum ImpactCategory {
+  SECURITY
+  ADMINISTRATIVE
+  HUMAN_RESOURCES
+  LOGISTICS
+  INFRASTRUCTURE
+  TRAINING
+  LEGAL
+  TECHNICAL
+}
+
+enum RecommendationActionType {
+  STATUS_CHANGE
+  COMMENT
+  EVIDENCE_UPLOAD
+  REASSIGN
+  EXTENSION_REQUEST
+  PROGRESS_UPDATE
+}
+
+model RecommendationTracking {
+  id                         String                  @id @default(uuid()) @db.Uuid
+  recommendationId           String                  @unique @map("recommendation_id") @db.Uuid
+  campaignId                 String                  @map("campaign_id") @db.Uuid
+  recommendationNumber       String                  @unique @map("recommendation_number") @db.VarChar(50)
+  assignedEntityId           String?                 @map("assigned_entity_id") @db.Uuid
+  assignedUserId             String?                 @map("assigned_user_id") @db.Uuid
+  assignedEntityNameSnapshot String                  @map("assigned_entity_name_snapshot") @db.VarChar(200)
+  
+  status                     RecommendationStatus    @default(ISSUED)
+  progressPercent            Int                     @default(0) @map("progress_percent")
+  riskLevel                  RiskLevel               @map("risk_level")
+  impactCategory             ImpactCategory          @map("impact_category")
+  escalationLevel            Int                     @default(0) @map("escalation_level")
+  
+  issuedAt                   DateTime                @default(now()) @map("issued_at") @db.Timestamp(6)
+  dueDate                    DateTime?               @map("due_date") @db.Date
+  completionDate             DateTime?               @map("completion_date") @db.Timestamp(6)
+  closedAt                   DateTime?               @map("closed_at") @db.Timestamp(6)
+  createdAt                  DateTime                @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt                  DateTime                @updatedAt @map("updated_at") @db.Timestamp(6)
+  parentTrackingId           String?                 @map("parent_tracking_id") @db.Uuid
+
+  recommendation             CampaignRecommendation  @relation(fields: [recommendationId], references: [id], onDelete: Cascade)
+  campaign                   Campaign                @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  assignedEntity             Entity?                 @relation(fields: [assignedEntityId], references: [id])
+  assignedUser               User?                   @relation(fields: [assignedUserId], references: [id], name: "UserAssignedTrackings")
+  parentTracking             RecommendationTracking? @relation("TrackingHierarchy", fields: [parentTrackingId], references: [id])
+  childTrackings             RecommendationTracking[] @relation("TrackingHierarchy")
+  actionLogs                 RecommendationActionLog[]
+  evidence                   RecommendationEvidence[]
+  comments                   RecommendationComment[]
+  healthHistories            RecommendationHealthHistory[]
+  slaBreachLogs              SlaBreachLog[]
+
+  @@map("recommendation_tracking")
+}
+
+model RecommendationActionLog {
+  id           String                   @id @default(uuid()) @db.Uuid
+  trackingId   String                   @map("tracking_id") @db.Uuid
+  actorId      String                   @map("actor_id") @db.Uuid
+  actionType   RecommendationActionType @map("action_type")
+  fromStatus   RecommendationStatus?    @map("from_status")
+  toStatus     RecommendationStatus?    @map("to_status")
+  notes        String?                  @db.Text
+  createdAt    DateTime                 @default(now()) @map("created_at") @db.Timestamp(6)
+
+  tracking     RecommendationTracking   @relation(fields: [trackingId], references: [id], onDelete: Cascade)
+  actor        User                     @relation(fields: [actorId], references: [id], name: "UserActionLogs")
+  evidence     RecommendationEvidence[]
+
+  @@map("recommendation_action_logs")
+}
+
+model RecommendationEvidence {
+  id           String                   @id @default(uuid()) @db.Uuid
+  trackingId   String                   @map("tracking_id") @db.Uuid
+  actionLogId  String?                  @map("action_log_id") @db.Uuid
+  uploadedById String                   @map("uploaded_by_id") @db.Uuid
+  fileName     String                   @map("file_name") @db.VarChar(255)
+  filePath     String                   @map("file_path") @db.VarChar(500)
+  fileSize     Int                      @map("file_size")
+  mimeType     String                   @map("mime_type") @db.VarChar(100)
+  description  String?                  @db.Text
+  createdAt    DateTime                 @default(now()) @map("created_at") @db.Timestamp(6)
+
+  tracking     RecommendationTracking   @relation(fields: [trackingId], references: [id], onDelete: Cascade)
+  actionLog    RecommendationActionLog? @relation(fields: [actionLogId], references: [id])
+  uploadedBy   User                     @relation(fields: [uploadedById], references: [id], name: "UserUploadedEvidence")
+
+  @@map("recommendation_evidence")
+}
+
+model RecommendationComment {
+  id               String                 @id @default(uuid()) @db.Uuid
+  trackingId       String                 @map("tracking_id") @db.Uuid
+  authorId         String                 @map("author_id") @db.Uuid
+  commentText      String                 @map("comment_text") @db.Text
+  parentCommentId  String?                @map("parent_comment_id") @db.Uuid
+  createdAt        DateTime               @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt        DateTime               @updatedAt @map("updated_at") @db.Timestamp(6)
+
+  tracking         RecommendationTracking @relation(fields: [trackingId], references: [id], onDelete: Cascade)
+  author           User                   @relation(fields: [authorId], references: [id], name: "UserRecommendationComments")
+  parentComment    RecommendationComment? @relation("CommentReplies", fields: [parentCommentId], references: [id], onDelete: Cascade)
+  replies          RecommendationComment[] @relation("CommentReplies")
+
+  @@map("recommendation_comments")
+}
+
+model InboxNotification {
+  id         String   @id @default(uuid()) @db.Uuid
+  userId     String   @map("user_id") @db.Uuid
+  trackingId String?  @map("tracking_id") @db.Uuid
+  type       String   @default("GENERAL") @db.VarChar(50)
+  severity   String   @default("INFO") @db.VarChar(20)
+  title      String   @db.VarChar(150)
+  message    String   @db.Text
+  link       String?  @db.VarChar(255)
+  metadata   Json?    @db.Json
+  isRead     Boolean  @default(false) @map("is_read")
+  readAt     DateTime? @map("read_at") @db.Timestamp(6)
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+  
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade, name: "UserInboxNotifications")
+
+  @@index([userId, isRead])
+  @@index([userId, createdAt])
+  @@index([trackingId, type])
+  @@map("inbox_notifications")
+}
+
+model ExecutiveKpiSnapshot {
+  id                         String   @id @default(uuid()) @db.Uuid
+  snapshotDate               DateTime @default(now()) @map("snapshot_date") @db.Timestamp(6)
+  totalRecommendations       Int      @map("total_recommendations")
+  openRecommendations        Int      @map("open_recommendations")
+  closedRecommendations      Int      @map("closed_recommendations")
+  overallComplianceRate      Decimal  @map("overall_compliance_rate") @db.Decimal(5, 2)
+  closureRate                Decimal  @map("closure_rate") @db.Decimal(5, 2)
+  averageResolutionTimeDays Decimal? @map("average_resolution_time_days") @db.Decimal(6, 2)
+  slaAdherenceRate           Decimal? @map("sla_adherence_rate") @db.Decimal(5, 2)
+  overdueCount               Int      @map("overdue_count")
+  escalationLevel3Count      Int      @map("escalation_level_3_count")
+  criticalCount              Int      @map("critical_count")
+  entityBreakdown            Json     @map("entity_breakdown")
+
+  @@map("executive_kpi_snapshots")
+}
+
+model RecommendationHealthHistory {
+  id             String                 @id @default(uuid()) @db.Uuid
+  trackingId     String                 @map("tracking_id") @db.Uuid
+  score          Int
+  statusSnapshot RecommendationStatus   @map("status_snapshot")
+  createdAt      DateTime               @default(now()) @map("created_at") @db.Timestamp(6)
+
+  tracking       RecommendationTracking @relation(fields: [trackingId], references: [id], onDelete: Cascade)
+
+  @@map("recommendation_health_histories")
+}
+
+model SlaBreachLog {
+  id                 String                 @id @default(uuid()) @db.Uuid
+  trackingId         String                 @map("tracking_id") @db.Uuid
+  milestoneType      String                 @map("milestone_type") @db.VarChar(50)
+  breachDurationDays Int                    @map("breach_duration_days")
+  createdAt          DateTime               @default(now()) @map("created_at") @db.Timestamp(6)
+
+  tracking           RecommendationTracking @relation(fields: [trackingId], references: [id], onDelete: Cascade)
+
+  @@unique([trackingId, milestoneType])
+  @@map("sla_breach_logs")
+}
+
+enum SecurityClassificationLevel {
+  RESTRICTED
+  CONFIDENTIAL
+  SECRET
+  TOP_SECRET
+}
