@@ -1,6 +1,15 @@
-import { Injectable, NotFoundException, ForbiddenException, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  ForbiddenException,
+  BadRequestException,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { RecommendationStatus, RiskLevel, ImpactCategory, RecommendationActionType } from '@prisma/client';
+import {
+  RecommendationStatus,
+  ImpactCategory,
+  RecommendationActionType,
+} from '@prisma/client';
 import { AssignRecommendationDto } from './dto/assign-recommendation.dto';
 import { UpdateProgressDto } from './dto/update-progress.dto';
 import { AddCommentDto } from './dto/add-comment.dto';
@@ -33,32 +42,35 @@ export class RecommendationTrackingService {
 
         const isLeader = campaign?.leaderId === user.userId;
         const isDeputy = campaign?.deputyId === user.userId;
-        const isMember = campaign?.members?.some((m: any) => m.inspectorId === user.userId);
+        const isMember = campaign?.members?.some(
+          (m: any) => m.inspectorId === user.userId,
+        );
         const isAssigned = tracking.assignedUserId === user.userId;
 
         if (!isLeader && !isDeputy && !isMember && !isAssigned) {
-          throw new ForbiddenException('غير مخول بتعديل أو تدقيق هذه التوصية الرقابية');
+          throw new ForbiddenException(
+            'غير مخول بتعديل أو تدقيق هذه التوصية الرقابية',
+          );
         }
       }
       return; // Evaluator has ministry-wide read access
     }
-    
+
     const userDept = user.department?.trim();
     const trackingDept = tracking.assignedEntityNameSnapshot?.trim();
-    
+
     const isAssignedUser = tracking.assignedUserId === user.userId;
-    const isMatchingDept = userDept && trackingDept && (
-      userDept.toLowerCase() === trackingDept.toLowerCase() ||
-      trackingDept.toLowerCase().includes(userDept.toLowerCase()) ||
-      userDept.toLowerCase().includes(trackingDept.toLowerCase())
-    );
+    const isMatchingDept =
+      userDept &&
+      trackingDept &&
+      (userDept.toLowerCase() === trackingDept.toLowerCase() ||
+        trackingDept.toLowerCase().includes(userDept.toLowerCase()) ||
+        userDept.toLowerCase().includes(trackingDept.toLowerCase()));
 
     if (!isAssignedUser && !isMatchingDept) {
       throw new ForbiddenException('غير مخول بالوصول إلى هذه التوصية الرقابية');
     }
   }
-
-
 
   // 2. Fetch and filter recommendation tracking records
   async findAll(query: any, user: any) {
@@ -104,15 +116,19 @@ export class RecommendationTrackingService {
       where.status = status as RecommendationStatus;
     }
     if (statusIn) {
-      const statuses = (statusIn as string).split(',').map(s => s.trim()) as RecommendationStatus[];
+      const statuses = (statusIn as string)
+        .split(',')
+        .map((s) => s.trim()) as RecommendationStatus[];
       where.status = { in: statuses };
     }
     if (statusNotIn) {
-      const statuses = (statusNotIn as string).split(',').map(s => s.trim()) as RecommendationStatus[];
+      const statuses = (statusNotIn as string)
+        .split(',')
+        .map((s) => s.trim()) as RecommendationStatus[];
       where.status = { notIn: statuses };
     }
     if (riskLevel) {
-      where.riskLevel = riskLevel as RiskLevel;
+      where.riskLevel = riskLevel as string;
     }
     if (impactCategory) {
       where.impactCategory = impactCategory as ImpactCategory;
@@ -137,7 +153,12 @@ export class RecommendationTrackingService {
         {
           OR: [
             { recommendationNumber: { contains: search, mode: 'insensitive' } },
-            { assignedEntityNameSnapshot: { contains: search, mode: 'insensitive' } },
+            {
+              assignedEntityNameSnapshot: {
+                contains: search,
+                mode: 'insensitive',
+              },
+            },
             {
               recommendation: {
                 recommendationText: { contains: search, mode: 'insensitive' },
@@ -255,7 +276,7 @@ export class RecommendationTrackingService {
     }
 
     // Determine target status
-    const fromStatus = tracking.status as RecommendationStatus;
+    const fromStatus = tracking.status;
     let toStatus = fromStatus;
     if (fromStatus === 'ISSUED') {
       toStatus = 'FORWARDED';
@@ -330,40 +351,59 @@ export class RecommendationTrackingService {
     await this.checkAccess(tracking, user, true);
 
     // Validate that closed recommendations cannot be modified by non-admins
-    if ((tracking.status === 'CLOSED' || tracking.status === 'VERIFIED') && user.role !== 'ADMIN') {
-      throw new ForbiddenException('لا يمكن تعديل تقدم توصية مغلقة أو تم التحقق منها');
+    if (
+      (tracking.status === 'CLOSED' || tracking.status === 'VERIFIED') &&
+      user.role !== 'ADMIN'
+    ) {
+      throw new ForbiddenException(
+        'لا يمكن تعديل تقدم توصية مغلقة أو تم التحقق منها',
+      );
     }
 
     const newStatus = dto.status;
     const progress = dto.progressPercent;
-    const fromStatus = tracking.status as RecommendationStatus;
+    const fromStatus = tracking.status;
 
     if (newStatus === 'CLOSED' || newStatus === 'VERIFIED') {
-      throw new ForbiddenException('لا يمكن نقل التوصية إلى حالة منتهية أو إغلاقها ذاتياً');
+      throw new ForbiddenException(
+        'لا يمكن نقل التوصية إلى حالة منتهية أو إغلاقها ذاتياً',
+      );
     }
 
     // Validate state transition
-    const allowedProgressTransitions: Partial<Record<RecommendationStatus, RecommendationStatus[]>> = {
+    const allowedProgressTransitions: Partial<
+      Record<RecommendationStatus, RecommendationStatus[]>
+    > = {
       FORWARDED: ['UNDER_PROCESSING'],
-      UNDER_PROCESSING: ['PARTIALLY_COMPLETED', 'COMPLETED', 'NEEDS_CLARIFICATION'],
+      UNDER_PROCESSING: [
+        'PARTIALLY_COMPLETED',
+        'COMPLETED',
+        'NEEDS_CLARIFICATION',
+      ],
       PARTIALLY_COMPLETED: ['UNDER_PROCESSING', 'COMPLETED'],
       NEEDS_CLARIFICATION: ['UNDER_PROCESSING', 'COMPLETED'],
     };
 
     if (!allowedProgressTransitions[fromStatus]?.includes(newStatus)) {
-      throw new BadRequestException('لا يمكن الانتقال من الحالة الحالية إلى الحالة المطلوبة');
+      throw new BadRequestException(
+        'لا يمكن الانتقال من الحالة الحالية إلى الحالة المطلوبة',
+      );
     }
 
     if (newStatus === 'COMPLETED') {
       if (progress !== 100) {
-        throw new BadRequestException('يجب أن تكون نسبة الإنجاز 100% لإعلان اكتمال التوصية');
+        throw new BadRequestException(
+          'يجب أن تكون نسبة الإنجاز 100% لإعلان اكتمال التوصية',
+        );
       }
       // Check for at least 1 evidence attachment
       const evidenceCount = await this.prisma.recommendationEvidence.count({
         where: { trackingId: id },
       });
       if (evidenceCount === 0) {
-        throw new BadRequestException('يجب إرفاق ملف إثبات أو دليل واحد على الأقل لإعلان اكتمال التوصية');
+        throw new BadRequestException(
+          'يجب إرفاق ملف إثبات أو دليل واحد على الأقل لإعلان اكتمال التوصية',
+        );
       }
     }
 
@@ -373,7 +413,8 @@ export class RecommendationTrackingService {
         data: {
           status: newStatus,
           progressPercent: progress,
-          completionDate: newStatus === 'COMPLETED' ? new Date() : tracking.completionDate,
+          completionDate:
+            newStatus === 'COMPLETED' ? new Date() : tracking.completionDate,
         },
       });
 
@@ -382,7 +423,8 @@ export class RecommendationTrackingService {
         data: {
           trackingId: id,
           actorId: user.userId,
-          actionType: fromStatus !== newStatus ? 'STATUS_CHANGE' : 'PROGRESS_UPDATE',
+          actionType:
+            fromStatus !== newStatus ? 'STATUS_CHANGE' : 'PROGRESS_UPDATE',
           fromStatus,
           toStatus: newStatus,
           notes: dto.notes,
@@ -522,8 +564,8 @@ export class RecommendationTrackingService {
           trackingId: id,
           actorId: user.userId,
           actionType: 'COMMENT',
-          notes: dto.parentCommentId 
-            ? `أضاف رداً: ${text.substring(0, 50)}${text.length > 50 ? '...' : ''}` 
+          notes: dto.parentCommentId
+            ? `أضاف رداً: ${text.substring(0, 50)}${text.length > 50 ? '...' : ''}`
             : `أضاف تعليقاً: ${text.substring(0, 50)}${text.length > 50 ? '...' : ''}`,
         },
       });
@@ -552,7 +594,11 @@ export class RecommendationTrackingService {
           where: { id: tracking.campaignId },
           select: { leaderId: true },
         });
-        if (campaign?.leaderId && campaign.leaderId !== user.userId && campaign.leaderId !== tracking.assignedUserId) {
+        if (
+          campaign?.leaderId &&
+          campaign.leaderId !== user.userId &&
+          campaign.leaderId !== tracking.assignedUserId
+        ) {
           await this.notificationService.createWithTx(tx, {
             userId: campaign.leaderId,
             type: 'COMMENT',
@@ -569,7 +615,10 @@ export class RecommendationTrackingService {
     });
 
     if (this.gateway) {
-      this.gateway.emitRecommendationUpdated(id, { id, action: 'comment_added' });
+      this.gateway.emitRecommendationUpdated(id, {
+        id,
+        action: 'comment_added',
+      });
     }
     return result;
   }
@@ -611,7 +660,10 @@ export class RecommendationTrackingService {
     });
 
     if (this.gateway) {
-      this.gateway.emitRecommendationUpdated(comment.trackingId, { id: comment.trackingId, action: 'comment_edited' });
+      this.gateway.emitRecommendationUpdated(comment.trackingId, {
+        id: comment.trackingId,
+        action: 'comment_edited',
+      });
     }
     return result;
   }
@@ -651,7 +703,10 @@ export class RecommendationTrackingService {
     });
 
     if (this.gateway) {
-      this.gateway.emitRecommendationUpdated(comment.trackingId, { id: comment.trackingId, action: 'comment_deleted' });
+      this.gateway.emitRecommendationUpdated(comment.trackingId, {
+        id: comment.trackingId,
+        action: 'comment_deleted',
+      });
     }
     return result;
   }
@@ -668,7 +723,10 @@ export class RecommendationTrackingService {
 
     await this.checkAccess(tracking, user, true);
 
-    if ((tracking.status === 'CLOSED' || tracking.status === 'VERIFIED') && user.role !== 'ADMIN') {
+    if (
+      (tracking.status === 'CLOSED' || tracking.status === 'VERIFIED') &&
+      user.role !== 'ADMIN'
+    ) {
       throw new ForbiddenException('لا يمكن رفع أدلة لتوصية مغلقة أو معتمدة');
     }
 
@@ -742,7 +800,10 @@ export class RecommendationTrackingService {
     });
 
     if (this.gateway) {
-      this.gateway.emitRecommendationUpdated(id, { id, action: 'evidence_uploaded' });
+      this.gateway.emitRecommendationUpdated(id, {
+        id,
+        action: 'evidence_uploaded',
+      });
     }
     return result;
   }
@@ -764,14 +825,21 @@ export class RecommendationTrackingService {
 
     await this.checkAccess(tracking, user, true);
 
-    if ((tracking.status === 'CLOSED' || tracking.status === 'VERIFIED') && user.role !== 'ADMIN') {
-      throw new ForbiddenException('لا يمكن تعديل حالة توصية مغلقة أو تم التحقق منها إلا من قبل المشرف (Admin)');
+    if (
+      (tracking.status === 'CLOSED' || tracking.status === 'VERIFIED') &&
+      user.role !== 'ADMIN'
+    ) {
+      throw new ForbiddenException(
+        'لا يمكن تعديل حالة توصية مغلقة أو تم التحقق منها إلا من قبل المشرف (Admin)',
+      );
     }
 
-    const fromStatus = tracking.status as RecommendationStatus;
+    const fromStatus = tracking.status;
     const targetStatus = dto.resolutionStatus;
 
-    const allowedVerifyTransitions: Partial<Record<RecommendationStatus, RecommendationStatus[]>> = {
+    const allowedVerifyTransitions: Partial<
+      Record<RecommendationStatus, RecommendationStatus[]>
+    > = {
       COMPLETED: ['VERIFIED', 'REJECTED', 'NEEDS_CLARIFICATION'],
       VERIFIED: ['CLOSED'],
       NEEDS_CLARIFICATION: ['COMPLETED', 'REJECTED', 'UNDER_PROCESSING'],
@@ -779,12 +847,16 @@ export class RecommendationTrackingService {
     };
 
     if (!allowedVerifyTransitions[fromStatus]?.includes(targetStatus)) {
-      throw new BadRequestException('لا يمكن الانتقال من الحالة الحالية إلى الحالة المطلوبة');
+      throw new BadRequestException(
+        'لا يمكن الانتقال من الحالة الحالية إلى الحالة المطلوبة',
+      );
     }
 
     // Only ADMIN can reopen a rejected recommendation
     if (targetStatus === 'UNDER_PROCESSING' && user.role !== 'ADMIN') {
-      throw new ForbiddenException('فقط المشرف (Admin) يمكنه إعادة فتح توصية مرفوضة');
+      throw new ForbiddenException(
+        'فقط المشرف (Admin) يمكنه إعادة فتح توصية مرفوضة',
+      );
     }
 
     const result = await this.prisma.$transaction(async (tx) => {
@@ -820,19 +892,29 @@ export class RecommendationTrackingService {
       });
 
       // Write System Audit Log
-      await this.logAudit(user.userId, user.username, 'VERIFY_CLOSE_RECOMMENDATION', {
-        trackingId: id,
-        recommendationNumber: tracking.recommendationNumber,
-        fromStatus,
-        toStatus: targetStatus,
-        notes: dto.notes,
-      });
+      await this.logAudit(
+        user.userId,
+        user.username,
+        'VERIFY_CLOSE_RECOMMENDATION',
+        {
+          trackingId: id,
+          recommendationNumber: tracking.recommendationNumber,
+          fromStatus,
+          toStatus: targetStatus,
+          notes: dto.notes,
+        },
+      );
 
       if (tracking.assignedUserId) {
-        const verifyType = targetStatus === 'REJECTED' ? 'REJECTED' : targetStatus === 'UNDER_PROCESSING' ? 'REOPENED' : 'VERIFIED';
+        const verifyType =
+          targetStatus === 'REJECTED'
+            ? 'REJECTED'
+            : targetStatus === 'UNDER_PROCESSING'
+              ? 'REOPENED'
+              : 'VERIFIED';
         await this.notificationService.createWithTx(tx, {
           userId: tracking.assignedUserId,
-          type: verifyType as any,
+          type: verifyType,
           severity: targetStatus === 'REJECTED' ? 'CRITICAL' : 'SUCCESS',
           title: `تحديث حالة تدقيق التوصية ${tracking.recommendationNumber}`,
           message: `قام المفتش بتدقيق التوصية الرقابية ونقل حالتها إلى: ${targetStatus}. ملاحظات: ${dto.notes || '—'}`,
@@ -869,7 +951,14 @@ export class RecommendationTrackingService {
         include: {
           actor: { select: { id: true, fullName: true, username: true } },
           evidence: {
-            select: { id: true, fileName: true, filePath: true, fileSize: true, mimeType: true, description: true },
+            select: {
+              id: true,
+              fileName: true,
+              filePath: true,
+              fileSize: true,
+              mimeType: true,
+              description: true,
+            },
           },
         },
       }),
@@ -933,7 +1022,8 @@ export class RecommendationTrackingService {
       };
 
       if (log.actionType === 'STATUS_CHANGE' && log.toStatus) {
-        entry.eventLabel = statusLabels[log.toStatus] || `تغيير الحالة إلى ${log.toStatus}`;
+        entry.eventLabel =
+          statusLabels[log.toStatus] || `تغيير الحالة إلى ${log.toStatus}`;
       } else if (log.actionType === 'REASSIGN') {
         entry.eventLabel = 'إعادة تكليف أو إحالة';
       } else if (log.actionType === 'EVIDENCE_UPLOAD') {
@@ -947,7 +1037,14 @@ export class RecommendationTrackingService {
       // Attach evidence file if this is an evidence upload
       if (log.actionType === 'EVIDENCE_UPLOAD' && log.evidence.length > 0) {
         const ev = log.evidence[0];
-        entry.evidenceFile = { id: ev.id, fileName: ev.fileName, filePath: ev.filePath, fileSize: ev.fileSize, mimeType: ev.mimeType, description: ev.description };
+        entry.evidenceFile = {
+          id: ev.id,
+          fileName: ev.fileName,
+          filePath: ev.filePath,
+          fileSize: ev.fileSize,
+          mimeType: ev.mimeType,
+          description: ev.description,
+        };
       }
 
       entries.push(entry);
@@ -963,7 +1060,8 @@ export class RecommendationTrackingService {
         fromStatus: null,
         toStatus: null,
         progressPercent: null,
-        actorName: comment.author?.fullName || comment.author?.username || 'مستخدم',
+        actorName:
+          comment.author?.fullName || comment.author?.username || 'مستخدم',
         notes: comment.commentText,
         evidenceFile: null,
         replies: comment.replies.map((r: any) => ({
@@ -976,7 +1074,9 @@ export class RecommendationTrackingService {
     }
 
     // Sort all entries by date ascending
-    entries.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    entries.sort(
+      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+    );
 
     // Calculate durations between key milestones
     const getFirstDate = (status: string) => {
@@ -1002,16 +1102,28 @@ export class RecommendationTrackingService {
     const durations = {
       forwardingLag: diffDays(issuedDate, forwardedDate),
       processingLag: diffDays(forwardedDate, processingDate),
-      processingDuration: diffDays(processingDate, completionDate ? new Date(completionDate) : null),
-      verificationDuration: diffDays(completionDate ? new Date(completionDate) : null, verificationDate),
-      closureDuration: diffDays(verificationDate, closedDate ? new Date(closedDate) : null),
+      processingDuration: diffDays(
+        processingDate,
+        completionDate ? new Date(completionDate) : null,
+      ),
+      verificationDuration: diffDays(
+        completionDate ? new Date(completionDate) : null,
+        verificationDate,
+      ),
+      closureDuration: diffDays(
+        verificationDate,
+        closedDate ? new Date(closedDate) : null,
+      ),
       totalAge: diffDays(issuedDate, closedDate ? new Date(closedDate) : now),
     };
 
-    return { trackingId: id, recommendationNumber: tracking.recommendationNumber, timeline: entries, durations };
+    return {
+      trackingId: id,
+      recommendationNumber: tracking.recommendationNumber,
+      timeline: entries,
+      durations,
+    };
   }
-
-
 
   // 8.9. Run multi-factor administrative escalations
   async runEscalationCheck(user?: any) {
@@ -1022,7 +1134,7 @@ export class RecommendationTrackingService {
       const adminUser = await this.prisma.user.findFirst({
         where: { role: { name: 'ADMIN' } },
       });
-      const firstUser = adminUser || await this.prisma.user.findFirst();
+      const firstUser = adminUser || (await this.prisma.user.findFirst());
       actor = {
         userId: firstUser?.id,
         username: 'SYSTEM',
@@ -1093,7 +1205,7 @@ export class RecommendationTrackingService {
         const inactiveDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
         if (inactiveDays > 30) score += 15;
         else if (inactiveDays > 15) score += 8;
-      } catch { }
+      } catch {}
 
       // 5. Evidence Availability
       const evidenceCount = tracking.evidence.length;
@@ -1102,7 +1214,10 @@ export class RecommendationTrackingService {
       }
 
       // 6. Priority Weight (derived from Risk Level & Campaign Type)
-      if (tracking.riskLevel === 'CRITICAL' || tracking.campaign?.type === 'regular') {
+      if (
+        tracking.riskLevel === 'CRITICAL' ||
+        tracking.campaign?.type === 'regular'
+      ) {
         score += 10;
       }
 
@@ -1125,7 +1240,12 @@ export class RecommendationTrackingService {
             data: { escalationLevel: newLevel },
           });
 
-          const levelLabels = ['متابعة اعتيادية', 'تنبيه المنسق والجهة', 'متابعة خاصة من رئيس الهيئة', 'تصعيد للقيادة العليا 🚨'];
+          const levelLabels = [
+            'متابعة اعتيادية',
+            'تنبيه المنسق والجهة',
+            'متابعة خاصة من رئيس الهيئة',
+            'تصعيد للقيادة العليا 🚨',
+          ];
           const noteText = `نظام التصعيد التلقائي: تم تصعيد مستوى التوصية من (${levelLabels[prevLevel]}) إلى (${levelLabels[newLevel]}) بناءً على مؤشر مخاطر الإهمال البالغ ${score}/100.`;
 
           // Action Log
@@ -1174,7 +1294,10 @@ export class RecommendationTrackingService {
             where: { id: tracking.campaignId },
             select: { leaderId: true },
           });
-          if (campaign?.leaderId && campaign.leaderId !== tracking.assignedUserId) {
+          if (
+            campaign?.leaderId &&
+            campaign.leaderId !== tracking.assignedUserId
+          ) {
             await this.notificationService.createWithTx(tx, {
               userId: campaign.leaderId,
               type: 'ESCALATION',
@@ -1194,7 +1317,10 @@ export class RecommendationTrackingService {
     if (this.gateway) {
       for (const item of escalatedList) {
         this.gateway.emitRecommendationUpdated(item.id, item.tracking);
-        this.gateway.emitEscalationCreated(item.id, { id: item.id, level: item.newLevel });
+        this.gateway.emitEscalationCreated(item.id, {
+          id: item.id,
+          level: item.newLevel,
+        });
       }
     }
 
@@ -1208,17 +1334,29 @@ export class RecommendationTrackingService {
   // Automated daily scheduler run at midnight
   @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
   async handleDailyEscalationCron() {
-    console.log('[CronScheduler] Starting daily administrative escalation check...');
+    console.log(
+      '[CronScheduler] Starting daily administrative escalation check...',
+    );
     try {
       const result = await this.runEscalationCheck();
-      console.log(`[CronScheduler] Daily escalation check completed. Processed: ${result.processedCount}, Escalated: ${result.escalatedCount}`);
+      console.log(
+        `[CronScheduler] Daily escalation check completed. Processed: ${result.processedCount}, Escalated: ${result.escalatedCount}`,
+      );
     } catch (err) {
-      console.error('[CronScheduler] Error running daily escalation check:', err);
+      console.error(
+        '[CronScheduler] Error running daily escalation check:',
+        err,
+      );
     }
   }
 
   // 8.95. SystemAuditLog logger helper
-  private async logAudit(userId: string, username: string, actionType: string, details: any) {
+  private async logAudit(
+    userId: string,
+    username: string,
+    actionType: string,
+    details: any,
+  ) {
     try {
       await this.prisma.systemAuditLog.create({
         data: {
@@ -1236,7 +1374,7 @@ export class RecommendationTrackingService {
   // 9. Fetch dashboard aggregation metrics
   async getDashboardSummary() {
     const total = await this.prisma.recommendationTracking.count();
-    
+
     // Status breakdowns
     const open = await this.prisma.recommendationTracking.count({
       where: { status: { notIn: ['CLOSED', 'VERIFIED', 'REJECTED'] } },
@@ -1263,7 +1401,8 @@ export class RecommendationTrackingService {
       },
     });
 
-    const closureRate = total > 0 ? Number(((closed + verified) / total * 100).toFixed(2)) : 0;
+    const closureRate =
+      total > 0 ? Number((((closed + verified) / total) * 100).toFixed(2)) : 0;
     const completionRate = closureRate;
 
     // Averages (Average time to close in days)
@@ -1281,7 +1420,11 @@ export class RecommendationTrackingService {
     let avgTimeToCloseDays = 0;
     if (closedRecs.length > 0) {
       const sumDiffMs = closedRecs.reduce((sum, rec) => {
-        return sum + (new Date(rec.closedAt!).getTime() - new Date(rec.createdAt).getTime());
+        return (
+          sum +
+          (new Date(rec.closedAt!).getTime() -
+            new Date(rec.createdAt).getTime())
+        );
       }, 0);
       const avgMs = sumDiffMs / closedRecs.length;
       avgTimeToCloseDays = Number((avgMs / (1000 * 60 * 60 * 24)).toFixed(1));
@@ -1342,52 +1485,71 @@ export class RecommendationTrackingService {
 
   // 10. Fetch stats grouped by risk level
   async getStatsByRisk() {
-    const risks = ['CRITICAL', 'HIGH', 'MEDIUM', 'LOW'] as RiskLevel[];
-    
-    const breakdown = await Promise.all(risks.map(async (risk) => {
-      const count = await this.prisma.recommendationTracking.count({
-        where: { riskLevel: risk },
-      });
-      const open = await this.prisma.recommendationTracking.count({
-        where: { riskLevel: risk, status: { notIn: ['CLOSED', 'VERIFIED', 'REJECTED'] } },
-      });
-      const overdue = await this.prisma.recommendationTracking.count({
-        where: {
-          riskLevel: risk,
-          status: { notIn: ['CLOSED', 'VERIFIED', 'REJECTED'] },
-          dueDate: { lt: new Date() },
-        },
-      });
+    const risks = ['CRITICAL', 'HIGH', 'MEDIUM', 'LOW'];
 
-      return {
-        riskLevel: risk,
-        count,
-        open,
-        overdue,
-      };
-    }));
+    const breakdown = await Promise.all(
+      risks.map(async (risk) => {
+        const count = await this.prisma.recommendationTracking.count({
+          where: { riskLevel: risk },
+        });
+        const open = await this.prisma.recommendationTracking.count({
+          where: {
+            riskLevel: risk,
+            status: { notIn: ['CLOSED', 'VERIFIED', 'REJECTED'] },
+          },
+        });
+        const overdue = await this.prisma.recommendationTracking.count({
+          where: {
+            riskLevel: risk,
+            status: { notIn: ['CLOSED', 'VERIFIED', 'REJECTED'] },
+            dueDate: { lt: new Date() },
+          },
+        });
+
+        return {
+          riskLevel: risk,
+          count,
+          open,
+          overdue,
+        };
+      }),
+    );
 
     return breakdown;
   }
 
   // 11. Fetch stats grouped by impact category
   async getStatsByImpact() {
-    const categories = ['SECURITY', 'ADMINISTRATIVE', 'HUMAN_RESOURCES', 'LOGISTICS', 'INFRASTRUCTURE', 'TRAINING', 'LEGAL', 'TECHNICAL'] as ImpactCategory[];
+    const categories = [
+      'SECURITY',
+      'ADMINISTRATIVE',
+      'HUMAN_RESOURCES',
+      'LOGISTICS',
+      'INFRASTRUCTURE',
+      'TRAINING',
+      'LEGAL',
+      'TECHNICAL',
+    ] as ImpactCategory[];
 
-    const breakdown = await Promise.all(categories.map(async (cat) => {
-      const count = await this.prisma.recommendationTracking.count({
-        where: { impactCategory: cat },
-      });
-      const open = await this.prisma.recommendationTracking.count({
-        where: { impactCategory: cat, status: { notIn: ['CLOSED', 'VERIFIED', 'REJECTED'] } },
-      });
+    const breakdown = await Promise.all(
+      categories.map(async (cat) => {
+        const count = await this.prisma.recommendationTracking.count({
+          where: { impactCategory: cat },
+        });
+        const open = await this.prisma.recommendationTracking.count({
+          where: {
+            impactCategory: cat,
+            status: { notIn: ['CLOSED', 'VERIFIED', 'REJECTED'] },
+          },
+        });
 
-      return {
-        category: cat,
-        count,
-        open,
-      };
-    }));
+        return {
+          category: cat,
+          count,
+          open,
+        };
+      }),
+    );
 
     return breakdown;
   }
@@ -1410,26 +1572,28 @@ export class RecommendationTrackingService {
       take: 5,
     });
 
-    const result = await Promise.all(topLagging.map(async (item) => {
-      const entityId = item.assignedEntityId;
-      const entityName = item.assignedEntityNameSnapshot || 'جهة غير محددة';
-      
-      const overdueCount = await this.prisma.recommendationTracking.count({
-        where: {
-          assignedEntityId: entityId,
-          assignedEntityNameSnapshot: entityName,
-        status: { notIn: ['CLOSED', 'VERIFIED', 'REJECTED'] },
-          dueDate: { lt: new Date() },
-        },
-      });
+    const result = await Promise.all(
+      topLagging.map(async (item) => {
+        const entityId = item.assignedEntityId;
+        const entityName = item.assignedEntityNameSnapshot || 'جهة غير محددة';
 
-      return {
-        entityId,
-        entityName,
-        openCount: item._count.id,
-        overdueCount,
-      };
-    }));
+        const overdueCount = await this.prisma.recommendationTracking.count({
+          where: {
+            assignedEntityId: entityId,
+            assignedEntityNameSnapshot: entityName,
+            status: { notIn: ['CLOSED', 'VERIFIED', 'REJECTED'] },
+            dueDate: { lt: new Date() },
+          },
+        });
+
+        return {
+          entityId,
+          entityName,
+          openCount: item._count.id,
+          overdueCount,
+        };
+      }),
+    );
 
     return result;
   }

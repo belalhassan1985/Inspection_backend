@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
@@ -8,10 +12,7 @@ export class EvaluationOptionTypesService {
   async findAll(includeInactive = true) {
     return this.prisma.evaluationOptionType.findMany({
       where: includeInactive ? undefined : { isActive: true },
-      orderBy: [
-        { sortOrder: 'asc' },
-        { id: 'asc' },
-      ],
+      orderBy: [{ sortOrder: 'asc' }, { id: 'asc' }],
     });
   }
 
@@ -27,7 +28,7 @@ export class EvaluationOptionTypesService {
     return this.prisma.evaluationOptionType.create({
       data: {
         ...payload,
-        sortOrder: payload.sortOrder ?? ((maxSort._max.sortOrder ?? 0) + 1),
+        sortOrder: payload.sortOrder ?? (maxSort._max.sortOrder ?? 0) + 1,
       },
     });
   }
@@ -63,7 +64,9 @@ export class EvaluationOptionTypesService {
   }
 
   private async ensureExists(id: number) {
-    const existing = await this.prisma.evaluationOptionType.findUnique({ where: { id } });
+    const existing = await this.prisma.evaluationOptionType.findUnique({
+      where: { id },
+    });
     if (!existing) {
       throw new NotFoundException('Evaluation option type not found');
     }
@@ -72,10 +75,12 @@ export class EvaluationOptionTypesService {
 
   private normalizePayload(data: any, isCreate: boolean) {
     const code = typeof data.code === 'string' ? data.code.trim() : undefined;
-    const nameAr = typeof data.nameAr === 'string' ? data.nameAr.trim() : undefined;
-    const scoreMultiplier = data.scoreMultiplier !== undefined && data.scoreMultiplier !== null
-      ? Number(data.scoreMultiplier)
-      : undefined;
+    const nameAr =
+      typeof data.nameAr === 'string' ? data.nameAr.trim() : undefined;
+    const scoreMultiplier =
+      data.scoreMultiplier !== undefined && data.scoreMultiplier !== null
+        ? Number(data.scoreMultiplier)
+        : undefined;
 
     if (isCreate && !code) {
       throw new BadRequestException('Code is required');
@@ -84,21 +89,34 @@ export class EvaluationOptionTypesService {
       throw new BadRequestException('Arabic name is required');
     }
     if (code && !/^[a-z0-9_-]+$/i.test(code)) {
-      throw new BadRequestException('Code must contain letters, numbers, underscores, or dashes only');
+      throw new BadRequestException(
+        'Code must contain letters, numbers, underscores, or dashes only',
+      );
     }
-    if (scoreMultiplier !== undefined && (Number.isNaN(scoreMultiplier) || scoreMultiplier < 0)) {
-      throw new BadRequestException('Score multiplier must be a non-negative number');
+    if (
+      scoreMultiplier !== undefined &&
+      (Number.isNaN(scoreMultiplier) || scoreMultiplier < 0)
+    ) {
+      throw new BadRequestException(
+        'Score multiplier must be a non-negative number',
+      );
     }
 
     const payload: any = {};
     if (code !== undefined) payload.code = code;
     if (nameAr !== undefined) payload.nameAr = nameAr;
-    if (data.nameEn !== undefined) payload.nameEn = data.nameEn ? String(data.nameEn).trim() : null;
-    if (data.color !== undefined) payload.color = data.color ? String(data.color).trim() : null;
-    if (data.icon !== undefined) payload.icon = data.icon ? String(data.icon).trim() : null;
-    if (data.sortOrder !== undefined && data.sortOrder !== null) payload.sortOrder = Number(data.sortOrder) || 0;
-    if (data.affectsScore !== undefined) payload.affectsScore = !!data.affectsScore;
-    if (scoreMultiplier !== undefined) payload.scoreMultiplier = scoreMultiplier;
+    if (data.nameEn !== undefined)
+      payload.nameEn = data.nameEn ? String(data.nameEn).trim() : null;
+    if (data.color !== undefined)
+      payload.color = data.color ? String(data.color).trim() : null;
+    if (data.icon !== undefined)
+      payload.icon = data.icon ? String(data.icon).trim() : null;
+    if (data.sortOrder !== undefined && data.sortOrder !== null)
+      payload.sortOrder = Number(data.sortOrder) || 0;
+    if (data.affectsScore !== undefined)
+      payload.affectsScore = !!data.affectsScore;
+    if (scoreMultiplier !== undefined)
+      payload.scoreMultiplier = scoreMultiplier;
     if (data.isActive !== undefined) payload.isActive = !!data.isActive;
     return payload;
   }

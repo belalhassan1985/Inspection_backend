@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Put, Delete, Body, Param, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Body,
+  Param,
+  UseGuards,
+  Req,
+} from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { CampaignsService } from './campaigns.service';
 import { RolesGuard } from '../auth/roles.guard';
@@ -45,7 +55,9 @@ export class CampaignsController {
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'تفاصيل حملة تفتيشية محددة بجميع نتائجها وملاحظاتها' })
+  @ApiOperation({
+    summary: 'تفاصيل حملة تفتيشية محددة بجميع نتائجها وملاحظاتها',
+  })
   async findOne(@Param('id') id: string) {
     return this.campaignsService.findOne(id);
   }
@@ -53,15 +65,15 @@ export class CampaignsController {
   @Roles('ADMIN', 'EDITOR')
   @Post()
   @ApiOperation({ summary: 'إنشاء حملة تفتيشية جديدة' })
-  async create(@Body() body: any) {
-    return this.campaignsService.create(body);
+  async create(@Body() body: any, @Req() req: any) {
+    return this.campaignsService.create(body, req.user?.userId);
   }
 
   @Roles('ADMIN', 'EDITOR')
   @Put(':id')
   @ApiOperation({ summary: 'تعديل بيانات حملة تفتيشية' })
-  async update(@Param('id') id: string, @Body() body: any) {
-    return this.campaignsService.update(id, body);
+  async update(@Param('id') id: string, @Body() body: any, @Req() req: any) {
+    return this.campaignsService.update(id, body, req.user?.userId);
   }
 
   @Roles('ADMIN')
@@ -73,7 +85,9 @@ export class CampaignsController {
 
   @Roles('ADMIN', 'EDITOR', 'EVALUATOR')
   @Post(':id/notes')
-  @ApiOperation({ summary: 'إضافة ملاحظة ختامية للحملة (إيجابية، سلبية، عائق، معضلة)' })
+  @ApiOperation({
+    summary: 'إضافة ملاحظة ختامية للحملة (إيجابية، سلبية، عائق، معضلة)',
+  })
   async addNote(@Param('id') id: string, @Body() body: any) {
     return this.campaignsService.addNote(id, body);
   }
@@ -132,5 +146,67 @@ export class CampaignsController {
   @ApiOperation({ summary: 'حذف ملحق' })
   async deleteAppendix(@Param('appId') appId: string) {
     return this.campaignsService.deleteAppendix(appId);
+  }
+
+  // Role-aware member management
+  @Roles('ADMIN', 'EDITOR')
+  @Put(':id/members/:inspectorId/role')
+  @ApiOperation({ summary: 'تعيين دور عضو في الحملة' })
+  async setMemberRole(
+    @Param('id') id: string,
+    @Param('inspectorId') inspectorId: string,
+    @Body() body: { role: string },
+    @Req() req: any,
+  ) {
+    return this.campaignsService.setMemberRole(
+      id,
+      inspectorId,
+      body.role,
+      req.user?.userId,
+    );
+  }
+
+  @Roles('ADMIN', 'EDITOR')
+  @Delete(':id/members/:inspectorId')
+  @ApiOperation({ summary: 'إزالة عضو من الحملة' })
+  async removeMember(
+    @Param('id') id: string,
+    @Param('inspectorId') inspectorId: string,
+  ) {
+    return this.campaignsService.removeMember(id, inspectorId);
+  }
+
+  // Group assignment endpoints
+  @Roles('ADMIN', 'EDITOR')
+  @Get(':id/groups')
+  @ApiOperation({ summary: 'عرض المجموعات المرتبطة بالحملة' })
+  async getGroupAssignments(@Param('id') id: string) {
+    return this.campaignsService.getGroupAssignments(id);
+  }
+
+  @Roles('ADMIN', 'EDITOR')
+  @Post(':id/groups')
+  @ApiOperation({ summary: 'ربط مجموعة بالحملة' })
+  async assignGroup(
+    @Param('id') id: string,
+    @Body() body: { groupId: number; role?: string },
+    @Req() req: any,
+  ) {
+    return this.campaignsService.assignGroup(
+      id,
+      body.groupId,
+      body.role,
+      req.user?.userId,
+    );
+  }
+
+  @Roles('ADMIN', 'EDITOR')
+  @Delete(':id/groups/:groupId')
+  @ApiOperation({ summary: 'إزالة مجموعة من الحملة' })
+  async removeGroupAssignment(
+    @Param('id') id: string,
+    @Param('groupId') groupId: number,
+  ) {
+    return this.campaignsService.removeGroupAssignment(id, groupId);
   }
 }

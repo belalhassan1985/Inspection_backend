@@ -1,9 +1,17 @@
-import { Injectable, CanActivate, ExecutionContext, ForbiddenException } from '@nestjs/common';
+import {
+  Injectable,
+  CanActivate,
+  ExecutionContext,
+  ForbiddenException,
+} from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { SecurityClassificationLevel } from '@prisma/client';
 import { CLASSIFICATION_KEY } from './classification.decorator';
 
-export const ClassificationHierarchy: Record<SecurityClassificationLevel, number> = {
+export const ClassificationHierarchy: Record<
+  SecurityClassificationLevel,
+  number
+> = {
   [SecurityClassificationLevel.RESTRICTED]: 1,
   [SecurityClassificationLevel.CONFIDENTIAL]: 2,
   [SecurityClassificationLevel.SECRET]: 3,
@@ -15,10 +23,11 @@ export class SecurityClassificationGuard implements CanActivate {
   constructor(private reflector: Reflector) {}
 
   canActivate(context: ExecutionContext): boolean {
-    const requiredLevel = this.reflector.getAllAndOverride<SecurityClassificationLevel>(CLASSIFICATION_KEY, [
-      context.getHandler(),
-      context.getClass(),
-    ]);
+    const requiredLevel =
+      this.reflector.getAllAndOverride<SecurityClassificationLevel>(
+        CLASSIFICATION_KEY,
+        [context.getHandler(), context.getClass()],
+      );
 
     if (!requiredLevel) {
       return true;
@@ -36,15 +45,20 @@ export class SecurityClassificationGuard implements CanActivate {
     }
 
     if (!user.securityClassification) {
-      throw new ForbiddenException('Access denied: no security classification level provided');
+      throw new ForbiddenException(
+        'Access denied: no security classification level provided',
+      );
     }
 
-    const userWeight = ClassificationHierarchy[user.securityClassification as SecurityClassificationLevel] || 0;
+    const userWeight =
+      ClassificationHierarchy[
+        user.securityClassification as SecurityClassificationLevel
+      ] || 0;
     const requiredWeight = ClassificationHierarchy[requiredLevel] || 0;
 
     if (userWeight < requiredWeight) {
       throw new ForbiddenException(
-        `Access denied: Insufficient security classification clearance. Requires ${requiredLevel} or higher.`
+        `Access denied: Insufficient security classification clearance. Requires ${requiredLevel} or higher.`,
       );
     }
 

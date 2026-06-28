@@ -12,7 +12,11 @@ export class HealthAnalyticsService {
    * Calculates the Health Score (0 to 100) for a recommendation tracking item
    */
   calculateHealthScore(tracking: any): number {
-    if (tracking.status === RecommendationStatus.CLOSED || tracking.status === RecommendationStatus.VERIFIED || tracking.status === RecommendationStatus.REJECTED) {
+    if (
+      tracking.status === RecommendationStatus.CLOSED ||
+      tracking.status === RecommendationStatus.VERIFIED ||
+      tracking.status === RecommendationStatus.REJECTED
+    ) {
       return 100;
     }
 
@@ -21,9 +25,11 @@ export class HealthAnalyticsService {
 
     // 1. Check Overdue Status
     if (tracking.dueDate && new Date(tracking.dueDate) < now) {
-      const diffTime = Math.abs(now.getTime() - new Date(tracking.dueDate).getTime());
+      const diffTime = Math.abs(
+        now.getTime() - new Date(tracking.dueDate).getTime(),
+      );
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      
+
       if (diffDays > 15) {
         score -= 60; // Critical delay
       } else {
@@ -61,7 +67,9 @@ export class HealthAnalyticsService {
   /**
    * Maps a numeric health score to status categories
    */
-  getHealthStatus(score: number): 'EXCELLENT' | 'GOOD' | 'NEEDS_ATTENTION' | 'AT_RISK' | 'CRITICAL' {
+  getHealthStatus(
+    score: number,
+  ): 'EXCELLENT' | 'GOOD' | 'NEEDS_ATTENTION' | 'AT_RISK' | 'CRITICAL' {
     if (score >= 90) return 'EXCELLENT';
     if (score >= 75) return 'GOOD';
     if (score >= 60) return 'NEEDS_ATTENTION';
@@ -98,7 +106,9 @@ export class HealthAnalyticsService {
    * Logs health history snapshot for all existing tracking items
    */
   async recordAllHealthScores() {
-    this.logger.log('Recording health scores history for all active recommendations...');
+    this.logger.log(
+      'Recording health scores history for all active recommendations...',
+    );
     const trackings = await this.prisma.recommendationTracking.findMany({
       include: { evidence: true },
     });
@@ -114,6 +124,8 @@ export class HealthAnalyticsService {
       });
     }
 
-    this.logger.log(`Successfully recorded health history for ${trackings.length} recommendations.`);
+    this.logger.log(
+      `Successfully recorded health history for ${trackings.length} recommendations.`,
+    );
   }
 }

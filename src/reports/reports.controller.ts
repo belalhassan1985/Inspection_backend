@@ -1,4 +1,4 @@
-import {
+﻿import {
   Controller,
   Get,
   Post,
@@ -92,6 +92,7 @@ export class ReportsController {
     @Body() payload: Record<string, unknown>,
     @Res() res: Response,
   ): Promise<void> {
+
     const hasPayload =
       payload && typeof payload === 'object' && Object.keys(payload).length > 0;
     const pdfBuffer = hasPayload
@@ -172,6 +173,69 @@ export class ReportsController {
     return this.reportsService.deleteReportPresentation(campaignId);
   }
 
+  @Get('criteria-report/:templateId/payload')
+  @ApiOperation({ summary: 'الحصول على بيانات تقرير أسس ومعايير التفتيش' })
+  async getCriteriaReportPayload(
+    @Param('templateId') templateId: string,
+  ): Promise<unknown> {
+    return this.reportsService.getCriteriaReportPayload(templateId);
+  }
+
+  @Get('criteria-report/:templateId/html')
+  @ApiOperation({ summary: 'عرض تقرير أسس ومعايير التفتيش بصيغة HTML' })
+  async getCriteriaReportHtml(
+    @Param('templateId') templateId: string,
+    @Res() res: Response,
+  ): Promise<void> {
+    const payload =
+      await this.reportsService.getCriteriaReportPayload(templateId);
+    const html = this.reportsService.generateCriteriaReportHtml(payload);
+
+    res.set({
+      'Content-Type': 'text/html; charset=utf-8',
+      'Content-Length': Buffer.byteLength(html, 'utf8').toString(),
+    });
+
+    res.end(html);
+  }
+
+  @Get('criteria-report/:templateId/pdf')
+  @ApiOperation({ summary: 'توليد وتحميل تقرير PDF لأسس ومعايير التفتيش' })
+  async getCriteriaReportPdf(
+    @Param('templateId') templateId: string,
+    @Res() res: Response,
+  ): Promise<void> {
+    const pdfBuffer =
+      await this.reportsService.generateCriteriaReportPdf(templateId);
+
+    res.set({
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': `attachment; filename=criteria_report_${templateId}.pdf`,
+      'Content-Length': pdfBuffer.length.toString(),
+    });
+
+    res.end(pdfBuffer);
+  }
+
+  @Get('criteria-report/:templateId/word')
+  @ApiOperation({ summary: 'توليد وتحميل تقرير Word لأسس ومعايير التفتيش' })
+  async getCriteriaReportWord(
+    @Param('templateId') templateId: string,
+    @Res() res: Response,
+  ): Promise<void> {
+    const wordBuffer =
+      await this.reportsService.generateCriteriaReportWord(templateId);
+
+    res.set({
+      'Content-Type':
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'Content-Disposition': `attachment; filename=criteria_report_${templateId}.docx`,
+      'Content-Length': wordBuffer.length.toString(),
+    });
+
+    res.end(wordBuffer);
+  }
+
   @Get('campaign/:campaignId/payload/debug')
   @ApiOperation({
     summary: 'تصحيح: عرض ملخص أقسام التقرير مع detailed visibility',
@@ -232,7 +296,11 @@ export class ReportsController {
                   entityName: sub.detailedTables?.[0]?.entityName || '',
                   detailId: sub.detailedTables?.[0]?.detailId || null,
                   detailedTablesLength: sub.detailedTables?.length || 0,
-                  rowsLength: sub.detailedTables?.reduce((sum: number, t: any) => sum + (t.rows?.length || 0), 0) || 0,
+                  rowsLength:
+                    sub.detailedTables?.reduce(
+                      (sum: number, t: any) => sum + (t.rows?.length || 0),
+                      0,
+                    ) || 0,
                   willRender: !!sub.visible && !sub.isEmpty,
                 };
               },
@@ -251,4 +319,8 @@ export class ReportsController {
     );
     return debug;
   }
+
 }
+
+
+

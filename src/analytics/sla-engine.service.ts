@@ -113,10 +113,14 @@ export class SlaEngineService {
     const totalAgeSum = allMetrics.reduce((s, m) => s + m.totalAge, 0);
     const overdueDaysSum = allMetrics.reduce((s, m) => s + m.overdueDays, 0);
 
-    const avgFromList = (extract: (m: SlaMetricsResult) => number | null): number | null => {
-      const values = allMetrics.map(extract).filter((v) => v !== null) as number[];
+    const avgFromList = (
+      extract: (m: SlaMetricsResult) => number | null,
+    ): number | null => {
+      const values = allMetrics.map(extract).filter((v) => v !== null);
       if (values.length === 0) return null;
-      return Number((values.reduce((s, v) => s + v, 0) / values.length).toFixed(1));
+      return Number(
+        (values.reduce((s, v) => s + v, 0) / values.length).toFixed(1),
+      );
     };
 
     return {
@@ -126,8 +130,12 @@ export class SlaEngineService {
       overdue,
       avgForwardingLag: avgFromList((m) => m.milestones.forwardingLag),
       avgProcessingLag: avgFromList((m) => m.milestones.processingLag),
-      avgProcessingDuration: avgFromList((m) => m.milestones.processingDuration),
-      avgVerificationDuration: avgFromList((m) => m.milestones.verificationDuration),
+      avgProcessingDuration: avgFromList(
+        (m) => m.milestones.processingDuration,
+      ),
+      avgVerificationDuration: avgFromList(
+        (m) => m.milestones.verificationDuration,
+      ),
       avgClosureDuration: avgFromList((m) => m.milestones.closureDuration),
       avgTotalAge: Number((totalAgeSum / total).toFixed(1)),
       avgOverdueDays: Number((overdueDaysSum / total).toFixed(1)),
@@ -163,34 +171,58 @@ export class SlaEngineService {
       if (metrics.overallSla === 'normal') continue;
 
       if (metrics.slaPerMilestone.forwarding === 'overdue') {
-        candidates.push({ trackingId: metrics.trackingId, milestoneType: 'RESPONSE', durationDays: metrics.milestones.forwardingLag ?? metrics.totalAge });
+        candidates.push({
+          trackingId: metrics.trackingId,
+          milestoneType: 'RESPONSE',
+          durationDays: metrics.milestones.forwardingLag ?? metrics.totalAge,
+        });
         responseBreaches++;
       }
 
-      if (metrics.slaPerMilestone.resolution === 'overdue' && metrics.overdueDays > 0) {
-        candidates.push({ trackingId: metrics.trackingId, milestoneType: 'RESOLUTION', durationDays: metrics.overdueDays });
+      if (
+        metrics.slaPerMilestone.resolution === 'overdue' &&
+        metrics.overdueDays > 0
+      ) {
+        candidates.push({
+          trackingId: metrics.trackingId,
+          milestoneType: 'RESOLUTION',
+          durationDays: metrics.overdueDays,
+        });
         resolutionBreaches++;
       }
 
       if (metrics.slaPerMilestone.verification === 'overdue') {
-        candidates.push({ trackingId: metrics.trackingId, milestoneType: 'CLOSURE', durationDays: metrics.milestones.verificationDuration ?? 0 });
+        candidates.push({
+          trackingId: metrics.trackingId,
+          milestoneType: 'CLOSURE',
+          durationDays: metrics.milestones.verificationDuration ?? 0,
+        });
         closureBreaches++;
       } else if (metrics.slaPerMilestone.closure === 'overdue') {
-        candidates.push({ trackingId: metrics.trackingId, milestoneType: 'CLOSURE', durationDays: metrics.milestones.closureDuration ?? 0 });
+        candidates.push({
+          trackingId: metrics.trackingId,
+          milestoneType: 'CLOSURE',
+          durationDays: metrics.milestones.closureDuration ?? 0,
+        });
         closureBreaches++;
       }
     }
 
     // Fetch all existing breaches matching candidate trackingIds in one query
-    const candidateTrackingIds = [...new Set(candidates.map((c) => c.trackingId))];
-    const existingBreaches = candidateTrackingIds.length > 0
-      ? await this.prisma.slaBreachLog.findMany({
-          where: { trackingId: { in: candidateTrackingIds } },
-        })
-      : [];
+    const candidateTrackingIds = [
+      ...new Set(candidates.map((c) => c.trackingId)),
+    ];
+    const existingBreaches =
+      candidateTrackingIds.length > 0
+        ? await this.prisma.slaBreachLog.findMany({
+            where: { trackingId: { in: candidateTrackingIds } },
+          })
+        : [];
 
     // Build a Set key for O(1) lookup: "trackingId|milestoneType"
-    const existingKeySet = new Set(existingBreaches.map((b) => `${b.trackingId}|${b.milestoneType}`));
+    const existingKeySet = new Set(
+      existingBreaches.map((b) => `${b.trackingId}|${b.milestoneType}`),
+    );
 
     let newBreaches = 0;
     let skippedBreaches = 0;
@@ -199,7 +231,11 @@ export class SlaEngineService {
       const key = `${candidate.trackingId}|${candidate.milestoneType}`;
       if (existingKeySet.has(key)) {
         // Update existing breach duration
-        const existing = existingBreaches.find((b) => b.trackingId === candidate.trackingId && b.milestoneType === candidate.milestoneType);
+        const existing = existingBreaches.find(
+          (b) =>
+            b.trackingId === candidate.trackingId &&
+            b.milestoneType === candidate.milestoneType,
+        );
         if (existing) {
           await this.prisma.slaBreachLog.update({
             where: { id: existing.id },
@@ -221,10 +257,17 @@ export class SlaEngineService {
     }
 
     this.logger.log(
-      `SLA Engine: scan completed. Total scanned: ${totalScanned}, New breaches: ${newBreaches}, Existing skipped: ${skippedBreaches}`
+      `SLA Engine: scan completed. Total scanned: ${totalScanned}, New breaches: ${newBreaches}, Existing skipped: ${skippedBreaches}`,
     );
 
-    return { response: responseBreaches, resolution: resolutionBreaches, closure: closureBreaches, newBreaches, skippedBreaches, totalScanned };
+    return {
+      response: responseBreaches,
+      resolution: resolutionBreaches,
+      closure: closureBreaches,
+      newBreaches,
+      skippedBreaches,
+      totalScanned,
+    };
   }
 
   @Cron('0 2 * * *')
@@ -233,7 +276,7 @@ export class SlaEngineService {
     const result = await this.checkAndLogBreaches();
     await this.createSlaNotifications();
     this.logger.log(
-      `SLA Engine: daily scan complete. Response: ${result.response}, Resolution: ${result.resolution}, Closure: ${result.closure}`
+      `SLA Engine: daily scan complete. Response: ${result.response}, Resolution: ${result.resolution}, Closure: ${result.closure}`,
     );
   }
 
@@ -274,15 +317,34 @@ export class SlaEngineService {
       const targetUserIds = new Set<string>();
       if (tracking.assignedUserId) targetUserIds.add(tracking.assignedUserId);
       if (campaignLeaderId) targetUserIds.add(campaignLeaderId);
-      if (campaignDeputyId && campaignDeputyId !== campaignLeaderId) targetUserIds.add(campaignDeputyId);
+      if (campaignDeputyId && campaignDeputyId !== campaignLeaderId)
+        targetUserIds.add(campaignDeputyId);
 
       // Process each milestone
-      const milestoneMap: Record<string, { status: 'normal' | 'at_risk' | 'overdue' | null; label: string }> = {
-        forwarding: { status: metrics.slaPerMilestone.forwarding, label: 'مرحلة التوجيه' },
-        processingStart: { status: metrics.slaPerMilestone.processingStart, label: 'مرحلة بدء المعالجة' },
-        resolution: { status: metrics.slaPerMilestone.resolution, label: 'مرحلة الإنجاز' },
-        verification: { status: metrics.slaPerMilestone.verification, label: 'مرحلة التحقق' },
-        closure: { status: metrics.slaPerMilestone.closure, label: 'مرحلة الإغلاق' },
+      const milestoneMap: Record<
+        string,
+        { status: 'normal' | 'at_risk' | 'overdue' | null; label: string }
+      > = {
+        forwarding: {
+          status: metrics.slaPerMilestone.forwarding,
+          label: 'مرحلة التوجيه',
+        },
+        processingStart: {
+          status: metrics.slaPerMilestone.processingStart,
+          label: 'مرحلة بدء المعالجة',
+        },
+        resolution: {
+          status: metrics.slaPerMilestone.resolution,
+          label: 'مرحلة الإنجاز',
+        },
+        verification: {
+          status: metrics.slaPerMilestone.verification,
+          label: 'مرحلة التحقق',
+        },
+        closure: {
+          status: metrics.slaPerMilestone.closure,
+          label: 'مرحلة الإغلاق',
+        },
       };
 
       for (const [milestoneType, info] of Object.entries(milestoneMap)) {
@@ -293,11 +355,12 @@ export class SlaEngineService {
         const severity = isOverdue ? 'CRITICAL' : 'WARNING';
 
         // Dedup check
-        const alreadySent = await this.notificationService.hasExistingSlaNotification(
-          tracking.id,
-          notifType as any,
-          milestoneType,
-        );
+        const alreadySent =
+          await this.notificationService.hasExistingSlaNotification(
+            tracking.id,
+            notifType,
+            milestoneType,
+          );
         if (alreadySent) continue;
 
         const title = isOverdue
@@ -311,7 +374,7 @@ export class SlaEngineService {
         for (const userId of targetUserIds) {
           const result = await this.notificationService.create({
             userId,
-            type: notifType as any,
+            type: notifType,
             severity,
             title,
             message,
@@ -347,13 +410,14 @@ export class SlaEngineService {
     const rejectedDate = firstStatusDate('REJECTED');
 
     // Use rejection date as effective end date for REJECTED
-    const effectiveEndDate = tracking.status === RecommendationStatus.REJECTED && rejectedDate
-      ? rejectedDate
-      : tracking.status === RecommendationStatus.CLOSED && closedDate
-        ? closedDate
-        : tracking.status === RecommendationStatus.VERIFIED && verifiedDate
-          ? verifiedDate
-          : null;
+    const effectiveEndDate =
+      tracking.status === RecommendationStatus.REJECTED && rejectedDate
+        ? rejectedDate
+        : tracking.status === RecommendationStatus.CLOSED && closedDate
+          ? closedDate
+          : tracking.status === RecommendationStatus.VERIFIED && verifiedDate
+            ? verifiedDate
+            : null;
 
     const diffDays = (d1: Date | null, d2: Date | null): number | null => {
       if (!d1 || !d2) return null;
@@ -362,7 +426,9 @@ export class SlaEngineService {
 
     const daysSince = (date: Date | null): number | null => {
       if (!date) return null;
-      return Math.round((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
+      return Math.round(
+        (now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24),
+      );
     };
 
     // Time-based durations (from completed milestones)
@@ -378,13 +444,22 @@ export class SlaEngineService {
       : daysSince(issuedDate)!;
 
     // Overdue days: past dueDate and not in a final resolved state
-    const isFinalState = [RecommendationStatus.CLOSED, RecommendationStatus.VERIFIED, RecommendationStatus.REJECTED].includes(tracking.status);
-    const overdueDays = dueDate && !isFinalState && now > dueDate
-      ? Math.ceil((now.getTime() - dueDate.getTime()) / (1000 * 60 * 60 * 24))
-      : 0;
+    const isFinalState = [
+      RecommendationStatus.CLOSED,
+      RecommendationStatus.VERIFIED,
+      RecommendationStatus.REJECTED,
+    ].includes(tracking.status);
+    const overdueDays =
+      dueDate && !isFinalState && now > dueDate
+        ? Math.ceil((now.getTime() - dueDate.getTime()) / (1000 * 60 * 60 * 24))
+        : 0;
 
     // ── Assess SLA per milestone ──
-    const assess = (duration: number | null, normalThresh: number, atRiskThresh: number): 'normal' | 'at_risk' | 'overdue' | null => {
+    const assess = (
+      duration: number | null,
+      normalThresh: number,
+      atRiskThresh: number,
+    ): 'normal' | 'at_risk' | 'overdue' | null => {
       if (duration === null) return null;
       if (duration > atRiskThresh) return 'overdue';
       if (duration > normalThresh) return 'at_risk';
@@ -403,7 +478,10 @@ export class SlaEngineService {
     let processingStart: 'normal' | 'at_risk' | 'overdue' | null = null;
     if (processingDate && forwardedDate) {
       processingStart = assess(processingLag, 3, 5);
-    } else if (tracking.status === RecommendationStatus.FORWARDED && forwardedDate) {
+    } else if (
+      tracking.status === RecommendationStatus.FORWARDED &&
+      forwardedDate
+    ) {
       processingStart = assess(daysSince(forwardedDate), 3, 5);
     }
 
@@ -412,7 +490,9 @@ export class SlaEngineService {
     if (isFinalState) {
       resolution = 'normal';
     } else if (dueDate) {
-      const daysUntilDue = Math.round((dueDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+      const daysUntilDue = Math.round(
+        (dueDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24),
+      );
       if (daysUntilDue < 0) {
         resolution = 'overdue';
       } else if (daysUntilDue <= 7) {
@@ -426,7 +506,10 @@ export class SlaEngineService {
     let verification: 'normal' | 'at_risk' | 'overdue' | null = null;
     if (verifiedDate) {
       verification = assess(verificationDuration, 5, 7);
-    } else if (tracking.status === RecommendationStatus.COMPLETED && completedDate) {
+    } else if (
+      tracking.status === RecommendationStatus.COMPLETED &&
+      completedDate
+    ) {
       verification = assess(daysSince(completedDate), 5, 7);
     }
 
@@ -434,14 +517,21 @@ export class SlaEngineService {
     let closure: 'normal' | 'at_risk' | 'overdue' | null = null;
     if (closedDate) {
       closure = assess(closureDuration, 3, 5);
-    } else if (tracking.status === RecommendationStatus.VERIFIED && verifiedDate) {
+    } else if (
+      tracking.status === RecommendationStatus.VERIFIED &&
+      verifiedDate
+    ) {
       closure = assess(daysSince(verifiedDate), 3, 5);
     }
 
     // ── Overall SLA ──
-    const allStatuses = [forwarding, processingStart, resolution, verification, closure].filter(
-      (s) => s !== null
-    ) as ('normal' | 'at_risk' | 'overdue')[];
+    const allStatuses = [
+      forwarding,
+      processingStart,
+      resolution,
+      verification,
+      closure,
+    ].filter((s) => s !== null);
 
     let overallSla: 'normal' | 'at_risk' | 'overdue';
     if (allStatuses.some((s) => s === 'overdue')) {

@@ -7,7 +7,10 @@ export class AddCommentDto {
   @IsString({ message: 'التعليق يجب أن يكون نصياً' })
   notes: string;
 
-  @ApiProperty({ description: 'معرف التعليق الأب في حال الرد', required: false })
+  @ApiProperty({
+    description: 'معرف التعليق الأب في حال الرد',
+    required: false,
+  })
   @IsOptional()
   @IsString()
   parentCommentId?: string;

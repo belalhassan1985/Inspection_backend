@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
 
@@ -20,7 +24,9 @@ export class UsersService {
   }
 
   async create(data: any) {
-    const existing = await this.prisma.user.findUnique({ where: { username: data.username } });
+    const existing = await this.prisma.user.findUnique({
+      where: { username: data.username },
+    });
     if (existing) {
       throw new BadRequestException('اسم المستخدم مسجل مسبقاً في النظام');
     }
@@ -57,7 +63,8 @@ export class UsersService {
         username: data.username !== undefined ? data.username : user.username,
         passwordHash,
         roleId: data.roleId !== undefined ? data.roleId : user.roleId,
-        department: data.department !== undefined ? data.department : user.department,
+        department:
+          data.department !== undefined ? data.department : user.department,
         isActive: data.isActive !== undefined ? data.isActive : user.isActive,
       },
       include: { role: true },

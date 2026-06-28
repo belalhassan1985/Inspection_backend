@@ -20,14 +20,14 @@ export class KpiEngineService implements OnApplicationBootstrap {
   // Cache TTL Configurations (in milliseconds)
   private readonly CACHE_TTLS = {
     EXECUTIVE_SUMMARY: 10 * 60 * 1000, // 10 minutes
-    HEALTH_ANALYTICS: 5 * 60 * 1000,   // 5 minutes
+    HEALTH_ANALYTICS: 5 * 60 * 1000, // 5 minutes
     ESCALATION_SUMMARY: 5 * 60 * 1000, // 5 minutes
   };
 
   constructor(
     private prisma: PrismaService,
     private healthService: HealthAnalyticsService,
-    private slaService: SlaMonitoringService
+    private slaService: SlaMonitoringService,
   ) {}
 
   /**
@@ -38,8 +38,10 @@ export class KpiEngineService implements OnApplicationBootstrap {
     try {
       const snapshotCount = await this.prisma.executiveKpiSnapshot.count();
       if (snapshotCount === 0) {
-        this.logger.log('ExecutiveKpiSnapshot table is empty. Initiating Initial Historical Backfill Strategy...');
-        
+        this.logger.log(
+          'ExecutiveKpiSnapshot table is empty. Initiating Initial Historical Backfill Strategy...',
+        );
+
         // 1. Run SLA check and generate breach logs
         await this.slaService.checkSlaBreaches();
 
@@ -51,10 +53,15 @@ export class KpiEngineService implements OnApplicationBootstrap {
 
         this.logger.log('Initial Historical Backfill completed successfully!');
       } else {
-        this.logger.log(`Found ${snapshotCount} snapshots. Skipping historical backfill.`);
+        this.logger.log(
+          `Found ${snapshotCount} snapshots. Skipping historical backfill.`,
+        );
       }
     } catch (error) {
-      this.logger.error('Failed to run initial historical backfill on startup:', error.stack);
+      this.logger.error(
+        'Failed to run initial historical backfill on startup:',
+        error.stack,
+      );
     }
   }
 
@@ -74,7 +81,11 @@ export class KpiEngineService implements OnApplicationBootstrap {
   /**
    * Wrapper for caching service method calls
    */
-  private async getCachedData<T>(cacheKey: string, ttl: number, fetchFn: () => Promise<T>): Promise<T> {
+  private async getCachedData<T>(
+    cacheKey: string,
+    ttl: number,
+    fetchFn: () => Promise<T>,
+  ): Promise<T> {
     const cached = this.cacheStore.get(cacheKey);
     const now = Date.now();
 
@@ -83,7 +94,9 @@ export class KpiEngineService implements OnApplicationBootstrap {
       return cached.data;
     }
 
-    this.logger.log(`Cache Miss/Expired for key: ${cacheKey}. Fetching fresh data...`);
+    this.logger.log(
+      `Cache Miss/Expired for key: ${cacheKey}. Fetching fresh data...`,
+    );
     const freshData = await fetchFn();
     this.cacheStore.set(cacheKey, {
       data: freshData,
@@ -117,7 +130,9 @@ export class KpiEngineService implements OnApplicationBootstrap {
    */
   async calculateKpiCatalog(user?: any) {
     const filter = this.getSecurityFilter(user);
-    const trackings = await this.prisma.recommendationTracking.findMany({ where: filter });
+    const trackings = await this.prisma.recommendationTracking.findMany({
+      where: filter,
+    });
     const total = trackings.length;
 
     if (total === 0) {
@@ -133,19 +148,26 @@ export class KpiEngineService implements OnApplicationBootstrap {
     }
 
     // 1. Overall Progress Rate
-    const sumProgress = trackings.reduce((sum, item) => sum + item.progressPercent, 0);
+    const sumProgress = trackings.reduce(
+      (sum, item) => sum + item.progressPercent,
+      0,
+    );
     const overallProgressRate = Number((sumProgress / total).toFixed(2));
 
     // 2. Closure Rate
     const closedCount = trackings.filter(
-      item => item.status === RecommendationStatus.CLOSED || item.status === RecommendationStatus.VERIFIED
+      (item) =>
+        item.status === RecommendationStatus.CLOSED ||
+        item.status === RecommendationStatus.VERIFIED,
     ).length;
     const closureRate = Number(((closedCount / total) * 100).toFixed(2));
 
     // 3. Average Resolution Time (ART) in Days
     const closedItems = trackings.filter(
-      item => (item.status === RecommendationStatus.CLOSED || item.status === RecommendationStatus.VERIFIED) &&
-              item.closedAt
+      (item) =>
+        (item.status === RecommendationStatus.CLOSED ||
+          item.status === RecommendationStatus.VERIFIED) &&
+        item.closedAt,
     );
     let averageResolutionTimeDays: number | null = null;
     if (closedItems.length > 0) {
@@ -154,15 +176,21 @@ export class KpiEngineService implements OnApplicationBootstrap {
         const closed = new Date(item.closedAt!);
         return sum + (closed.getTime() - issued.getTime());
       }, 0);
-      averageResolutionTimeDays = Number((totalResolutionTime / closedItems.length / (1000 * 60 * 60 * 24)).toFixed(2));
+      averageResolutionTimeDays = Number(
+        (
+          totalResolutionTime /
+          closedItems.length /
+          (1000 * 60 * 60 * 24)
+        ).toFixed(2),
+      );
     }
 
     // 4. SLA Adherence Rate
     // Percent of closed recommendations that were closed before or on their due date
-    const closedWithDue = closedItems.filter(item => item.dueDate);
+    const closedWithDue = closedItems.filter((item) => item.dueDate);
     let slaAdherenceRate: number | null = null;
     if (closedWithDue.length > 0) {
-      const adheredCount = closedWithDue.filter(item => {
+      const adheredCount = closedWithDue.filter((item) => {
         const closed = new Date(item.closedAt!);
         const due = new Date(item.dueDate!);
         // Set hours to 0 to compare dates accurately
@@ -170,18 +198,28 @@ export class KpiEngineService implements OnApplicationBootstrap {
         due.setHours(0, 0, 0, 0);
         return closed <= due;
       }).length;
-      slaAdherenceRate = Number(((adheredCount / closedWithDue.length) * 100).toFixed(2));
+      slaAdherenceRate = Number(
+        ((adheredCount / closedWithDue.length) * 100).toFixed(2),
+      );
     }
 
     // 5. Escalation Volume
-    const escalationVolume = trackings.filter(item => item.escalationLevel > 0).length;
+    const escalationVolume = trackings.filter(
+      (item) => item.escalationLevel > 0,
+    ).length;
 
     // 6. Critical Overdue Rate
     // Overdue by > 15 days and risk is CRITICAL or HIGH
     const now = new Date();
-    const criticalOverdueCount = trackings.filter(item => {
+    const criticalOverdueCount = trackings.filter((item) => {
       if (!item.dueDate) return false;
-      const isClosed = ([RecommendationStatus.CLOSED, RecommendationStatus.VERIFIED, RecommendationStatus.REJECTED] as RecommendationStatus[]).includes(item.status);
+      const isClosed = (
+        [
+          RecommendationStatus.CLOSED,
+          RecommendationStatus.VERIFIED,
+          RecommendationStatus.REJECTED,
+        ] as RecommendationStatus[]
+      ).includes(item.status);
       if (isClosed) return false;
 
       const due = new Date(item.dueDate);
@@ -189,13 +227,17 @@ export class KpiEngineService implements OnApplicationBootstrap {
 
       const diffTime = Math.abs(now.getTime() - due.getTime());
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      
-      const isCriticalOrHigh = item.riskLevel === RiskLevel.CRITICAL || item.riskLevel === RiskLevel.HIGH;
+
+      const isCriticalOrHigh =
+        item.riskLevel === RiskLevel.CRITICAL ||
+        item.riskLevel === RiskLevel.HIGH;
 
       return isCriticalOrHigh && diffDays > 15;
     }).length;
 
-    const criticalOverdueRate = Number(((criticalOverdueCount / total) * 100).toFixed(2));
+    const criticalOverdueRate = Number(
+      ((criticalOverdueCount / total) * 100).toFixed(2),
+    );
 
     return {
       overallProgressRate,
@@ -218,11 +260,22 @@ export class KpiEngineService implements OnApplicationBootstrap {
       include: { assignedEntity: true },
     });
 
-    const entityMap = new Map<string, { id: string; name: string; total: number; closed: number; sumProgress: number }>();
+    const entityMap = new Map<
+      string,
+      {
+        id: string;
+        name: string;
+        total: number;
+        closed: number;
+        sumProgress: number;
+      }
+    >();
 
     for (const item of trackings) {
       const entityId = item.assignedEntityId || 'unassigned';
-      const entityName = item.assignedEntity ? item.assignedEntity.name : 'غير معين';
+      const entityName = item.assignedEntity
+        ? item.assignedEntity.name
+        : 'غير معين';
 
       const existing = entityMap.get(entityId) || {
         id: entityId,
@@ -234,7 +287,10 @@ export class KpiEngineService implements OnApplicationBootstrap {
 
       existing.total++;
       existing.sumProgress += item.progressPercent;
-      if (item.status === RecommendationStatus.CLOSED || item.status === RecommendationStatus.VERIFIED) {
+      if (
+        item.status === RecommendationStatus.CLOSED ||
+        item.status === RecommendationStatus.VERIFIED
+      ) {
         existing.closed++;
       }
 
@@ -242,7 +298,7 @@ export class KpiEngineService implements OnApplicationBootstrap {
     }
 
     const breakdown: any[] = [];
-    entityMap.forEach(val => {
+    entityMap.forEach((val) => {
       breakdown.push({
         entityId: val.id,
         entityName: val.name,
@@ -269,16 +325,33 @@ export class KpiEngineService implements OnApplicationBootstrap {
       // Check count of critical / overdue
       const trackings = await this.prisma.recommendationTracking.findMany();
       const openRecommendations = trackings.filter(
-        item => !([RecommendationStatus.CLOSED, RecommendationStatus.VERIFIED, RecommendationStatus.REJECTED] as RecommendationStatus[]).includes(item.status)
+        (item) =>
+          !(
+            [
+              RecommendationStatus.CLOSED,
+              RecommendationStatus.VERIFIED,
+              RecommendationStatus.REJECTED,
+            ] as RecommendationStatus[]
+          ).includes(item.status),
       ).length;
       const closedRecommendations = trackings.length - openRecommendations;
-      const overdueCount = trackings.filter(item => {
+      const overdueCount = trackings.filter((item) => {
         if (!item.dueDate) return false;
-        const isOpen = !([RecommendationStatus.CLOSED, RecommendationStatus.VERIFIED, RecommendationStatus.REJECTED] as RecommendationStatus[]).includes(item.status);
+        const isOpen = !(
+          [
+            RecommendationStatus.CLOSED,
+            RecommendationStatus.VERIFIED,
+            RecommendationStatus.REJECTED,
+          ] as RecommendationStatus[]
+        ).includes(item.status);
         return isOpen && new Date(item.dueDate) < new Date();
       }).length;
-      const escalationLevel3Count = trackings.filter(item => item.escalationLevel === 3).length;
-      const criticalCount = trackings.filter(item => item.riskLevel === RiskLevel.CRITICAL).length;
+      const escalationLevel3Count = trackings.filter(
+        (item) => item.escalationLevel === 3,
+      ).length;
+      const criticalCount = trackings.filter(
+        (item) => item.riskLevel === RiskLevel.CRITICAL,
+      ).length;
 
       const snapshot = await this.prisma.executiveKpiSnapshot.create({
         data: {
@@ -296,7 +369,9 @@ export class KpiEngineService implements OnApplicationBootstrap {
         },
       });
 
-      this.logger.log(`Executive KPI Snapshot created successfully with ID: ${snapshot.id}`);
+      this.logger.log(
+        `Executive KPI Snapshot created successfully with ID: ${snapshot.id}`,
+      );
       return snapshot;
     } catch (error) {
       this.logger.error('Failed to generate daily KPI snapshot:', error.stack);
@@ -308,7 +383,8 @@ export class KpiEngineService implements OnApplicationBootstrap {
    * Returns cached Executive Summary statistics
    */
   async getExecutiveSummary(user?: any) {
-    const isRestricted = user && user.role !== 'ADMIN' && user.role !== 'EVALUATOR';
+    const isRestricted =
+      user && user.role !== 'ADMIN' && user.role !== 'EVALUATOR';
     const cacheKey = isRestricted
       ? `EXECUTIVE_SUMMARY_USER_${user.userId}`
       : 'EXECUTIVE_SUMMARY';
@@ -319,7 +395,7 @@ export class KpiEngineService implements OnApplicationBootstrap {
       async () => {
         const catalog = await this.calculateKpiCatalog(user);
         const breakdown = await this.getEntityBreakdown(user);
-        
+
         // Fetch active campaign count
         const activeCampaigns = await this.prisma.campaign.count({
           where: { status: 'active' },
@@ -332,13 +408,13 @@ export class KpiEngineService implements OnApplicationBootstrap {
 
         // Top 5 lagging entities (lowest complianceRate)
         const laggingEntities = [...breakdown]
-          .filter(e => e.entityId !== 'unassigned')
+          .filter((e) => e.entityId !== 'unassigned')
           .sort((a, b) => a.complianceRate - b.complianceRate)
           .slice(0, 5);
 
         // Top 5 performing entities (highest complianceRate)
         const performingEntities = [...breakdown]
-          .filter(e => e.entityId !== 'unassigned')
+          .filter((e) => e.entityId !== 'unassigned')
           .sort((a, b) => b.complianceRate - a.complianceRate)
           .slice(0, 5);
 
@@ -355,7 +431,7 @@ export class KpiEngineService implements OnApplicationBootstrap {
           laggingEntities,
           performingEntities,
         };
-      }
+      },
     );
   }
 
@@ -363,7 +439,8 @@ export class KpiEngineService implements OnApplicationBootstrap {
    * Returns cached Health Analytics stats
    */
   async getHealthAnalyticsSummary(user?: any) {
-    const isRestricted = user && user.role !== 'ADMIN' && user.role !== 'EVALUATOR';
+    const isRestricted =
+      user && user.role !== 'ADMIN' && user.role !== 'EVALUATOR';
     const cacheKey = isRestricted
       ? `HEALTH_ANALYTICS_USER_${user.userId}`
       : 'HEALTH_ANALYTICS';
@@ -386,7 +463,7 @@ export class KpiEngineService implements OnApplicationBootstrap {
           CRITICAL: 0,
         };
 
-        const listWithScores = trackings.map(t => {
+        const listWithScores = trackings.map((t) => {
           const score = this.healthService.calculateHealthScore(t);
           const status = this.healthService.getHealthStatus(score);
           matrix[status]++;
@@ -403,7 +480,7 @@ export class KpiEngineService implements OnApplicationBootstrap {
           matrix,
           recommendations: listWithScores,
         };
-      }
+      },
     );
   }
 
@@ -411,7 +488,8 @@ export class KpiEngineService implements OnApplicationBootstrap {
    * Returns cached Escalation statistics
    */
   async getEscalationSummary(user?: any) {
-    const isRestricted = user && user.role !== 'ADMIN' && user.role !== 'EVALUATOR';
+    const isRestricted =
+      user && user.role !== 'ADMIN' && user.role !== 'EVALUATOR';
     const cacheKey = isRestricted
       ? `ESCALATION_SUMMARY_USER_${user.userId}`
       : 'ESCALATION_SUMMARY';
@@ -421,32 +499,36 @@ export class KpiEngineService implements OnApplicationBootstrap {
       this.CACHE_TTLS.ESCALATION_SUMMARY,
       async () => {
         const filter = this.getSecurityFilter(user);
-        const trackings = await this.prisma.recommendationTracking.findMany({ where: filter });
-        
+        const trackings = await this.prisma.recommendationTracking.findMany({
+          where: filter,
+        });
+
         const levels = {
-          level0: trackings.filter(t => t.escalationLevel === 0).length,
-          level1: trackings.filter(t => t.escalationLevel === 1).length,
-          level2: trackings.filter(t => t.escalationLevel === 2).length,
-          level3: trackings.filter(t => t.escalationLevel === 3).length,
+          level0: trackings.filter((t) => t.escalationLevel === 0).length,
+          level1: trackings.filter((t) => t.escalationLevel === 1).length,
+          level2: trackings.filter((t) => t.escalationLevel === 2).length,
+          level3: trackings.filter((t) => t.escalationLevel === 3).length,
         };
 
         // Determine driver ratio based on SLA breaches
         const breaches = await this.prisma.slaBreachLog.findMany({
           where: {
-            tracking: filter
-          }
+            tracking: filter,
+          },
         });
         const drivers = {
-          response: breaches.filter(b => b.milestoneType === 'RESPONSE').length,
-          resolution: breaches.filter(b => b.milestoneType === 'RESOLUTION').length,
-          closure: breaches.filter(b => b.milestoneType === 'CLOSURE').length,
+          response: breaches.filter((b) => b.milestoneType === 'RESPONSE')
+            .length,
+          resolution: breaches.filter((b) => b.milestoneType === 'RESOLUTION')
+            .length,
+          closure: breaches.filter((b) => b.milestoneType === 'CLOSURE').length,
         };
 
         return {
           levels,
           drivers,
         };
-      }
+      },
     );
   }
 }

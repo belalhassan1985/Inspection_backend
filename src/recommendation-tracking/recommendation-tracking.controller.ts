@@ -15,7 +15,12 @@ import {
   Delete,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { ApiTags, ApiOperation, ApiBearerAuth, ApiConsumes } from '@nestjs/swagger';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiBearerAuth,
+  ApiConsumes,
+} from '@nestjs/swagger';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { existsSync, mkdirSync } from 'fs';
@@ -36,7 +41,9 @@ export class RecommendationTrackingController {
 
   // 1. Get dashboard summary metrics (must be placed before generic /:id route)
   @Get('stats/summary')
-  @ApiOperation({ summary: 'الحصول على ملخص مؤشرات الأداء الإجمالية لمتابعة التوصيات' })
+  @ApiOperation({
+    summary: 'الحصول على ملخص مؤشرات الأداء الإجمالية لمتابعة التوصيات',
+  })
   async getDashboardSummary() {
     return this.service.getDashboardSummary();
   }
@@ -57,7 +64,9 @@ export class RecommendationTrackingController {
 
   // 4. Get lagging entities list
   @Get('stats/by-entity')
-  @ApiOperation({ summary: 'قائمة الجهات الأكثر تأخراً وتلكؤاً في إغلاق التوصيات' })
+  @ApiOperation({
+    summary: 'قائمة الجهات الأكثر تأخراً وتلكؤاً في إغلاق التوصيات',
+  })
   async getLaggingEntities() {
     return this.service.getLaggingEntities();
   }
@@ -65,7 +74,9 @@ export class RecommendationTrackingController {
   // 4.5. Admin Cron Escalation run (placed before generic :id)
   @Roles('ADMIN', 'EVALUATOR')
   @Post('admin/run-escalations')
-  @ApiOperation({ summary: 'تشغيل فحص التصعيد التلقائي الإداري للتوصيات المتأخرة' })
+  @ApiOperation({
+    summary: 'تشغيل فحص التصعيد التلقائي الإداري للتوصيات المتأخرة',
+  })
   async runEscalations(@Req() req: any) {
     return this.service.runEscalationCheck(req.user);
   }
@@ -86,7 +97,9 @@ export class RecommendationTrackingController {
 
   // 6.1. Get timeline of a tracked recommendation
   @Get(':id/timeline')
-  @ApiOperation({ summary: 'الخط الزمني الكامل للتوصية منذ الإصدار وحتى الإغلاق' })
+  @ApiOperation({
+    summary: 'الخط الزمني الكامل للتوصية منذ الإصدار وحتى الإغلاق',
+  })
   async getTimeline(@Param('id') id: string, @Req() req: any) {
     return this.service.getTimeline(id, req.user);
   }
@@ -94,7 +107,9 @@ export class RecommendationTrackingController {
   // 7. Assign responsible entity/user and set due date
   @Roles('ADMIN', 'EVALUATOR')
   @Post(':id/assign')
-  @ApiOperation({ summary: 'تكليف جهة مسؤولة أو مستخدم وتحديد تاريخ استحقاق التوصية' })
+  @ApiOperation({
+    summary: 'تكليف جهة مسؤولة أو مستخدم وتحديد تاريخ استحقاق التوصية',
+  })
   async assign(
     @Param('id') id: string,
     @Body() dto: AssignRecommendationDto,
@@ -105,7 +120,10 @@ export class RecommendationTrackingController {
 
   // 8. Update progress percentage and implementation notes
   @Patch(':id/progress')
-  @ApiOperation({ summary: 'تحديث نسبة إنجاز التوصية وتوثيق الإجراء المتخذ من قبل الجهة المعنية' })
+  @ApiOperation({
+    summary:
+      'تحديث نسبة إنجاز التوصية وتوثيق الإجراء المتخذ من قبل الجهة المعنية',
+  })
   async updateProgress(
     @Param('id') id: string,
     @Body() dto: UpdateProgressDto,
@@ -165,7 +183,8 @@ export class RecommendationTrackingController {
           callback(null, dir);
         },
         filename: (req: any, file: any, callback: any) => {
-          const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+          const uniqueSuffix =
+            Date.now() + '-' + Math.round(Math.random() * 1e9);
           const ext = extname(file.originalname);
           callback(null, `evidence-${uniqueSuffix}${ext}`);
         },
@@ -184,7 +203,9 @@ export class RecommendationTrackingController {
         ];
         if (!allowedTypes.includes(file.mimetype)) {
           return callback(
-            new BadRequestException('نوع الملف غير مدعوم. المسموح به: PDF, PNG, JPG, DOCX, ZIP'),
+            new BadRequestException(
+              'نوع الملف غير مدعوم. المسموح به: PDF, PNG, JPG, DOCX, ZIP',
+            ),
             false,
           );
         }
@@ -207,7 +228,9 @@ export class RecommendationTrackingController {
   // 11. Verify and close recommendation
   @Roles('ADMIN', 'EVALUATOR')
   @Post(':id/verify-close')
-  @ApiOperation({ summary: 'تدقيق ومطابقة الأدلة ميدانياً وإغلاق أو رفض التوصية الرقابية' })
+  @ApiOperation({
+    summary: 'تدقيق ومطابقة الأدلة ميدانياً وإغلاق أو رفض التوصية الرقابية',
+  })
   async verifyClose(
     @Param('id') id: string,
     @Body() dto: VerifyCloseRecommendationDto,

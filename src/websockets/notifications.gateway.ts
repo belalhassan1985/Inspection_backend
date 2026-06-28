@@ -17,7 +17,9 @@ import { Injectable } from '@nestjs/common';
   },
 })
 @Injectable()
-export class NotificationsGateway implements OnGatewayConnection, OnGatewayDisconnect {
+export class NotificationsGateway
+  implements OnGatewayConnection, OnGatewayDisconnect
+{
   @WebSocketServer()
   server: Server;
 
@@ -40,9 +42,14 @@ export class NotificationsGateway implements OnGatewayConnection, OnGatewayDisco
       const userId = payload.sub;
       const roomName = `user:${userId}`;
       await socket.join(roomName);
-      console.log(`[Websocket] Client authenticated. User ${userId} joined room ${roomName}`);
+      console.log(
+        `[Websocket] Client authenticated. User ${userId} joined room ${roomName}`,
+      );
     } catch (err) {
-      console.log(`[Websocket] Connection rejected: Invalid token. Error:`, err.message);
+      console.log(
+        `[Websocket] Connection rejected: Invalid token. Error:`,
+        err.message,
+      );
       socket.disconnect(true);
     }
   }
@@ -55,17 +62,23 @@ export class NotificationsGateway implements OnGatewayConnection, OnGatewayDisco
     // 1. Auth payload
     const authHeader = socket.handshake.auth?.token;
     if (authHeader) {
-      return authHeader.startsWith('Bearer ') ? authHeader.substring(7) : authHeader;
+      return authHeader.startsWith('Bearer ')
+        ? authHeader.substring(7)
+        : authHeader;
     }
     // 2. Query parameter
     const queryToken = socket.handshake.query?.token as string;
     if (queryToken) {
-      return queryToken.startsWith('Bearer ') ? queryToken.substring(7) : queryToken;
+      return queryToken.startsWith('Bearer ')
+        ? queryToken.substring(7)
+        : queryToken;
     }
     // 3. Headers
     const headerToken = socket.handshake.headers?.authorization;
     if (headerToken) {
-      return headerToken.startsWith('Bearer ') ? headerToken.substring(7) : headerToken;
+      return headerToken.startsWith('Bearer ')
+        ? headerToken.substring(7)
+        : headerToken;
     }
     return null;
   }
@@ -74,7 +87,7 @@ export class NotificationsGateway implements OnGatewayConnection, OnGatewayDisco
   @SubscribeMessage('join:recommendation')
   async handleJoinRecommendation(
     @ConnectedSocket() socket: Socket,
-    @MessageBody() data: { recommendationId: string }
+    @MessageBody() data: { recommendationId: string },
   ) {
     const user = socket.data.user;
     if (!user) return;
@@ -86,7 +99,7 @@ export class NotificationsGateway implements OnGatewayConnection, OnGatewayDisco
   @SubscribeMessage('leave:recommendation')
   async handleLeaveRecommendation(
     @ConnectedSocket() socket: Socket,
-    @MessageBody() data: { recommendationId: string }
+    @MessageBody() data: { recommendationId: string },
   ) {
     const roomName = `recommendation:${data.recommendationId}`;
     await socket.leave(roomName);
@@ -115,7 +128,9 @@ export class NotificationsGateway implements OnGatewayConnection, OnGatewayDisco
   emitRecommendationUpdated(recommendationId: string, trackingData: any) {
     const roomName = `recommendation:${recommendationId}`;
     this.server.to(roomName).emit('recommendation:updated', trackingData);
-    console.log(`[Websocket] Emitted recommendation:updated to room ${roomName}`);
+    console.log(
+      `[Websocket] Emitted recommendation:updated to room ${roomName}`,
+    );
   }
 
   emitEscalationCreated(recommendationId: string, data: any) {

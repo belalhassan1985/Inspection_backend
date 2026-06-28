@@ -1,9 +1,36 @@
-import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+  ConflictException,
+  Logger,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class InspectionsService {
+  private readonly logger = new Logger(InspectionsService.name);
+
   constructor(private prisma: PrismaService) {}
+
+  private handlePrismaError(err: any, entity: string): never {
+    if (err?.code === 'P2002') {
+      throw new ConflictException(`${entity} with these fields already exists`);
+    }
+    if (err?.code === 'P2003') {
+      throw new BadRequestException(
+        `Referenced ${entity} record not found (invalid foreign key)`,
+      );
+    }
+    if (err?.code === 'P2025') {
+      throw new NotFoundException(`${entity} not found`);
+    }
+    this.logger.error(
+      `Unhandled error in ${entity}: ${err?.message || err}`,
+      err?.stack,
+    );
+    throw err;
+  }
 
   async findAll() {
     return this.prisma.inspection.findMany({
@@ -20,7 +47,9 @@ export class InspectionsService {
     const inspection = await this.prisma.inspection.findUnique({
       where: { id },
       include: {
-        campaign: { select: { id: true, name: true, type: true, formationNumber: true } },
+        campaign: {
+          select: { id: true, name: true, type: true, formationNumber: true },
+        },
         inspector: { select: { id: true, fullName: true, username: true } },
         entity: {
           select: {
@@ -36,8 +65,8 @@ export class InspectionsService {
           include: {
             selectedOptions: {
               include: {
-                option: { include: { optionType: true } }
-              }
+                option: { include: { optionType: true } },
+              },
             },
             criteriaDetail: {
               include: {
@@ -63,7 +92,9 @@ export class InspectionsService {
     return this.prisma.inspection.findFirst({
       where: { campaignId },
       include: {
-        campaign: { select: { id: true, name: true, type: true, formationNumber: true } },
+        campaign: {
+          select: { id: true, name: true, type: true, formationNumber: true },
+        },
         inspector: { select: { id: true, fullName: true, username: true } },
         entity: {
           select: {
@@ -79,8 +110,8 @@ export class InspectionsService {
           include: {
             selectedOptions: {
               include: {
-                option: { include: { optionType: true } }
-              }
+                option: { include: { optionType: true } },
+              },
             },
             criteriaDetail: {
               include: {
@@ -115,7 +146,9 @@ export class InspectionsService {
                         include: {
                           details: {
                             orderBy: { sortOrder: 'asc' },
-                            include: { options: { include: { optionType: true } } },
+                            include: {
+                              options: { include: { optionType: true } },
+                            },
                           },
                         },
                       },
@@ -167,7 +200,9 @@ export class InspectionsService {
                             include: {
                               details: {
                                 orderBy: { sortOrder: 'asc' },
-                                include: { options: { include: { optionType: true } } },
+                                include: {
+                                  options: { include: { optionType: true } },
+                                },
                               },
                             },
                           },
@@ -209,14 +244,32 @@ export class InspectionsService {
   }
 
   async create(data: any) {
-    const { campaignId, entityId, inspectorId, location, findings, status, grades } = data;
+    const {
+      campaignId,
+      entityId,
+      inspectorId,
+      location,
+      findings,
+      status,
+      grades,
+    } = data;
 
-    if (!campaignId || !entityId || !grades || !Array.isArray(grades) || grades.length === 0) {
-      throw new BadRequestException('Campaign ID, Entity ID, and Grades array are required.');
+    if (
+      !campaignId ||
+      !entityId ||
+      !grades ||
+      !Array.isArray(grades) ||
+      grades.length === 0
+    ) {
+      throw new BadRequestException(
+        'Campaign ID, Entity ID, and Grades array are required.',
+      );
     }
 
     const targetStatus = status || 'pendingReview';
-    if (!['draft', 'pendingReview', 'approved', 'rejected'].includes(targetStatus)) {
+    if (
+      !['draft', 'pendingReview', 'approved', 'rejected'].includes(targetStatus)
+    ) {
       throw new BadRequestException('Invalid target status.');
     }
 
@@ -231,7 +284,9 @@ export class InspectionsService {
     for (const g of grades) {
       const dbDetail = dbDetails.find((d) => d.id === g.detailId);
       if (!dbDetail) {
-        throw new BadRequestException(`Criteria detail ID ${g.detailId} not found in database.`);
+        throw new BadRequestException(
+          `Criteria detail ID ${g.detailId} not found in database.`,
+        );
       }
       const earned = parseFloat(g.gradeEarned);
       const max = parseFloat(dbDetail.maxGrade.toString());
@@ -250,7 +305,7 @@ export class InspectionsService {
     const rating = this.calculateRating(percentage);
 
     let inspection = await this.prisma.inspection.findFirst({
-      where: { campaignId, entityId }
+      where: { campaignId, entityId },
     });
 
     if (inspection) {
@@ -260,7 +315,7 @@ export class InspectionsService {
         throw new BadRequestException('لا يمكن تعديل هذا التفتيش لأنه قد تم تقديمه للمراجعة أو معتمد بالفعل.');
       }
       */
-      
+
       inspection = await this.prisma.inspection.update({
         where: { id: inspection.id },
         data: {
@@ -270,13 +325,16 @@ export class InspectionsService {
           totalScore: percentage,
           performanceRating: rating,
           status: targetStatus,
-          officerCredentials: data.officerCredentials !== undefined ? data.officerCredentials : (inspection.officerCredentials || null),
-        }
+          officerCredentials:
+            data.officerCredentials !== undefined
+              ? data.officerCredentials
+              : inspection.officerCredentials || null,
+        },
       });
 
       // Clear old grades (cascades to selectedOptions)
       await this.prisma.inspectionGrade.deleteMany({
-        where: { inspectionId: inspection.id }
+        where: { inspectionId: inspection.id },
       });
     } else {
       inspection = await this.prisma.inspection.create({
@@ -301,14 +359,19 @@ export class InspectionsService {
           detailId: g.detailId,
           gradeEarned: g.gradeEarned,
           notes: g.notes || '',
-          quantitativeData: g.quantitativeData ? JSON.parse(JSON.stringify(g.quantitativeData)) : null,
+          quantitativeData: g.quantitativeData
+            ? JSON.parse(JSON.stringify(g.quantitativeData))
+            : null,
           instanceName: g.instanceName || null,
-          selectedOptions: g.selectedOptions && g.selectedOptions.length > 0 ? {
-            create: g.selectedOptions.map((optId: number) => ({
-              optionId: optId
-            }))
-          } : undefined
-        }
+          selectedOptions:
+            g.selectedOptions && g.selectedOptions.length > 0
+              ? {
+                  create: g.selectedOptions.map((optId: number) => ({
+                    optionId: optId,
+                  })),
+                }
+              : undefined,
+        },
       });
     }
 
@@ -320,7 +383,9 @@ export class InspectionsService {
       throw new BadRequestException('Invalid inspection status.');
     }
 
-    const inspection = await this.prisma.inspection.findUnique({ where: { id } });
+    const inspection = await this.prisma.inspection.findUnique({
+      where: { id },
+    });
     if (!inspection) {
       throw new NotFoundException('Inspection not found');
     }
@@ -342,122 +407,255 @@ export class InspectionsService {
 
   // Primary Criteria CRUD
   async createPrimary(data: any) {
-    return this.prisma.primaryCriteria.create({
-      data: {
-        title: data.title,
-        maxGrade: data.maxGrade,
-      },
-    });
+    if (!data.title?.trim()) {
+      throw new BadRequestException('Primary criteria title is required');
+    }
+    if (data.maxGrade === undefined || data.maxGrade === null) {
+      throw new BadRequestException('Primary criteria max grade is required');
+    }
+    try {
+      return await this.prisma.primaryCriteria.create({
+        data: {
+          title: data.title.trim(),
+          maxGrade: parseFloat(data.maxGrade),
+        },
+      });
+    } catch (err) {
+      this.handlePrismaError(err, 'PrimaryCriteria');
+    }
   }
 
   async updatePrimary(id: number, data: any) {
-    return this.prisma.primaryCriteria.update({
-      where: { id },
-      data: {
-        title: data.title,
-        maxGrade: data.maxGrade,
-      },
-    });
+    if (data.title !== undefined && !data.title.trim()) {
+      throw new BadRequestException('Primary criteria title cannot be empty');
+    }
+    try {
+      const existing = await this.prisma.primaryCriteria.findUnique({
+        where: { id },
+      });
+      if (!existing) {
+        throw new NotFoundException('Primary criteria not found');
+      }
+      return await this.prisma.primaryCriteria.update({
+        where: { id },
+        data: {
+          ...(data.title !== undefined ? { title: data.title.trim() } : {}),
+          ...(data.maxGrade !== undefined
+            ? { maxGrade: parseFloat(data.maxGrade) }
+            : {}),
+        },
+      });
+    } catch (err) {
+      this.handlePrismaError(err, 'PrimaryCriteria');
+    }
   }
 
   async removePrimary(id: number) {
-    return this.prisma.primaryCriteria.delete({
-      where: { id },
-    });
+    try {
+      const existing = await this.prisma.primaryCriteria.findUnique({
+        where: { id },
+      });
+      if (!existing) {
+        throw new NotFoundException('Primary criteria not found');
+      }
+      return await this.prisma.primaryCriteria.delete({
+        where: { id },
+      });
+    } catch (err) {
+      this.handlePrismaError(err, 'PrimaryCriteria');
+    }
   }
 
   // Secondary Criteria CRUD
   async createSecondary(data: any) {
-    return this.prisma.secondaryCriteria.create({
-      data: {
-        primaryId: data.primaryId,
-        title: data.title,
-        maxGrade: data.maxGrade,
-      },
-    });
+    if (!data.title?.trim()) {
+      throw new BadRequestException('Secondary criteria title is required');
+    }
+    if (data.maxGrade === undefined || data.maxGrade === null) {
+      throw new BadRequestException('Secondary criteria max grade is required');
+    }
+    if (!data.primaryId) {
+      throw new BadRequestException('Primary criteria ID is required');
+    }
+    try {
+      return await this.prisma.secondaryCriteria.create({
+        data: {
+          primaryId: data.primaryId,
+          title: data.title.trim(),
+          maxGrade: parseFloat(data.maxGrade),
+        },
+      });
+    } catch (err) {
+      this.handlePrismaError(err, 'SecondaryCriteria');
+    }
   }
 
   async updateSecondary(id: number, data: any) {
-    return this.prisma.secondaryCriteria.update({
-      where: { id },
-      data: {
-        title: data.title,
-        maxGrade: data.maxGrade,
-      },
-    });
+    if (data.title !== undefined && !data.title.trim()) {
+      throw new BadRequestException('Secondary criteria title cannot be empty');
+    }
+    try {
+      const existing = await this.prisma.secondaryCriteria.findUnique({
+        where: { id },
+      });
+      if (!existing) {
+        throw new NotFoundException('Secondary criteria not found');
+      }
+      return await this.prisma.secondaryCriteria.update({
+        where: { id },
+        data: {
+          ...(data.title !== undefined ? { title: data.title.trim() } : {}),
+          ...(data.maxGrade !== undefined
+            ? { maxGrade: parseFloat(data.maxGrade) }
+            : {}),
+        },
+      });
+    } catch (err) {
+      this.handlePrismaError(err, 'SecondaryCriteria');
+    }
   }
 
   async removeSecondary(id: number) {
-    return this.prisma.secondaryCriteria.delete({
-      where: { id },
-    });
+    try {
+      const existing = await this.prisma.secondaryCriteria.findUnique({
+        where: { id },
+      });
+      if (!existing) {
+        throw new NotFoundException('Secondary criteria not found');
+      }
+      return await this.prisma.secondaryCriteria.delete({
+        where: { id },
+      });
+    } catch (err) {
+      this.handlePrismaError(err, 'SecondaryCriteria');
+    }
   }
 
   // Criteria Details CRUD
   async createDetail(data: any) {
-    const optionCreates = data.options && data.options.length > 0
-      ? await Promise.all(data.options.map((opt: any) => this.buildOptionCreateData(this.prisma, opt)))
-      : [];
-    return this.prisma.criteriaDetail.create({
-      data: {
-        secondaryId: data.secondaryId,
-        detailText: data.detailText,
-        maxGrade: data.maxGrade,
-        inputType: data.inputType || 'single',
-        tableSchema: data.tableSchema || null,
-        options: optionCreates.length > 0 ? {
-          create: optionCreates,
-        } : undefined,
-      },
-      include: {
-        options: { include: { optionType: true } },
-      },
-    });
-  }
-
-  async createOption(data: any) {
-    const optionData = await this.buildOptionCreateData(this.prisma, data);
-    return this.prisma.criteriaOption.create({
-      data: {
-        ...optionData,
-        detailId: data.detailId,
-      },
-      include: { optionType: true },
-    });
-  }
-
-  async updateDetail(id: number, data: any) {
-    return this.prisma.$transaction(async (tx) => {
-      if (data.options !== undefined) {
-        await tx.criteriaOption.deleteMany({
-          where: { detailId: id },
-        });
-      }
-      const optionCreates = data.options && data.options.length > 0
-        ? await Promise.all(data.options.map((opt: any) => this.buildOptionCreateData(tx, opt)))
-        : [];
-      return tx.criteriaDetail.update({
-        where: { id },
+    if (!data.detailText?.trim()) {
+      throw new BadRequestException('Detail text is required');
+    }
+    if (data.maxGrade === undefined || data.maxGrade === null) {
+      throw new BadRequestException('Detail max grade is required');
+    }
+    if (!data.secondaryId) {
+      throw new BadRequestException('Secondary criteria ID is required');
+    }
+    try {
+      const optionCreates =
+        data.options && data.options.length > 0
+          ? await Promise.all(
+              data.options.map((opt: any) =>
+                this.buildOptionCreateData(this.prisma, opt),
+              ),
+            )
+          : [];
+      return await this.prisma.criteriaDetail.create({
         data: {
-          detailText: data.detailText,
-          maxGrade: data.maxGrade,
+          secondaryId: data.secondaryId,
+          detailText: data.detailText.trim(),
+          maxGrade: parseFloat(data.maxGrade),
           inputType: data.inputType || 'single',
-          tableSchema: data.tableSchema !== undefined ? data.tableSchema : undefined,
-          options: optionCreates.length > 0 ? {
-            create: optionCreates,
-          } : undefined,
+          tableSchema: data.tableSchema || null,
+          options:
+            optionCreates.length > 0
+              ? {
+                  create: optionCreates,
+                }
+              : undefined,
         },
         include: {
           options: { include: { optionType: true } },
         },
       });
-    });
+    } catch (err) {
+      this.handlePrismaError(err, 'CriteriaDetail');
+    }
+  }
+
+  async createOption(data: any) {
+    if (!data.optionText?.trim()) {
+      throw new BadRequestException('Option text is required');
+    }
+    if (!data.detailId) {
+      throw new BadRequestException('Detail ID is required');
+    }
+    try {
+      const optionData = await this.buildOptionCreateData(this.prisma, data);
+      return await this.prisma.criteriaOption.create({
+        data: {
+          ...optionData,
+          detailId: data.detailId,
+        },
+        include: { optionType: true },
+      });
+    } catch (err) {
+      this.handlePrismaError(err, 'CriteriaOption');
+    }
+  }
+
+  async updateDetail(id: number, data: any) {
+    try {
+      const existing = await this.prisma.criteriaDetail.findUnique({
+        where: { id },
+      });
+      if (!existing) {
+        throw new NotFoundException('Criteria detail not found');
+      }
+      return await this.prisma.$transaction(async (tx) => {
+        if (data.options !== undefined) {
+          await tx.criteriaOption.deleteMany({
+            where: { detailId: id },
+          });
+        }
+        const optionCreates =
+          data.options && data.options.length > 0
+            ? await Promise.all(
+                data.options.map((opt: any) =>
+                  this.buildOptionCreateData(tx, opt),
+                ),
+              )
+            : [];
+        return tx.criteriaDetail.update({
+          where: { id },
+          data: {
+            detailText: data.detailText,
+            maxGrade: data.maxGrade,
+            inputType: data.inputType || 'single',
+            tableSchema:
+              data.tableSchema !== undefined ? data.tableSchema : undefined,
+            options:
+              optionCreates.length > 0
+                ? {
+                    create: optionCreates,
+                  }
+                : undefined,
+          },
+          include: {
+            options: { include: { optionType: true } },
+          },
+        });
+      });
+    } catch (err) {
+      this.handlePrismaError(err, 'CriteriaDetail');
+    }
   }
 
   async removeDetail(id: number) {
-    return this.prisma.criteriaDetail.delete({
-      where: { id },
-    });
+    try {
+      const existing = await this.prisma.criteriaDetail.findUnique({
+        where: { id },
+      });
+      if (!existing) {
+        throw new NotFoundException('Criteria detail not found');
+      }
+      return await this.prisma.criteriaDetail.delete({
+        where: { id },
+      });
+    } catch (err) {
+      this.handlePrismaError(err, 'CriteriaDetail');
+    }
   }
 
   async reorderPrimary(ids: number[], templateId?: string) {
@@ -471,8 +669,8 @@ export class InspectionsService {
           tx.primaryCriteria.update({
             where: { id },
             data: { sortOrder: index },
-          })
-        )
+          }),
+        ),
       );
 
       // 2. If templateId is provided, update CriteriaTemplateItem sortOrder for this template
@@ -482,8 +680,8 @@ export class InspectionsService {
             tx.criteriaTemplateItem.updateMany({
               where: { templateId, primaryId: id },
               data: { sortOrder: index },
-            })
-          )
+            }),
+          ),
         );
       }
     });
@@ -518,16 +716,27 @@ export class InspectionsService {
   }
 
   private async buildOptionCreateData(client: any, opt: any) {
-    const optionType = await this.resolveOptionType(client, opt.optionTypeId, opt.type);
+    const optionType = await this.resolveOptionType(
+      client,
+      opt.optionTypeId,
+      opt.type,
+    );
     return {
       optionText: opt.optionText,
       type: optionType.code,
       optionTypeId: optionType.id,
-      scoreValue: opt.scoreValue !== undefined && opt.scoreValue !== null ? parseFloat(opt.scoreValue) : null,
+      scoreValue:
+        opt.scoreValue !== undefined && opt.scoreValue !== null
+          ? parseFloat(opt.scoreValue)
+          : null,
     };
   }
 
-  private async resolveOptionType(client: any, optionTypeId?: number, legacyType?: string) {
+  private async resolveOptionType(
+    client: any,
+    optionTypeId?: number,
+    legacyType?: string,
+  ) {
     if (optionTypeId !== undefined && optionTypeId !== null) {
       const optionType = await client.evaluationOptionType.findUnique({
         where: { id: Number(optionTypeId) },
@@ -544,7 +753,9 @@ export class InspectionsService {
       where: { code: normalizedCode },
     });
     if (!optionType) {
-      throw new BadRequestException(`Evaluation option type code ${normalizedCode} not found`);
+      throw new BadRequestException(
+        `Evaluation option type code ${normalizedCode} not found`,
+      );
     }
     return optionType;
   }

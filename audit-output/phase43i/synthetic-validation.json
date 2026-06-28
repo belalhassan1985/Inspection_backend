@@ -1,0 +1,87 @@
+{
+  "totalCampaigns": 10,
+  "realCount": 3,
+  "synthCount": 7,
+  "campaigns": [
+    {
+      "name": "المجر",
+      "fragmentCount": 12,
+      "officialPages": 2,
+      "htmlTotalMm": 486.3,
+      "bareSumMm": 91.04,
+      "overheadFactor": 5.34
+    },
+    {
+      "name": "لجنة تفتيش المنطقة الامنية الخامسة /ابي الخصيب",
+      "fragmentCount": 891,
+      "officialPages": 35,
+      "htmlTotalMm": 7532.16,
+      "bareSumMm": 6178.78,
+      "overheadFactor": 1.22
+    },
+    {
+      "name": "لجنة تفتيش المنطقة الامنية الثالثة /داقوق",
+      "fragmentCount": 715,
+      "officialPages": 28,
+      "htmlTotalMm": 6049.43,
+      "bareSumMm": 4928.45,
+      "overheadFactor": 1.23
+    },
+    {
+      "name": "synth-10f",
+      "fragmentCount": 10,
+      "officialPages": 1,
+      "htmlTotalMm": 189.97,
+      "bareSumMm": 103.18,
+      "overheadFactor": 1.84
+    },
+    {
+      "name": "synth-25f",
+      "fragmentCount": 25,
+      "officialPages": 3,
+      "htmlTotalMm": 494.77,
+      "bareSumMm": 376.27,
+      "overheadFactor": 1.31
+    },
+    {
+      "name": "synth-50f",
+      "fragmentCount": 50,
+      "officialPages": 4,
+      "htmlTotalMm": 782.9,
+      "bareSumMm": 606.9,
+      "overheadFactor": 1.29
+    },
+    {
+      "name": "synth-100f",
+      "fragmentCount": 100,
+      "officialPages": 8,
+      "htmlTotalMm": 1604.7,
+      "bareSumMm": 1310.88,
+      "overheadFactor": 1.22
+    },
+    {
+      "name": "synth-200f",
+      "fragmentCount": 200,
+      "officialPages": 16,
+      "htmlTotalMm": 3243.79,
+      "bareSumMm": 2724.92,
+      "overheadFactor": 1.19
+    },
+    {
+      "name": "synth-500f",
+      "fragmentCount": 500,
+      "officialPages": 42,
+      "htmlTotalMm": 8380.68,
+      "bareSumMm": 7185.49,
+      "overheadFactor": 1.17
+    },
+    {
+      "name": "synth-1000f",
+      "fragmentCount": 1000,
+      "officialPages": 84,
+      "htmlTotalMm": 16857.66,
+      "bareSumMm": 14528.74,
+      "overheadFactor": 1.16
+    }
+  ]
+}

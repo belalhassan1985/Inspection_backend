@@ -1,7 +1,9 @@
-import { Controller, Post, Body, Req, Get } from '@nestjs/common';
+import { Controller, Post, Body, Req, Get, UseGuards, NotFoundException } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBody, ApiBearerAuth } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { Public } from './public.decorator';
+import { Roles } from './roles.decorator';
+import { RolesGuard } from './roles.guard';
 
 @ApiTags('Authentication')
 @Controller('auth')
@@ -27,10 +29,14 @@ export class AuthController {
     return this.authService.login(body, ip, userAgent);
   }
 
-  @Public()
+  @UseGuards(RolesGuard)
+  @Roles('ADMIN')
   @Post('seed')
   @ApiOperation({ summary: 'تهيئة وتغذية قاعدة البيانات بالبيانات الافتراضية' })
   async seed() {
+    if (process.env.NODE_ENV === 'production') {
+      throw new NotFoundException('Seed endpoint is disabled in production');
+    }
     return this.authService.seed();
   }
 

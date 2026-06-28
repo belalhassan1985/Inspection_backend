@@ -1,0 +1,6 @@
+id,code,name_ar,name_en,color,icon,sort_order,affects_score,score_multiplier,is_active,created_at,updated_at
+2,negative,سلبي,Negative,#e63946,x-circle,2,t,0.50,t,2026-06-02 13:17:31.907074,2026-06-02 13:17:31.907074
+3,impediment,معوق,Impediment,#f4a261,alert-triangle,3,t,0.30,t,2026-06-02 13:17:31.907074,2026-06-02 13:17:31.907074
+4,obstacle,معضلة,Obstacle,#8b5cf6,octagon-alert,4,t,0.00,t,2026-06-02 13:17:31.907074,2026-06-02 13:17:31.907074
+1,positive,إيجابي,Positive,#2a9d8f,check-circle,1,t,1.00,t,2026-06-02 13:17:31.907074,2026-06-02 19:06:42.404
+6,custom_9786,لا شي,,#afaaa7,circle,5,f,1.00,t,2026-06-02 20:39:49.809,2026-06-03 06:58:32.316

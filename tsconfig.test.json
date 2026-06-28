@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "target": "ES2023",
+    "module": "commonjs",
+    "skipLibCheck": true,
+    "noEmit": false
+  },
+  "files": ["./src/main.ts"]
+}

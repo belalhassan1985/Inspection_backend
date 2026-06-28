@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  ForbiddenException,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { NotificationsGateway } from '../websockets/notifications.gateway';
 
@@ -36,13 +40,18 @@ export class NotificationService {
     private gateway: NotificationsGateway,
   ) {}
 
-  private async createNotification(input: CreateNotificationInput, db: any): Promise<any> {
+  private async createNotification(
+    input: CreateNotificationInput,
+    db: any,
+  ): Promise<any> {
     const userExists = await db.user.findUnique({
       where: { id: input.userId },
       select: { id: true },
     });
     if (!userExists) {
-      console.warn(`[NotificationService] User ${input.userId} not found, skipping notification: ${input.title}`);
+      console.warn(
+        `[NotificationService] User ${input.userId} not found, skipping notification: ${input.title}`,
+      );
       return null;
     }
 
@@ -100,7 +109,13 @@ export class NotificationService {
 
   async getMyNotifications(
     userId: string,
-    options?: { type?: string; severity?: string; unreadOnly?: boolean; limit?: number; offset?: number },
+    options?: {
+      type?: string;
+      severity?: string;
+      unreadOnly?: boolean;
+      limit?: number;
+      offset?: number;
+    },
   ) {
     const where: any = { userId };
 

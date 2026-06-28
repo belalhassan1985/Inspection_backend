@@ -14,6 +14,9 @@ export class AssignRecommendationDto {
 
   @ApiProperty({ description: 'تاريخ استحقاق التنفيذ والمعالجة' })
   @IsNotEmpty({ message: 'تاريخ الاستحقاق مطلوب' })
-  @IsDateString({}, { message: 'تاريخ الاستحقاق يجب أن يكون بصيغة تاريخ صالحة' })
+  @IsDateString(
+    {},
+    { message: 'تاريخ الاستحقاق يجب أن يكون بصيغة تاريخ صالحة' },
+  )
   dueDate: string;
 }

@@ -11,8 +11,8 @@ export class DashboardService {
       _avg: { totalScore: true },
       where: { status: 'approved' },
     });
-    const overallCompliance = approvedAvg._avg.totalScore 
-      ? Number(Number(approvedAvg._avg.totalScore).toFixed(2)) 
+    const overallCompliance = approvedAvg._avg.totalScore
+      ? Number(Number(approvedAvg._avg.totalScore).toFixed(2))
       : 0;
 
     // 2. الحملات التفتيشية النشطة
@@ -31,9 +31,10 @@ export class DashboardService {
         ],
       },
     });
-    const commandDeficitRate = totalPositions > 0 
-      ? Number(((vacantPositions / totalPositions) * 100).toFixed(2)) 
-      : 0;
+    const commandDeficitRate =
+      totalPositions > 0
+        ? Number(((vacantPositions / totalPositions) * 100).toFixed(2))
+        : 0;
 
     // 4. التفتيشات المعلقة بانتظار الاعتماد
     const pendingInspections = await this.prisma.inspection.count({
@@ -41,24 +42,28 @@ export class DashboardService {
     });
 
     // 5. التوصيات: المفتوحة والمغلقة وأعلى الجهات تكراراً
-    const totalRecommendations = await this.prisma.campaignRecommendation.count({
-      where: { campaign: { status: 'active' } },
-    });
+    const totalRecommendations = await this.prisma.campaignRecommendation.count(
+      {
+        where: { campaign: { status: 'active' } },
+      },
+    );
 
     const openRecommendations = await this.prisma.campaignRecommendation.count({
       where: { campaign: { status: 'active' } },
     });
 
-    const closedRecommendations = await this.prisma.campaignRecommendation.count({
-      where: { campaign: { NOT: { status: 'active' } } },
-    });
+    const closedRecommendations =
+      await this.prisma.campaignRecommendation.count({
+        where: { campaign: { NOT: { status: 'active' } } },
+      });
 
-    const topAuthoritiesGrouped = await this.prisma.campaignRecommendation.groupBy({
-      by: ['authorityName'],
-      _count: { id: true },
-      orderBy: { _count: { id: 'desc' } },
-      take: 5,
-    });
+    const topAuthoritiesGrouped =
+      await this.prisma.campaignRecommendation.groupBy({
+        by: ['authorityName'],
+        _count: { id: true },
+        orderBy: { _count: { id: 'desc' } },
+        take: 5,
+      });
 
     const topAuthorities = topAuthoritiesGrouped.map((item) => ({
       authorityName: item.authorityName || 'جهة غير محددة',
@@ -74,9 +79,10 @@ export class DashboardService {
         ],
       },
     });
-    const humanIntegrationRate = totalPositions > 0 
-      ? Number(((occupiedPositions / totalPositions) * 100).toFixed(2)) 
-      : 0;
+    const humanIntegrationRate =
+      totalPositions > 0
+        ? Number(((occupiedPositions / totalPositions) * 100).toFixed(2))
+        : 0;
 
     // 7. معدل جاهزية العجلات من الجداول الديناميكية
     const grades = await this.prisma.inspectionGrade.findMany();
@@ -97,9 +103,12 @@ export class DashboardService {
         }
       }
     }
-    const vehicleReadinessRate = (totalWorking + totalBroken) > 0 
-      ? Number(((totalWorking / (totalWorking + totalBroken)) * 100).toFixed(2)) 
-      : 85.0; // قيمة افتراضية في حال عدم توفر سجلات
+    const vehicleReadinessRate =
+      totalWorking + totalBroken > 0
+        ? Number(
+            ((totalWorking / (totalWorking + totalBroken)) * 100).toFixed(2),
+          )
+        : 85.0; // قيمة افتراضية في حال عدم توفر سجلات
 
     // 8. أفضل وأسوأ التشكيلات أداءً
     const approvedInspections = await this.prisma.inspection.findMany({
@@ -117,7 +126,8 @@ export class DashboardService {
     });
 
     const findCommander = (positions: any[]) => {
-      if (!positions || positions.length === 0) return { rank: '', name: 'غير محدد' };
+      if (!positions || positions.length === 0)
+        return { rank: '', name: 'غير محدد' };
       const cmdKeywords = ['مدير', 'آمر', 'قائد', 'رئيس'];
       const commander = positions.find((pos) =>
         cmdKeywords.some((keyword) => pos.positionName.includes(keyword)),
@@ -189,7 +199,8 @@ export class DashboardService {
       });
     }
 
-    const sectorPerformance: { entityName: string; averageScore: number }[] = [];
+    const sectorPerformance: { entityName: string; averageScore: number }[] =
+      [];
     sectorMap.forEach((val, key) => {
       sectorPerformance.push({
         entityName: key,
@@ -238,7 +249,8 @@ export class DashboardService {
       username: log.username,
       actionType: log.actionType,
       timestamp: log.timestamp,
-      details: typeof log.details === 'string' ? JSON.parse(log.details) : log.details,
+      details:
+        typeof log.details === 'string' ? JSON.parse(log.details) : log.details,
     }));
 
     return {

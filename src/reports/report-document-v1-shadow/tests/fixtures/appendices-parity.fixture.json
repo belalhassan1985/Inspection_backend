@@ -1,0 +1,30 @@
+{
+  "title": "Appendices parity fixture",
+  "assignmentText": "Fixture assignment",
+  "committeeMembers": [],
+  "purposeText": "Fixture purpose",
+  "durationText": "Fixture visit date",
+  "positions": [],
+  "sections": [],
+  "recommendations": [],
+  "appendices": [
+    {
+      "id": "appendix-alpha",
+      "symbol": "A",
+      "text": "First appendix opening paragraph.\n\nFirst appendix closing paragraph.",
+      "visible": true
+    },
+    {
+      "id": "appendix-beta",
+      "symbol": "B",
+      "text": "Repeated appendix paragraph.\n\nRepeated appendix paragraph.\n\nSecond appendix final paragraph.",
+      "visible": true
+    },
+    {
+      "id": "appendix-hidden",
+      "symbol": "C",
+      "text": "This hidden appendix must not produce fragments.",
+      "visible": false
+    }
+  ]
+}

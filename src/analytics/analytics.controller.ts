@@ -1,4 +1,11 @@
-import { Controller, Get, Post, Param, UseGuards, Request } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Param,
+  UseGuards,
+  Request,
+} from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { KpiEngineService } from './kpi-engine.service';
 import { SlaMonitoringService } from './sla-monitoring.service';
@@ -19,7 +26,7 @@ export class AnalyticsController {
     private kpiEngine: KpiEngineService,
     private slaService: SlaMonitoringService,
     private slaEngine: SlaEngineService,
-    private healthService: HealthAnalyticsService
+    private healthService: HealthAnalyticsService,
   ) {}
   @Roles('ADMIN', 'EVALUATOR', 'EDITOR', 'COORDINATOR', 'VIEWER')
   @RequiredClassification(SecurityClassificationLevel.SECRET)
@@ -90,7 +97,9 @@ export class AnalyticsController {
   @Roles('ADMIN')
   @RequiredClassification(SecurityClassificationLevel.SECRET)
   @Post('admin/trigger-sla')
-  @ApiOperation({ summary: 'تشغيل فحص اتفاقية مستوى الخدمة SLA يدوياً لتسجيل الخروقات' })
+  @ApiOperation({
+    summary: 'تشغيل فحص اتفاقية مستوى الخدمة SLA يدوياً لتسجيل الخروقات',
+  })
   async triggerSlaCheck() {
     await this.slaService.checkSlaBreaches();
     this.kpiEngine.clearCache(); // Invalidate cache on SLA breach updates

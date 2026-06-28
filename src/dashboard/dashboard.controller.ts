@@ -13,7 +13,9 @@ export class DashboardController {
 
   @Roles('ADMIN', 'EDITOR', 'EVALUATOR', 'VIEWER', 'REPORT_VIEWER')
   @Get('executive/summary')
-  @ApiOperation({ summary: 'استرجاع ملخص البيانات للوحة القيادة التنفيذية العليا' })
+  @ApiOperation({
+    summary: 'استرجاع ملخص البيانات للوحة القيادة التنفيذية العليا',
+  })
   async getExecutiveSummary() {
     return this.dashboardService.getExecutiveSummary();
   }

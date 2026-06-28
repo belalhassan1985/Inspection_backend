@@ -1,0 +1,378 @@
+{
+  "totalCampaigns": 3,
+  "validCampaigns": 3,
+  "stats": {
+    "avgDeltaCurrent": 5.67,
+    "avgDelta155": 4.67,
+    "avgDelta159": 4,
+    "avgDeltaCAware": 3.33,
+    "caDeltaZeroCount": 0,
+    "caDeltaOneCount": 1
+  },
+  "results": [
+    {
+      "name": "المجر",
+      "campaignId": "739e1853-b638-4fc3-bd15-79073efc0e5b",
+      "fragmentCount": 12,
+      "officialPdfPages": 2,
+      "totalContentHeightMm": 486.3,
+      "effectivePageCapacityMm": 243.15,
+      "currentPolicyPages": 1,
+      "fixtureProfile155Pages": 1,
+      "fixtureProfile159Pages": 1,
+      "contentAwarePages": 1,
+      "contentAwareDelta": -1,
+      "contentAwareTotalHeightMm": 91.05,
+      "contentAwareScaledPages": 3,
+      "contentAwareScaledDelta": 1,
+      "overheadFactor": 5.34,
+      "top5TallestFragments": [
+        {
+          "fragmentId": "introduction:committee",
+          "kind": "committee",
+          "heightMm": 18.21
+        },
+        {
+          "fragmentId": "signatures",
+          "kind": "signatures",
+          "heightMm": 12.14
+        },
+        {
+          "fragmentId": "report:header",
+          "kind": "reportHeader",
+          "heightMm": 6.07
+        },
+        {
+          "fragmentId": "report:title",
+          "kind": "reportTitle",
+          "heightMm": 6.07
+        },
+        {
+          "fragmentId": "introduction:assignment",
+          "kind": "assignment",
+          "heightMm": 6.07
+        }
+      ],
+      "top5KindsByHeight": [
+        {
+          "kind": "committee",
+          "totalHeightMm": 18.21,
+          "count": 1,
+          "avgHeightMm": 18.21
+        },
+        {
+          "kind": "signatures",
+          "totalHeightMm": 12.14,
+          "count": 1,
+          "avgHeightMm": 12.14
+        },
+        {
+          "kind": "reportHeader",
+          "totalHeightMm": 6.07,
+          "count": 1,
+          "avgHeightMm": 6.07
+        },
+        {
+          "kind": "reportTitle",
+          "totalHeightMm": 6.07,
+          "count": 1,
+          "avgHeightMm": 6.07
+        },
+        {
+          "kind": "assignment",
+          "totalHeightMm": 6.07,
+          "count": 1,
+          "avgHeightMm": 6.07
+        }
+      ],
+      "missingFragmentIds": [],
+      "measurementErrors": []
+    },
+    {
+      "name": "لجنة تفتيش المنطقة الامنية الخامسة /ابي الخصيب",
+      "campaignId": "b225a9f1-8b5a-4eff-b7ae-74ce0883430d",
+      "fragmentCount": 891,
+      "officialPdfPages": 35,
+      "totalContentHeightMm": 7532.16,
+      "effectivePageCapacityMm": 215.2,
+      "currentPolicyPages": 26,
+      "fixtureProfile155Pages": 42,
+      "fixtureProfile159Pages": 41,
+      "contentAwarePages": 30,
+      "contentAwareDelta": -5,
+      "contentAwareTotalHeightMm": 6185.33,
+      "contentAwareScaledPages": 36,
+      "contentAwareScaledDelta": 1,
+      "overheadFactor": 1.22,
+      "top5TallestFragments": [
+        {
+          "fragmentId": "introduction:committee",
+          "kind": "committee",
+          "heightMm": 30.35
+        },
+        {
+          "fragmentId": "subsection:sec-29:finding:general:fed1b1ff1cd6:1",
+          "kind": "findingItem",
+          "heightMm": 18.21
+        },
+        {
+          "fragmentId": "subsection:sec-30:finding:general:f002b66b6f3c:1",
+          "kind": "findingItem",
+          "heightMm": 18.21
+        },
+        {
+          "fragmentId": "official-notes:positives:item:f002b66b6f3c:1",
+          "kind": "noteItem",
+          "heightMm": 18.21
+        },
+        {
+          "fragmentId": "official-notes:impediments:item:fed1b1ff1cd6:1",
+          "kind": "noteItem",
+          "heightMm": 18.21
+        }
+      ],
+      "top5KindsByHeight": [
+        {
+          "kind": "noteItem",
+          "totalHeightMm": 2288.39,
+          "count": 330,
+          "avgHeightMm": 6.93
+        },
+        {
+          "kind": "findingItem",
+          "totalHeightMm": 2288.39,
+          "count": 331,
+          "avgHeightMm": 6.91
+        },
+        {
+          "kind": "tableRow",
+          "totalHeightMm": 934.78,
+          "count": 144,
+          "avgHeightMm": 6.49
+        },
+        {
+          "kind": "tableTitle",
+          "totalHeightMm": 127.47,
+          "count": 11,
+          "avgHeightMm": 11.59
+        },
+        {
+          "kind": "recommendationItem",
+          "totalHeightMm": 115.33,
+          "count": 10,
+          "avgHeightMm": 11.53
+        }
+      ],
+      "missingFragmentIds": [],
+      "measurementErrors": []
+    },
+    {
+      "name": "لجنة تفتيش المنطقة الامنية الثالثة /داقوق",
+      "campaignId": "cbb3885e-7d78-41da-b4a9-1fc2cca6e981",
+      "fragmentCount": 715,
+      "officialPdfPages": 28,
+      "totalContentHeightMm": 6049.43,
+      "effectivePageCapacityMm": 216.05,
+      "currentPolicyPages": 21,
+      "fixtureProfile155Pages": 34,
+      "fixtureProfile159Pages": 33,
+      "contentAwarePages": 24,
+      "contentAwareDelta": -4,
+      "contentAwareTotalHeightMm": 4928.84,
+      "contentAwareScaledPages": 30,
+      "contentAwareScaledDelta": 2,
+      "overheadFactor": 1.23,
+      "top5TallestFragments": [
+        {
+          "fragmentId": "introduction:committee",
+          "kind": "committee",
+          "heightMm": 24.28
+        },
+        {
+          "fragmentId": "subsection:sec-29:finding:general:74a8c1dddc0c:1",
+          "kind": "findingItem",
+          "heightMm": 24.28
+        },
+        {
+          "fragmentId": "official-notes:positives:item:74a8c1dddc0c:1",
+          "kind": "noteItem",
+          "heightMm": 24.28
+        },
+        {
+          "fragmentId": "subsection:sec-29:finding:general:fed1b1ff1cd6:1",
+          "kind": "findingItem",
+          "heightMm": 18.21
+        },
+        {
+          "fragmentId": "official-notes:impediments:item:fed1b1ff1cd6:1",
+          "kind": "noteItem",
+          "heightMm": 18.21
+        }
+      ],
+      "top5KindsByHeight": [
+        {
+          "kind": "noteItem",
+          "totalHeightMm": 1893.84,
+          "count": 270,
+          "avgHeightMm": 7.01
+        },
+        {
+          "kind": "findingItem",
+          "totalHeightMm": 1887.77,
+          "count": 271,
+          "avgHeightMm": 6.97
+        },
+        {
+          "kind": "tableRow",
+          "totalHeightMm": 643.42,
+          "count": 105,
+          "avgHeightMm": 6.13
+        },
+        {
+          "kind": "tableTitle",
+          "totalHeightMm": 103.19,
+          "count": 9,
+          "avgHeightMm": 11.47
+        },
+        {
+          "kind": "subsectionTitle",
+          "totalHeightMm": 91.05,
+          "count": 15,
+          "avgHeightMm": 6.07
+        }
+      ],
+      "missingFragmentIds": [],
+      "measurementErrors": []
+    }
+  ],
+  "perKindStats": {
+    "committee": {
+      "grandAvgHeightMm": 24.28,
+      "estimatedHeightMm": 12,
+      "fixtureMeasuredHeightMm": 9,
+      "campaignsCount": 3
+    },
+    "signatures": {
+      "grandAvgHeightMm": 12.14,
+      "estimatedHeightMm": 15,
+      "fixtureMeasuredHeightMm": 19.05,
+      "campaignsCount": 3
+    },
+    "assignment": {
+      "grandAvgHeightMm": 10.12,
+      "estimatedHeightMm": 10,
+      "fixtureMeasuredHeightMm": 9,
+      "campaignsCount": 3
+    },
+    "tableTitle": {
+      "grandAvgHeightMm": 9.71,
+      "estimatedHeightMm": 8,
+      "fixtureMeasuredHeightMm": 6.35,
+      "campaignsCount": 3
+    },
+    "recommendationItem": {
+      "grandAvgHeightMm": 8.8,
+      "estimatedHeightMm": 7,
+      "fixtureMeasuredHeightMm": 6.35,
+      "campaignsCount": 2
+    },
+    "visitDate": {
+      "grandAvgHeightMm": 8.09,
+      "estimatedHeightMm": 8,
+      "fixtureMeasuredHeightMm": 9,
+      "campaignsCount": 3
+    },
+    "noteItem": {
+      "grandAvgHeightMm": 6.97,
+      "estimatedHeightMm": 7,
+      "fixtureMeasuredHeightMm": 6.35,
+      "campaignsCount": 2
+    },
+    "findingItem": {
+      "grandAvgHeightMm": 6.94,
+      "estimatedHeightMm": 7,
+      "fixtureMeasuredHeightMm": 6.35,
+      "campaignsCount": 2
+    },
+    "tableRow": {
+      "grandAvgHeightMm": 6.31,
+      "estimatedHeightMm": 7,
+      "fixtureMeasuredHeightMm": 10.26,
+      "campaignsCount": 2
+    },
+    "reportHeader": {
+      "grandAvgHeightMm": 6.07,
+      "estimatedHeightMm": 20,
+      "fixtureMeasuredHeightMm": 23.55,
+      "campaignsCount": 3
+    },
+    "reportTitle": {
+      "grandAvgHeightMm": 6.07,
+      "estimatedHeightMm": 15,
+      "fixtureMeasuredHeightMm": 9.52,
+      "campaignsCount": 3
+    },
+    "purpose": {
+      "grandAvgHeightMm": 6.07,
+      "estimatedHeightMm": 10,
+      "fixtureMeasuredHeightMm": 9,
+      "campaignsCount": 3
+    },
+    "tableHeader": {
+      "grandAvgHeightMm": 6.07,
+      "estimatedHeightMm": 10,
+      "fixtureMeasuredHeightMm": 10.58,
+      "campaignsCount": 3
+    },
+    "sectionTitle": {
+      "grandAvgHeightMm": 6.07,
+      "estimatedHeightMm": 10,
+      "fixtureMeasuredHeightMm": 9,
+      "campaignsCount": 3
+    },
+    "recommendationsTitle": {
+      "grandAvgHeightMm": 6.07,
+      "estimatedHeightMm": 10,
+      "fixtureMeasuredHeightMm": 9,
+      "campaignsCount": 3
+    },
+    "finalEvaluation": {
+      "grandAvgHeightMm": 6.07,
+      "estimatedHeightMm": 12,
+      "fixtureMeasuredHeightMm": 18.79,
+      "campaignsCount": 3
+    },
+    "subsectionTitle": {
+      "grandAvgHeightMm": 6.07,
+      "estimatedHeightMm": 8,
+      "fixtureMeasuredHeightMm": 6.88,
+      "campaignsCount": 2
+    },
+    "findingGroupTitle": {
+      "grandAvgHeightMm": 6.07,
+      "estimatedHeightMm": 8,
+      "fixtureMeasuredHeightMm": 5.82,
+      "campaignsCount": 2
+    },
+    "officialNotesTitle": {
+      "grandAvgHeightMm": 6.07,
+      "estimatedHeightMm": 10,
+      "fixtureMeasuredHeightMm": 9,
+      "campaignsCount": 2
+    },
+    "noteCategoryTitle": {
+      "grandAvgHeightMm": 6.07,
+      "estimatedHeightMm": 8,
+      "fixtureMeasuredHeightMm": 6.35,
+      "campaignsCount": 2
+    },
+    "recommendationGroupTitle": {
+      "grandAvgHeightMm": 6.07,
+      "estimatedHeightMm": 8,
+      "fixtureMeasuredHeightMm": 6.35,
+      "campaignsCount": 2
+    }
+  },
+  "productionImportsCount": 0,
+  "decision": "GO"
+}

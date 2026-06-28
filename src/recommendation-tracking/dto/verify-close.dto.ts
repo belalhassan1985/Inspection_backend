@@ -3,9 +3,13 @@ import { RecommendationStatus } from '@prisma/client';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class VerifyCloseRecommendationDto {
-  @ApiProperty({ description: 'الحالة المعتمدة للاعتماد: CLOSED أو VERIFIED أو REJECTED' })
+  @ApiProperty({
+    description: 'الحالة المعتمدة للاعتماد: CLOSED أو VERIFIED أو REJECTED',
+  })
   @IsNotEmpty({ message: 'حالة الاعتماد مطلوبة' })
-  @IsEnum(RecommendationStatus, { message: 'الحالة المحددة للاعتماد غير صالحة' })
+  @IsEnum(RecommendationStatus, {
+    message: 'الحالة المحددة للاعتماد غير صالحة',
+  })
   resolutionStatus: RecommendationStatus;
 
   @ApiProperty({ description: 'المبررات وملاحظات المفتش للإغلاق' })

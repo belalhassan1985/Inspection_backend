@@ -1,4 +1,8 @@
-import { Injectable, UnauthorizedException, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  UnauthorizedException,
+  BadRequestException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from '../prisma/prisma.service';
 import { AuditLogsService } from '../audit-logs/audit-logs.service';
@@ -27,7 +31,9 @@ export class AuthService {
     });
 
     if (!user || !user.isActive) {
-      throw new UnauthorizedException('Invalid credentials or inactive account');
+      throw new UnauthorizedException(
+        'Invalid credentials or inactive account',
+      );
     }
 
     const isMatch = await bcrypt.compare(password, user.passwordHash);
@@ -35,7 +41,11 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    const payload = { sub: user.id, username: user.username, role: user.role?.name || 'VIEWER' };
+    const payload = {
+      sub: user.id,
+      username: user.username,
+      role: user.role?.name || 'VIEWER',
+    };
     const token = this.jwtService.sign(payload);
 
     await this.auditLogsService.log(
@@ -63,11 +73,23 @@ export class AuthService {
   async seed() {
     // 1. Seed Roles
     const rolesData = [
-      { name: 'ADMIN', description: 'مسؤول النظام الكامل وصاحب كافة الصلاحيات' },
-      { name: 'EVALUATOR', description: 'المفتش المخول بإجراء التقييمات وإدخال الدرجات' },
+      {
+        name: 'ADMIN',
+        description: 'مسؤول النظام الكامل وصاحب كافة الصلاحيات',
+      },
+      {
+        name: 'EVALUATOR',
+        description: 'المفتش المخول بإجراء التقييمات وإدخال الدرجات',
+      },
       { name: 'EDITOR', description: 'محرر الحملات وتفاصيل التقرير والجهات' },
-      { name: 'VIEWER', description: 'متابع مطلع على النتائج بدون صلاحية التعديل' },
-      { name: 'REPORT_VIEWER', description: 'صلاحية معاينة وطباعة التقارير النهائية فقط' },
+      {
+        name: 'VIEWER',
+        description: 'متابع مطلع على النتائج بدون صلاحية التعديل',
+      },
+      {
+        name: 'REPORT_VIEWER',
+        description: 'صلاحية معاينة وطباعة التقارير النهائية فقط',
+      },
     ];
 
     for (const role of rolesData) {
@@ -78,8 +100,12 @@ export class AuthService {
       });
     }
 
-    const adminRole = await this.prisma.role.findUnique({ where: { name: 'ADMIN' } });
-    const evaluatorRole = await this.prisma.role.findUnique({ where: { name: 'EVALUATOR' } });
+    const adminRole = await this.prisma.role.findUnique({
+      where: { name: 'ADMIN' },
+    });
+    const evaluatorRole = await this.prisma.role.findUnique({
+      where: { name: 'EVALUATOR' },
+    });
 
     // 2. Seed Default User 'ahmed'
     const passwordHash = await bcrypt.hash('1234', 10);
@@ -97,7 +123,9 @@ export class AuthService {
     });
 
     // Seed dummy Inspector ali
-    const aliExists = await this.prisma.inspector.findFirst({ where: { fullName: 'العقيد علي جاسم' } });
+    const aliExists = await this.prisma.inspector.findFirst({
+      where: { fullName: 'العقيد علي جاسم' },
+    });
     if (!aliExists) {
       await this.prisma.inspector.create({
         data: {
@@ -109,7 +137,9 @@ export class AuthService {
     }
 
     // 3. Seed Hierarchy (Entities and Positions)
-    let rootEntity = await this.prisma.entity.findFirst({ where: { level: 'ROOT' } });
+    let rootEntity = await this.prisma.entity.findFirst({
+      where: { level: 'ROOT' },
+    });
     if (!rootEntity) {
       rootEntity = await this.prisma.entity.create({
         data: {
@@ -120,7 +150,9 @@ export class AuthService {
       });
     }
 
-    let level1Entity = await this.prisma.entity.findFirst({ where: { parentId: rootEntity.id } });
+    let level1Entity = await this.prisma.entity.findFirst({
+      where: { parentId: rootEntity.id },
+    });
     if (!level1Entity) {
       level1Entity = await this.prisma.entity.create({
         data: {
@@ -132,7 +164,9 @@ export class AuthService {
       });
     }
 
-    let level2Entity = await this.prisma.entity.findFirst({ where: { parentId: level1Entity.id } });
+    let level2Entity = await this.prisma.entity.findFirst({
+      where: { parentId: level1Entity.id },
+    });
     if (!level2Entity) {
       level2Entity = await this.prisma.entity.create({
         data: {
@@ -144,7 +178,9 @@ export class AuthService {
       });
     }
 
-    let level3Entity = await this.prisma.entity.findFirst({ where: { parentId: level2Entity.id } });
+    let level3Entity = await this.prisma.entity.findFirst({
+      where: { parentId: level2Entity.id },
+    });
     if (!level3Entity) {
       level3Entity = await this.prisma.entity.create({
         data: {
@@ -183,7 +219,9 @@ export class AuthService {
     // Seeding is now handled by seed_hq.js script.
     const criteriaCount = await this.prisma.primaryCriteria.count();
     if (criteriaCount === 0) {
-      console.log('Database criteria are empty. Please run node seed_hq.js to initialize the templates.');
+      console.log(
+        'Database criteria are empty. Please run node seed_hq.js to initialize the templates.',
+      );
     }
 
     // 5. Seed Legacy Data from JSON
@@ -192,15 +230,25 @@ export class AuthService {
     let legacyCampaignsCount = 0;
 
     try {
-      const dataPath1 = path.join(process.cwd(), '../Projects/build/data/inspectionData.json');
-      const dataPath2 = path.join(process.cwd(), '../Projects/build/data/inspectionData_old.json');
+      const dataPath1 = path.join(
+        process.cwd(),
+        '../Projects/build/data/inspectionData.json',
+      );
+      const dataPath2 = path.join(
+        process.cwd(),
+        '../Projects/build/data/inspectionData_old.json',
+      );
 
       const file1Exists = fs.existsSync(dataPath1);
       const file2Exists = fs.existsSync(dataPath2);
 
       if (file1Exists || file2Exists) {
-        const json1 = file1Exists ? JSON.parse(fs.readFileSync(dataPath1, 'utf8')) : { users: [], campaigns: [] };
-        const json2 = file2Exists ? JSON.parse(fs.readFileSync(dataPath2, 'utf8')) : { users: [], campaigns: [] };
+        const json1 = file1Exists
+          ? JSON.parse(fs.readFileSync(dataPath1, 'utf8'))
+          : { users: [], campaigns: [] };
+        const json2 = file2Exists
+          ? JSON.parse(fs.readFileSync(dataPath2, 'utf8'))
+          : { users: [], campaigns: [] };
 
         // --- MERGE USERS ---
         const mergedUsers = new Map<string, any>();
@@ -224,7 +272,8 @@ export class AuthService {
           }
           usedUsernames.add(username);
 
-          const userRole = u.role === 'administrator' ? adminRole : evaluatorRole;
+          const userRole =
+            u.role === 'administrator' ? adminRole : evaluatorRole;
           if (userRole === evaluatorRole) {
             await this.prisma.inspector.upsert({
               where: { id: uuid },
@@ -278,7 +327,8 @@ export class AuthService {
                   name: item.name,
                   parentId: item.parentId ? this.toUuid(item.parentId) : null,
                   level: lvl === 'root' ? 'ROOT' : lvl.toUpperCase(),
-                  isAssistant: item.isAssistant === '1' || item.isAssistant === true,
+                  isAssistant:
+                    item.isAssistant === '1' || item.isAssistant === true,
                   positionInfo: item.positionInfo || [],
                 });
               }
@@ -291,7 +341,10 @@ export class AuthService {
 
         // Fallback for campaign entities not in tree
         const mergedCampaigns = new Map<string, any>();
-        for (const c of [...(json1.campaigns || []), ...(json2.campaigns || [])]) {
+        for (const c of [
+          ...(json1.campaigns || []),
+          ...(json2.campaigns || []),
+        ]) {
           if (c.id) {
             mergedCampaigns.set(this.toUuid(c.id), c);
             if (c.entityId) {
@@ -299,8 +352,14 @@ export class AuthService {
               if (!entitiesMap.has(entUuid)) {
                 // Determine entity name from audit logs if possible, else default
                 let entName = 'جهة تفتيشية مستوردة';
-                const logs = [...(json1.auditLogs || []), ...(json2.auditLogs || [])];
-                const matchLog = logs.find((l: any) => l.details?.entityId === c.entityId && l.details?.name);
+                const logs = [
+                  ...(json1.auditLogs || []),
+                  ...(json2.auditLogs || []),
+                ];
+                const matchLog = logs.find(
+                  (l: any) =>
+                    l.details?.entityId === c.entityId && l.details?.name,
+                );
                 if (matchLog) entName = matchLog.details.name;
 
                 entitiesMap.set(entUuid, {
@@ -339,7 +398,9 @@ export class AuthService {
         // Entity Pass 2: Connect parent relations
         for (const [uuid, ent] of entitiesMap.entries()) {
           if (ent.parentId) {
-            const parentExists = await this.prisma.entity.findUnique({ where: { id: ent.parentId } });
+            const parentExists = await this.prisma.entity.findUnique({
+              where: { id: ent.parentId },
+            });
             if (parentExists) {
               await this.prisma.entity.update({
                 where: { id: uuid },
@@ -360,7 +421,8 @@ export class AuthService {
           if (Array.isArray(ent.positionInfo)) {
             for (const obj of ent.positionInfo) {
               if (obj.positionName) posName = obj.positionName;
-              if (obj.PositionStatus || obj.positionStatus) posStatus = obj.PositionStatus || obj.positionStatus;
+              if (obj.PositionStatus || obj.positionStatus)
+                posStatus = obj.PositionStatus || obj.positionStatus;
               if (obj.statisticalNumber) statNum = obj.statisticalNumber;
               if (obj.positionHolder) holder = obj.positionHolder;
               if (obj.positionDate || obj.joinedDate) {
@@ -370,7 +432,9 @@ export class AuthService {
             }
           }
 
-          await this.prisma.entityPosition.deleteMany({ where: { entityId: uuid } });
+          await this.prisma.entityPosition.deleteMany({
+            where: { entityId: uuid },
+          });
           if (posName || holder) {
             await this.prisma.entityPosition.create({
               data: {
@@ -388,22 +452,48 @@ export class AuthService {
 
         // --- SEED CAMPAIGNS ---
         for (const [campaignUuid, c] of mergedCampaigns.entries()) {
-          const leaderUuid = c.authorship?.leaderId ? this.toUuid(c.authorship.leaderId) : null;
-          const deputyUuid = c.authorship?.deputyLeaderId ? this.toUuid(c.authorship.deputyLeaderId) : null;
+          const leaderUuid = c.authorship?.leaderId
+            ? this.toUuid(c.authorship.leaderId)
+            : null;
+          const deputyUuid = c.authorship?.deputyLeaderId
+            ? this.toUuid(c.authorship.deputyLeaderId)
+            : null;
           const entityUuid = c.entityId ? this.toUuid(c.entityId) : null;
 
           // Double check if leader, deputy, and entity exist in DB to prevent foreign key errors
-          const leaderExists = leaderUuid ? await this.prisma.inspector.findUnique({ where: { id: leaderUuid } }) : null;
-          const deputyExists = deputyUuid ? await this.prisma.inspector.findUnique({ where: { id: deputyUuid } }) : null;
-          const entityExists = entityUuid ? await this.prisma.entity.findUnique({ where: { id: entityUuid } }) : null;
+          const leaderExists = leaderUuid
+            ? await this.prisma.inspector.findUnique({
+                where: { id: leaderUuid },
+              })
+            : null;
+          const deputyExists = deputyUuid
+            ? await this.prisma.inspector.findUnique({
+                where: { id: deputyUuid },
+              })
+            : null;
+          const entityExists = entityUuid
+            ? await this.prisma.entity.findUnique({ where: { id: entityUuid } })
+            : null;
 
           const refNum = (c.assignment?.reference || 'غير محدد').slice(0, 100);
-          const nameStr = `لجنة تفتيشية رقم ${refNum} - ${c.purpose ? c.purpose.slice(0, 80) + '...' : ''}`.slice(0, 255);
+          const nameStr =
+            `لجنة تفتيشية رقم ${refNum} - ${c.purpose ? c.purpose.slice(0, 80) + '...' : ''}`.slice(
+              0,
+              255,
+            );
 
-          await this.prisma.campaignMember.deleteMany({ where: { campaignId: campaignUuid } });
-          await this.prisma.campaignNote.deleteMany({ where: { campaignId: campaignUuid } });
-          await this.prisma.campaignRecommendation.deleteMany({ where: { campaignId: campaignUuid } });
-          await this.prisma.campaignAppendix.deleteMany({ where: { campaignId: campaignUuid } });
+          await this.prisma.campaignMember.deleteMany({
+            where: { campaignId: campaignUuid },
+          });
+          await this.prisma.campaignNote.deleteMany({
+            where: { campaignId: campaignUuid },
+          });
+          await this.prisma.campaignRecommendation.deleteMany({
+            where: { campaignId: campaignUuid },
+          });
+          await this.prisma.campaignAppendix.deleteMany({
+            where: { campaignId: campaignUuid },
+          });
 
           await this.prisma.campaign.upsert({
             where: { id: campaignUuid },
@@ -412,12 +502,17 @@ export class AuthService {
               type: (c.type || 'regular').slice(0, 20),
               assignmentText: c.assignment?.text || '',
               assignmentReference: refNum,
-              assignmentDate: c.assignment?.date ? new Date(c.assignment.date) : new Date(),
+              assignmentDate: c.assignment?.date
+                ? new Date(c.assignment.date)
+                : new Date(),
               leaderId: leaderExists ? leaderUuid : null,
               deputyId: deputyExists ? deputyUuid : null,
               purpose: c.purpose || '',
               entityId: entityExists ? entityUuid : null,
-              formationNumber: (c.formationNumber || `هـ.ت / ${refNum}`).slice(0, 100),
+              formationNumber: (c.formationNumber || `هـ.ت / ${refNum}`).slice(
+                0,
+                100,
+              ),
               startDate: c.startDate ? new Date(c.startDate) : new Date(),
               endDate: c.endDate ? new Date(c.endDate) : null,
               status: (c.status || 'active').slice(0, 20),
@@ -428,12 +523,17 @@ export class AuthService {
               type: (c.type || 'regular').slice(0, 20),
               assignmentText: c.assignment?.text || '',
               assignmentReference: refNum,
-              assignmentDate: c.assignment?.date ? new Date(c.assignment.date) : new Date(),
+              assignmentDate: c.assignment?.date
+                ? new Date(c.assignment.date)
+                : new Date(),
               leaderId: leaderExists ? leaderUuid : null,
               deputyId: deputyExists ? deputyUuid : null,
               purpose: c.purpose || '',
               entityId: entityExists ? entityUuid : null,
-              formationNumber: (c.formationNumber || `هـ.ت / ${refNum}`).slice(0, 100),
+              formationNumber: (c.formationNumber || `هـ.ت / ${refNum}`).slice(
+                0,
+                100,
+              ),
               startDate: c.startDate ? new Date(c.startDate) : new Date(),
               endDate: c.endDate ? new Date(c.endDate) : null,
               status: (c.status || 'active').slice(0, 20),
@@ -441,13 +541,23 @@ export class AuthService {
           });
 
           // Members
-          if (c.authorship?.memberIds && Array.isArray(c.authorship.memberIds)) {
+          if (
+            c.authorship?.memberIds &&
+            Array.isArray(c.authorship.memberIds)
+          ) {
             for (const mId of c.authorship.memberIds) {
               const mUuid = this.toUuid(mId);
-              const mExists = await this.prisma.inspector.findUnique({ where: { id: mUuid } });
+              const mExists = await this.prisma.inspector.findUnique({
+                where: { id: mUuid },
+              });
               if (mExists) {
                 await this.prisma.campaignMember.upsert({
-                  where: { campaignId_inspectorId: { campaignId: campaignUuid, inspectorId: mUuid } },
+                  where: {
+                    campaignId_inspectorId: {
+                      campaignId: campaignUuid,
+                      inspectorId: mUuid,
+                    },
+                  },
                   update: {},
                   create: {
                     campaignId: campaignUuid,
@@ -553,7 +663,27 @@ export class AuthService {
 
           // Appendices
           const appList = c.appendices || [];
-          const arabicLetters = ['أ', 'ب', 'ج', 'د', 'هـ', 'و', 'ز', 'ح', 'ط', 'ي', 'ك', 'ل', 'م', 'ن', 'س', 'ع', 'ف', 'ص', 'ق'];
+          const arabicLetters = [
+            'أ',
+            'ب',
+            'ج',
+            'د',
+            'هـ',
+            'و',
+            'ز',
+            'ح',
+            'ط',
+            'ي',
+            'ك',
+            'ل',
+            'م',
+            'ن',
+            'س',
+            'ع',
+            'ف',
+            'ص',
+            'ق',
+          ];
           for (let i = 0; i < appList.length; i++) {
             const app = appList[i];
             const appUuid = this.toUuid(app.id);
@@ -576,7 +706,8 @@ export class AuthService {
     }
 
     return {
-      message: 'Database seeded successfully with default Roles, Users, Organogram, Evaluation Criteria, and merged legacy campaigns data.',
+      message:
+        'Database seeded successfully with default Roles, Users, Organogram, Evaluation Criteria, and merged legacy campaigns data.',
       admin: { username: 'ahmed', password: '1234' },
       evaluator: { username: 'ali', password: '1234' },
       imported: {
@@ -591,7 +722,11 @@ export class AuthService {
     if (!str || typeof str !== 'string') {
       return crypto.randomUUID();
     }
-    if (/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(str)) {
+    if (
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(
+        str,
+      )
+    ) {
       return str.toLowerCase();
     }
     const hash = crypto.createHash('md5').update(str).digest('hex');

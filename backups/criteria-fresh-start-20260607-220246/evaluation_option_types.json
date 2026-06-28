@@ -1,0 +1,72 @@
+[
+  {
+    "id": 2,
+    "code": "negative",
+    "nameAr": "سلبي",
+    "nameEn": "Negative",
+    "color": "#e63946",
+    "icon": "x-circle",
+    "sortOrder": 2,
+    "affectsScore": true,
+    "scoreMultiplier": "0.5",
+    "isActive": true,
+    "createdAt": "2026-06-02T13:17:31.907Z",
+    "updatedAt": "2026-06-02T13:17:31.907Z"
+  },
+  {
+    "id": 3,
+    "code": "impediment",
+    "nameAr": "معوق",
+    "nameEn": "Impediment",
+    "color": "#f4a261",
+    "icon": "alert-triangle",
+    "sortOrder": 3,
+    "affectsScore": true,
+    "scoreMultiplier": "0.3",
+    "isActive": true,
+    "createdAt": "2026-06-02T13:17:31.907Z",
+    "updatedAt": "2026-06-02T13:17:31.907Z"
+  },
+  {
+    "id": 4,
+    "code": "obstacle",
+    "nameAr": "معضلة",
+    "nameEn": "Obstacle",
+    "color": "#8b5cf6",
+    "icon": "octagon-alert",
+    "sortOrder": 4,
+    "affectsScore": true,
+    "scoreMultiplier": "0",
+    "isActive": true,
+    "createdAt": "2026-06-02T13:17:31.907Z",
+    "updatedAt": "2026-06-02T13:17:31.907Z"
+  },
+  {
+    "id": 1,
+    "code": "positive",
+    "nameAr": "إيجابي",
+    "nameEn": "Positive",
+    "color": "#2a9d8f",
+    "icon": "check-circle",
+    "sortOrder": 1,
+    "affectsScore": true,
+    "scoreMultiplier": "1",
+    "isActive": true,
+    "createdAt": "2026-06-02T13:17:31.907Z",
+    "updatedAt": "2026-06-02T19:06:42.404Z"
+  },
+  {
+    "id": 6,
+    "code": "custom_9786",
+    "nameAr": "لا شي",
+    "nameEn": null,
+    "color": "#f4a261",
+    "icon": "circle",
+    "sortOrder": 5,
+    "affectsScore": false,
+    "scoreMultiplier": "1",
+    "isActive": true,
+    "createdAt": "2026-06-02T20:39:49.809Z",
+    "updatedAt": "2026-06-02T20:39:49.809Z"
+  }
+]

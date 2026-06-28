@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
@@ -64,7 +68,9 @@ export class CriteriaTemplatesService {
       where: { id },
       data: {
         ...(data.name !== undefined ? { name: data.name.trim() } : {}),
-        ...(data.description !== undefined ? { description: data.description } : {}),
+        ...(data.description !== undefined
+          ? { description: data.description }
+          : {}),
       },
     });
   }
@@ -80,9 +86,13 @@ export class CriteriaTemplatesService {
   async addItem(templateId: string, primaryId: number, sortOrder?: number) {
     await this.findOne(templateId);
 
-    const primary = await this.prisma.primaryCriteria.findUnique({ where: { id: primaryId } });
+    const primary = await this.prisma.primaryCriteria.findUnique({
+      where: { id: primaryId },
+    });
     if (!primary) {
-      throw new NotFoundException(`Primary criteria with id ${primaryId} not found`);
+      throw new NotFoundException(
+        `Primary criteria with id ${primaryId} not found`,
+      );
     }
 
     const existing = await this.prisma.criteriaTemplateItem.findUnique({
@@ -91,7 +101,9 @@ export class CriteriaTemplatesService {
       },
     });
     if (existing) {
-      throw new BadRequestException('This primary criteria is already in the template');
+      throw new BadRequestException(
+        'This primary criteria is already in the template',
+      );
     }
 
     const maxSortOrder = await this.prisma.criteriaTemplateItem.aggregate({
@@ -139,7 +151,9 @@ export class CriteriaTemplatesService {
       orderBy: { sortOrder: 'asc' },
     });
     if (allPrimaries.length === 0) {
-      throw new BadRequestException('No primary criteria found to create template from');
+      throw new BadRequestException(
+        'No primary criteria found to create template from',
+      );
     }
 
     return this.prisma.criteriaTemplate.create({

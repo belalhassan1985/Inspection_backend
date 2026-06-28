@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Put, Delete, Body, Param, Query, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Body,
+  Param,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { InspectionsService } from './inspections.service';
 import { RolesGuard } from '../auth/roles.guard';
@@ -18,7 +28,9 @@ export class InspectionsController {
   }
 
   @Get('criteria-template')
-  @ApiOperation({ summary: 'الحصول على قالب الأسئلة والبنود المعيارية لنموذج التفتيش' })
+  @ApiOperation({
+    summary: 'الحصول على قالب الأسئلة والبنود المعيارية لنموذج التفتيش',
+  })
   async getCriteriaTemplate(@Query('campaignId') campaignId?: string) {
     return this.inspectionsService.getCriteriaTemplate(campaignId);
   }
@@ -30,7 +42,9 @@ export class InspectionsController {
   }
 
   @Get('campaign/:campaignId')
-  @ApiOperation({ summary: 'الحصول على تقييم التفتيش الخاص بحملة تفتيشية محددة' })
+  @ApiOperation({
+    summary: 'الحصول على تقييم التفتيش الخاص بحملة تفتيشية محددة',
+  })
   async findByCampaign(@Param('campaignId') campaignId: string) {
     return this.inspectionsService.findByCampaign(campaignId);
   }

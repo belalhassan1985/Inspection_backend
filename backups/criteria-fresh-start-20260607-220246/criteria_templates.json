@@ -1,0 +1,20 @@
+[
+  {
+    "id": "514a4283-7e5a-471b-9f2b-c661fd083fb5",
+    "name": "أسس الأمن المناطقي المطور",
+    "description": "القالب الافتراضي الموحد لأسس الامن المناطقي",
+    "isDefault": true,
+    "isActive": true,
+    "createdAt": "2026-05-27T22:07:08.484Z",
+    "updatedAt": "2026-05-28T20:55:10.286Z"
+  },
+  {
+    "id": "5e810cad-e677-4edd-93fb-e6d40267f5b4",
+    "name": "اسس مقر دوائر",
+    "description": null,
+    "isDefault": false,
+    "isActive": true,
+    "createdAt": "2026-05-30T13:39:37.657Z",
+    "updatedAt": "2026-05-30T13:39:37.657Z"
+  }
+]

@@ -1,0 +1,188 @@
+{
+  "totalCampaigns": 3,
+  "perKindEffectiveHeights": {
+    "signatures": {
+      "avgBareHeightMm": 12.14,
+      "avgOverheadPerInstanceMm": 19.36,
+      "avgEffectiveHeightMm": 31.5,
+      "overheadRatio": 2.6,
+      "totalCount": 3
+    },
+    "finalEvaluation": {
+      "avgBareHeightMm": 6.07,
+      "avgOverheadPerInstanceMm": 9.68,
+      "avgEffectiveHeightMm": 15.75,
+      "overheadRatio": 2.59,
+      "totalCount": 3
+    },
+    "purpose": {
+      "avgBareHeightMm": 6.07,
+      "avgOverheadPerInstanceMm": 9.68,
+      "avgEffectiveHeightMm": 15.75,
+      "overheadRatio": 2.59,
+      "totalCount": 3
+    },
+    "recommendationsTitle": {
+      "avgBareHeightMm": 6.07,
+      "avgOverheadPerInstanceMm": 9.68,
+      "avgEffectiveHeightMm": 15.75,
+      "overheadRatio": 2.59,
+      "totalCount": 3
+    },
+    "reportHeader": {
+      "avgBareHeightMm": 6.07,
+      "avgOverheadPerInstanceMm": 9.68,
+      "avgEffectiveHeightMm": 15.75,
+      "overheadRatio": 2.59,
+      "totalCount": 3
+    },
+    "reportTitle": {
+      "avgBareHeightMm": 6.07,
+      "avgOverheadPerInstanceMm": 9.68,
+      "avgEffectiveHeightMm": 15.75,
+      "overheadRatio": 2.59,
+      "totalCount": 3
+    },
+    "sectionTitle": {
+      "avgBareHeightMm": 6.07,
+      "avgOverheadPerInstanceMm": 9.68,
+      "avgEffectiveHeightMm": 15.75,
+      "overheadRatio": 2.59,
+      "totalCount": 7
+    },
+    "tableHeader": {
+      "avgBareHeightMm": 6.07,
+      "avgOverheadPerInstanceMm": 9.68,
+      "avgEffectiveHeightMm": 15.75,
+      "overheadRatio": 2.59,
+      "totalCount": 21
+    },
+    "committee": {
+      "avgBareHeightMm": 24.28,
+      "avgOverheadPerInstanceMm": 30.38,
+      "avgEffectiveHeightMm": 54.66,
+      "overheadRatio": 2.25,
+      "totalCount": 3
+    },
+    "visitDate": {
+      "avgBareHeightMm": 8.09,
+      "avgOverheadPerInstanceMm": 10.14,
+      "avgEffectiveHeightMm": 18.23,
+      "overheadRatio": 2.25,
+      "totalCount": 3
+    },
+    "tableTitle": {
+      "avgBareHeightMm": 9.71,
+      "avgOverheadPerInstanceMm": 10.49,
+      "avgEffectiveHeightMm": 20.2,
+      "overheadRatio": 2.08,
+      "totalCount": 21
+    },
+    "assignment": {
+      "avgBareHeightMm": 10.12,
+      "avgOverheadPerInstanceMm": 10.58,
+      "avgEffectiveHeightMm": 20.7,
+      "overheadRatio": 2.05,
+      "totalCount": 3
+    },
+    "findingGroupTitle": {
+      "avgBareHeightMm": 6.07,
+      "avgOverheadPerInstanceMm": 1.35,
+      "avgEffectiveHeightMm": 7.42,
+      "overheadRatio": 1.22,
+      "totalCount": 32
+    },
+    "findingItem": {
+      "avgBareHeightMm": 6.94,
+      "avgOverheadPerInstanceMm": 1.54,
+      "avgEffectiveHeightMm": 8.48,
+      "overheadRatio": 1.22,
+      "totalCount": 602
+    },
+    "noteCategoryTitle": {
+      "avgBareHeightMm": 6.07,
+      "avgOverheadPerInstanceMm": 1.35,
+      "avgEffectiveHeightMm": 7.42,
+      "overheadRatio": 1.22,
+      "totalCount": 8
+    },
+    "noteItem": {
+      "avgBareHeightMm": 6.97,
+      "avgOverheadPerInstanceMm": 1.55,
+      "avgEffectiveHeightMm": 8.52,
+      "overheadRatio": 1.22,
+      "totalCount": 600
+    },
+    "officialNotesTitle": {
+      "avgBareHeightMm": 6.07,
+      "avgOverheadPerInstanceMm": 1.35,
+      "avgEffectiveHeightMm": 7.42,
+      "overheadRatio": 1.22,
+      "totalCount": 2
+    },
+    "recommendationGroupTitle": {
+      "avgBareHeightMm": 6.07,
+      "avgOverheadPerInstanceMm": 1.35,
+      "avgEffectiveHeightMm": 7.42,
+      "overheadRatio": 1.22,
+      "totalCount": 5
+    },
+    "recommendationItem": {
+      "avgBareHeightMm": 8.8,
+      "avgOverheadPerInstanceMm": 1.94,
+      "avgEffectiveHeightMm": 10.74,
+      "overheadRatio": 1.22,
+      "totalCount": 12
+    },
+    "subsectionTitle": {
+      "avgBareHeightMm": 6.07,
+      "avgOverheadPerInstanceMm": 1.35,
+      "avgEffectiveHeightMm": 7.42,
+      "overheadRatio": 1.22,
+      "totalCount": 32
+    },
+    "tableRow": {
+      "avgBareHeightMm": 6.33,
+      "avgOverheadPerInstanceMm": 1.4,
+      "avgEffectiveHeightMm": 7.74,
+      "overheadRatio": 1.22,
+      "totalCount": 249
+    }
+  },
+  "looResults": [
+    {
+      "name": "المجر",
+      "fragmentCount": 12,
+      "officialPages": 2,
+      "predictedPages": 1,
+      "delta": -1,
+      "totalCapacityUsed": 215.63
+    },
+    {
+      "name": "لجنة تفتيش المنطقة الامنية الخامسة /ابي الخصيب",
+      "fragmentCount": 891,
+      "officialPages": 35,
+      "predictedPages": 36,
+      "delta": 1,
+      "totalCapacityUsed": 229.6
+    },
+    {
+      "name": "لجنة تفتيش المنطقة الامنية الثالثة /داقوق",
+      "fragmentCount": 715,
+      "officialPages": 28,
+      "predictedPages": 29,
+      "delta": 1,
+      "totalCapacityUsed": 229.18
+    }
+  ],
+  "stats": {
+    "avgAbsDelta": 1,
+    "zeroCount": 0,
+    "oneCount": 3,
+    "consistentKindCount": 8,
+    "variableKindCount": 13
+  },
+  "imports": 0,
+  "productionChanges": 0,
+  "decision": "GO"
+}

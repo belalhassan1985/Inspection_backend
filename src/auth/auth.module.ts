@@ -10,7 +10,7 @@ import { AuditLogsModule } from '../audit-logs/audit-logs.module';
   imports: [
     PassportModule,
     JwtModule.register({
-      secret: process.env.JWT_SECRET || 'super-secret-inspection-key-13579',
+      secret: process.env.JWT_SECRET!,
       signOptions: { expiresIn: '1d' },
     }),
     AuditLogsModule,

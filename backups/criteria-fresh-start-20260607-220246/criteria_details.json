@@ -1,0 +1,5186 @@
+[
+  {
+    "id": 288,
+    "secondaryId": 33,
+    "detailText": "توفر الاجهزة الكافية وصلاحيتها للعمل.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 25
+  },
+  {
+    "id": 289,
+    "secondaryId": 33,
+    "detailText": "السجلات المطلوبة وادامتها.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 26
+  },
+  {
+    "id": 290,
+    "secondaryId": 33,
+    "detailText": "العمل وفق الكلمات الجفرية.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 27
+  },
+  {
+    "id": 291,
+    "secondaryId": 33,
+    "detailText": "المشجب",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 28
+  },
+  {
+    "id": 292,
+    "secondaryId": 33,
+    "detailText": "توفر السجلات المطلوبة ومكان حفظ المستندات.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 29
+  },
+  {
+    "id": 293,
+    "secondaryId": 33,
+    "detailText": "توفر المسالح الخشبية وادامة الاسلحة.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 30
+  },
+  {
+    "id": 294,
+    "secondaryId": 33,
+    "detailText": "نسبة تكامل الأسلحة والاعتدة قياساً بالموجود البشري مع توفر الأسلحة الساندة.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 31
+  },
+  {
+    "id": 295,
+    "secondaryId": 33,
+    "detailText": "التحقيق",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 32
+  },
+  {
+    "id": 296,
+    "secondaryId": 33,
+    "detailText": "موقف القضايا التحقيقية (المسجل، المنجز، المتبقي، نسبة الإنجاز).",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 33
+  },
+  {
+    "id": 297,
+    "secondaryId": 33,
+    "detailText": "مدى تنفيذ أوامر القبض والمذكرات القضائية الصادرة من المحاكم المختصة وبيان نسب التنفيذ.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 34
+  },
+  {
+    "id": 298,
+    "secondaryId": 33,
+    "detailText": "نسبة حسم وإنجاز المبارز الجرمية والامانات المضبوطة.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 35
+  },
+  {
+    "id": 300,
+    "secondaryId": 33,
+    "detailText": "العمل ببطاقة الشكوى.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 37
+  },
+  {
+    "id": 301,
+    "secondaryId": 33,
+    "detailText": "عدد ضباط التحقيق مقارنة بالحوادث المسجلة ضمن قاطع المسؤولية.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 38
+  },
+  {
+    "id": 302,
+    "secondaryId": 33,
+    "detailText": "توفر ساحة نظامية لإيواء العجلات المحجوزة والسجلات الخاصة بها.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 39
+  },
+  {
+    "id": 303,
+    "secondaryId": 33,
+    "detailText": "تيسر عجلة خاصة لنقل الموقوفين بمواصفات أمنية مناسبة.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 40
+  },
+  {
+    "id": 304,
+    "secondaryId": 33,
+    "detailText": "فتح سجل متابعة القضايا التحقيقية لكل ضابط تحقيق.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 41
+  },
+  {
+    "id": 305,
+    "secondaryId": 33,
+    "detailText": "العمل بأجراء دور الاستلام وتسليم الاوراق التحقيقية بين الضباط المنقولين قبل اجراء الانفكاك.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 42
+  },
+  {
+    "id": 306,
+    "secondaryId": 33,
+    "detailText": "الموقف",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 43
+  },
+  {
+    "id": 307,
+    "secondaryId": 33,
+    "detailText": "التحقق من عدد الموقوفين ومدى تأمين مواقف احتجاز مناسبة تتوافق مع الطاقة الاستيعابية المقرة قانوناً بما يضمن حقوق الانسان والسلامة الجسدية للموقوفين.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 44
+  },
+  {
+    "id": 308,
+    "secondaryId": 33,
+    "detailText": "متابعة توفر الخدمات الصحية في المواقف التحقيقية وتدقيق سجلات الفحص الطبي والتغذية وضمان التهوية والنظافة وسلامة الظروف البيئية (التشميس، الإضاءة، التدفئة، الطعام، المياه).",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 45
+  },
+  {
+    "id": 309,
+    "secondaryId": 33,
+    "detailText": "يتم متابعة توفر الخدمات الصحية في المواقف التحقيقية وتدقيق سجلات الفحص",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 46
+  },
+  {
+    "id": 310,
+    "secondaryId": 33,
+    "detailText": "إدامة مذكرات التوقيف والسجلات المطلوبة.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 47
+  },
+  {
+    "id": 311,
+    "secondaryId": 33,
+    "detailText": "متابعة تسفير المحكومين للمؤسسات الاصلاحية.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 48
+  },
+  {
+    "id": 312,
+    "secondaryId": 34,
+    "detailText": "الايجاز (معد / غير معد) وفق اسس التفتيش.",
+    "maxGrade": "1.54",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 0
+  },
+  {
+    "id": 313,
+    "secondaryId": 34,
+    "detailText": "المواقف الرسمية ونسب التكامل (الاشخاص، الاسلحة، الاعتدة، الآليات، اجهزة الاتصالات).",
+    "maxGrade": "1.54",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 1
+  },
+  {
+    "id": 314,
+    "secondaryId": 34,
+    "detailText": "تيسر نظام البديلين.",
+    "maxGrade": "1.54",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 2
+  },
+  {
+    "id": 315,
+    "secondaryId": 34,
+    "detailText": "متابعة الامور الجنائية والفنية والاحصائيات والعمليات.",
+    "maxGrade": "1.54",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 3
+  },
+  {
+    "id": 316,
+    "secondaryId": 34,
+    "detailText": "متابعة عمل مفارز في السيطرات الرئيسية.",
+    "maxGrade": "1.54",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 4
+  },
+  {
+    "id": 317,
+    "secondaryId": 34,
+    "detailText": "التنسيق الامني مع الجهات الاخرى.",
+    "maxGrade": "1.54",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 5
+  },
+  {
+    "id": 318,
+    "secondaryId": 34,
+    "detailText": "جمع المعلومات الاستخبارية عن شبكات تجارة المخدرات.",
+    "maxGrade": "1.54",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 6
+  },
+  {
+    "id": 319,
+    "secondaryId": 34,
+    "detailText": "متابعة تنفيذ اوامر القبض ضمن قاطع المسؤولية.",
+    "maxGrade": "1.54",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 7
+  },
+  {
+    "id": 320,
+    "secondaryId": 34,
+    "detailText": "متابعة شعبة شؤون المخدرات والمؤثرات العقلية ضمن المنفذ (بري جوي بحري في حالة وجود منفذ حدودي).",
+    "maxGrade": "1.54",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 8
+  },
+  {
+    "id": 321,
+    "secondaryId": 34,
+    "detailText": "فتح وادامة السجلات المطلوبة.",
+    "maxGrade": "1.54",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 9
+  },
+  {
+    "id": 322,
+    "secondaryId": 34,
+    "detailText": "التقييم.",
+    "maxGrade": "1.54",
+    "inputType": "single",
+    "tableSchema": null,
+    "sortOrder": 10
+  },
+  {
+    "id": 323,
+    "secondaryId": 34,
+    "detailText": "الجنائية والحركات",
+    "maxGrade": "1.54",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 11
+  },
+  {
+    "id": 324,
+    "secondaryId": 34,
+    "detailText": "التقييم.",
+    "maxGrade": "1.54",
+    "inputType": "single",
+    "tableSchema": null,
+    "sortOrder": 12
+  },
+  {
+    "id": 325,
+    "secondaryId": 35,
+    "detailText": "الايجاز (معد / غير معد) وفق اسس التفتيش.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 0
+  },
+  {
+    "id": 326,
+    "secondaryId": 35,
+    "detailText": "المواقف الرسمية ونسب التكامل (الاشخاص، الاسلحة، الاعتدة، الآليات، اجهزة الاتصالات).",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 1
+  },
+  {
+    "id": 327,
+    "secondaryId": 35,
+    "detailText": "مدى الإلمام بقاطع المسؤولية وتحديد الأهداف الحيوية.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 2
+  },
+  {
+    "id": 328,
+    "secondaryId": 35,
+    "detailText": "فعاليته ودوره في ادارة الخلية الاستخبارية المناطقية.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 3
+  },
+  {
+    "id": 329,
+    "secondaryId": 35,
+    "detailText": "الرؤية الاستخبارية ضمن خطة الأمن المناطقي.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 4
+  },
+  {
+    "id": 330,
+    "secondaryId": 35,
+    "detailText": "متابعة تحديد وتدقيق حدود القاطع بالتنسيق مع مدير المنطقة.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 5
+  },
+  {
+    "id": 331,
+    "secondaryId": 35,
+    "detailText": "مدى توفر الخطط الخاصة بجمع وتحليل المعلومات.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 6
+  },
+  {
+    "id": 332,
+    "secondaryId": 35,
+    "detailText": "متابعة التغذية العكسية والدراسات التحليلية.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 7
+  },
+  {
+    "id": 333,
+    "secondaryId": 35,
+    "detailText": "تحديث الخطط بناءً على المتغيرات الميدانية.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 8
+  },
+  {
+    "id": 334,
+    "secondaryId": 35,
+    "detailText": "جانب العملياتية والميدانية",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 9
+  },
+  {
+    "id": 335,
+    "secondaryId": 35,
+    "detailText": "عدد المعلومات الاستباقية وبيان المتحقق منها وغير المتحقق منها.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 10
+  },
+  {
+    "id": 336,
+    "secondaryId": 35,
+    "detailText": "تنوع مصادر المعلومات (سرية، علنية، تقنية).",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 11
+  },
+  {
+    "id": 337,
+    "secondaryId": 35,
+    "detailText": "فعالية استخدام المراقبة السرية الثابتة والمتحركة.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 12
+  },
+  {
+    "id": 338,
+    "secondaryId": 35,
+    "detailText": "ادامة الاضابير الخاصة بالمصادر وصرف المكافئات المالية حسب نوع المعلومة.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 13
+  },
+  {
+    "id": 339,
+    "secondaryId": 35,
+    "detailText": "مدى الاستفادة من المصادر العلنية.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 14
+  },
+  {
+    "id": 340,
+    "secondaryId": 35,
+    "detailText": "المسح الميداني لقاطع المسؤولية، وتحديث بياناته دورياً ونسبة اكتمالها.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 15
+  },
+  {
+    "id": 104,
+    "secondaryId": 21,
+    "detailText": "مدى اهتمامه بالتدريب وخلق الفرص الملائمة.",
+    "maxGrade": "5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 3
+  },
+  {
+    "id": 109,
+    "secondaryId": 22,
+    "detailText": "متابعة التنسيق مع كافة الدوائر داخل المنطقة الأمنية وانفتاحها.",
+    "maxGrade": "5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 0
+  },
+  {
+    "id": 110,
+    "secondaryId": 22,
+    "detailText": "متابعة المواقف اليومية والشهرية (الاشخاص، الاسلحة، الاعتدة، الآليات، الاحصاء الجنائي).",
+    "maxGrade": "5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 1
+  },
+  {
+    "id": 111,
+    "secondaryId": 22,
+    "detailText": "تحديد المخاطر وتأشير الخرائط وتقارير التحليل الأمني للمطلوبين والموقوفين.",
+    "maxGrade": "5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 2
+  },
+  {
+    "id": 112,
+    "secondaryId": 22,
+    "detailText": "إعداد وتنفيذ خطتي الدفاع المحلي ومكافحة الحرائق والممارسات الأمنية وسجلات الحركات.",
+    "maxGrade": "5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 3
+  },
+  {
+    "id": 113,
+    "secondaryId": 22,
+    "detailText": "ملاءمة أداء معاون العمليات كبديل لمدير المنطقة الأمنية.",
+    "maxGrade": "5",
+    "inputType": "single",
+    "tableSchema": null,
+    "sortOrder": 4
+  },
+  {
+    "id": 115,
+    "secondaryId": 23,
+    "detailText": "متابعة الأتمتة والربط الشبكي وصيانة الأجهزة الخاصة به وتوفرها.",
+    "maxGrade": "7.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 1
+  },
+  {
+    "id": 117,
+    "secondaryId": 24,
+    "detailText": "متابعة البنى التحتية وإعداد خطط الاحتياجات وتوفر إضابير سد النقص واستملاك الأراضي.",
+    "maxGrade": "5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 1
+  },
+  {
+    "id": 118,
+    "secondaryId": 24,
+    "detailText": "متابعة الخطة التدريبية السنوية (المبرمجة وغير المبرمجة) وإيجاز التدريب بما يناسب احتياجات الدوائر.",
+    "maxGrade": "5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 2
+  },
+  {
+    "id": 119,
+    "secondaryId": 24,
+    "detailText": "متابعة توزيع الموارد البشرية وتحديد المنتسبين حسب فئات الأعمار والعجز الطبي ونقص العنصر النسوي.",
+    "maxGrade": "5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 3
+  },
+  {
+    "id": 120,
+    "secondaryId": 25,
+    "detailText": "مدى توفر محطات الاتصال الثابتة والمتحركة بشكل فاعل بما يضمن تغطية جغرافية كاملة لقاطع المسؤولية.",
+    "maxGrade": "4",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 0
+  },
+  {
+    "id": 121,
+    "secondaryId": 25,
+    "detailText": "كفاءة شبكة الاتصالات والترددات المستخدمة ومدى ملاءمتها لظروف الطوارئ والعمل الميداني.",
+    "maxGrade": "4",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 1
+  },
+  {
+    "id": 122,
+    "secondaryId": 25,
+    "detailText": "فاعلية منظومة الاتصالات السلكية واللاسلكية وجودة الإرسال والاستقبال وسرعة الاستجابة.",
+    "maxGrade": "4",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 2
+  },
+  {
+    "id": 123,
+    "secondaryId": 25,
+    "detailText": "مستوى تأمين الاتصال الداخلي والخارجي والتنسيق المشترك مع التشكيلات الساندة والمفارز.",
+    "maxGrade": "4",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 3
+  },
+  {
+    "id": 124,
+    "secondaryId": 25,
+    "detailText": "التزام المنتسبين بقواعد وأصول المخابرة وحفظ سرية المعلومات والاتصالات الرسمية.",
+    "maxGrade": "3",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 4
+  },
+  {
+    "id": 125,
+    "secondaryId": 25,
+    "detailText": "تفعيل غرفة سيطرة الاتصالات المركزية لمتابعة نداءات الطوارئ والاستجابة السريعة (911).",
+    "maxGrade": "3",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 5
+  },
+  {
+    "id": 126,
+    "secondaryId": 25,
+    "detailText": "توفر سجلات المخابرة وغرفة شحن النضائد وكفاءة تدريب كوادر الاتصالات.",
+    "maxGrade": "3",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 6
+  },
+  {
+    "id": 127,
+    "secondaryId": 26,
+    "detailText": "تطبيق الخطة التدريبية السنوية والالتزام بمناهج التدريب اليومي والليلي وأيام الضباط.",
+    "maxGrade": "4",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 0
+  },
+  {
+    "id": 128,
+    "secondaryId": 26,
+    "detailText": "توفر ساحات التدريب النموذجية وقاعات التدريب النظري ووسائل الإيضاح والدلالة.",
+    "maxGrade": "4",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 1
+  },
+  {
+    "id": 129,
+    "secondaryId": 26,
+    "detailText": "كفاءة وتوفر المعلمين والمدربين المتخصصين الحاصلين على شهادة إعداد المعلمين (T3).",
+    "maxGrade": "4",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 2
+  },
+  {
+    "id": 130,
+    "secondaryId": 26,
+    "detailText": "ملاءمة المناهج التدريسية وتضمين مفاهيم حقوق الإنسان وتطوير القيادة والانضباط.",
+    "maxGrade": "4",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 3
+  },
+  {
+    "id": 131,
+    "secondaryId": 26,
+    "detailText": "مستوى استجابة المنتسبين للدورات التدريبية ومدى انعكاسها على الأداء الميداني الفعلي.",
+    "maxGrade": "3",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 4
+  },
+  {
+    "id": 132,
+    "secondaryId": 26,
+    "detailText": "توفر ميادين الرمي الحقيقية والإلكترونية وقواعد التدريب العملي لمهارات إطلاق النار.",
+    "maxGrade": "3",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 5
+  },
+  {
+    "id": 133,
+    "secondaryId": 26,
+    "detailText": "تصفير الأسلحة وتهيئتها للرمي وتأمين الأعتدة وتوثيق محاضر اللجان المشرفة.",
+    "maxGrade": "3",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 6
+  },
+  {
+    "id": 134,
+    "secondaryId": 27,
+    "detailText": "كفاءة وصلاحية وجاهزية الآليات وعجلات الحركة والدوريات في قاطع المسؤولية.",
+    "maxGrade": "6",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 0
+  },
+  {
+    "id": 135,
+    "secondaryId": 27,
+    "detailText": "جاهزية المشجب وخزن الأسلحة والأعتدة وتأمينها وتوزيعها بشكل منظم وآمن.",
+    "maxGrade": "6",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 1
+  },
+  {
+    "id": 136,
+    "secondaryId": 27,
+    "detailText": "تنظيم السجلات والوثائق ومستندات الذمة وإجراءات الاستلام والتسليم للأسلحة والآليات.",
+    "maxGrade": "5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 2
+  },
+  {
+    "id": 137,
+    "secondaryId": 27,
+    "detailText": "توفر شروط السلامة المهنية وتأمين مطافئ الحريق وكاميرات المراقبة على المشاجب والمخازن.",
+    "maxGrade": "4",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 3
+  },
+  {
+    "id": 138,
+    "secondaryId": 27,
+    "detailText": "إجراءات التدقيق الأمني لأمناء المشاجب والمستودعات وتنظيم الكفالات القانونية لهم.",
+    "maxGrade": "4",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 4
+  },
+  {
+    "id": 139,
+    "secondaryId": 28,
+    "detailText": "تهيئة البيئة الإدارية المناسبة من حيث ملاءمة المكاتب والمقرات وتكامل البنى التحتية للإسكان.",
+    "maxGrade": "4",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 0
+  },
+  {
+    "id": 140,
+    "secondaryId": 28,
+    "detailText": "تطبيق أنظمة الأرشفة الإلكترونية وتحديث قواعد البيانات وسرعة إنجاز البريد المتبادل.",
+    "maxGrade": "3",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 1
+  },
+  {
+    "id": 141,
+    "secondaryId": 28,
+    "detailText": "توفر أجهزة الحاسوب والملحقات الإلكترونية وإجراء الصيانة الدورية لها بفاعلية.",
+    "maxGrade": "3",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 2
+  },
+  {
+    "id": 232,
+    "secondaryId": 31,
+    "detailText": "توفر مذخرات التدريب والأجهزة المساعدة للتدريب بشكل جزئي.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 25
+  },
+  {
+    "id": 105,
+    "secondaryId": 21,
+    "detailText": "مدى اهتمامه بإكمال الجاهزيـة الأمنية وإضبارة سد النقص.",
+    "maxGrade": "5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 4
+  },
+  {
+    "id": 144,
+    "secondaryId": 28,
+    "detailText": "متابعة الانضباط والسلوك الوظيفي للمنتسبين وحالات الغياب والتقصير الإداري والقانوني.",
+    "maxGrade": "3",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 5
+  },
+  {
+    "id": 145,
+    "secondaryId": 28,
+    "detailText": "إدامة السجلات والملفات الإدارية والمالية وخلوها من الحك والشطب والعمل بالترميز المعتمد.",
+    "maxGrade": "3",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 6
+  },
+  {
+    "id": 146,
+    "secondaryId": 28,
+    "detailText": "تخصيص مخازن آمنة لحفظ الوثائق والمستلزمات وتوفر منظومة إطفاء الحرائق والإنذار المبكر.",
+    "maxGrade": "3",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 7
+  },
+  {
+    "id": 147,
+    "secondaryId": 29,
+    "detailText": "الايجاز معد وفق اسس التفتيش، وحسب المستوى.",
+    "maxGrade": "1",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 0
+  },
+  {
+    "id": 148,
+    "secondaryId": 29,
+    "detailText": "المواقف الرسمية ونسب التكامل (الاشخاص، الاسلحة، الاعتدة، الآليات، اجهزة الاتصالات).",
+    "maxGrade": "1",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 1
+  },
+  {
+    "id": 149,
+    "secondaryId": 29,
+    "detailText": "تنظيم مقر القاطع وتوفر اللوحات التعريفية والمواقف الإدارية، وبيان تصنيف القاطع وفق نموذج التصنيف (أ، ب).",
+    "maxGrade": "1",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 2
+  },
+  {
+    "id": 150,
+    "secondaryId": 29,
+    "detailText": "عائدية البناية والارض.",
+    "maxGrade": "1",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 3
+  },
+  {
+    "id": 151,
+    "secondaryId": 29,
+    "detailText": "الارتباط من الناحية (الادارية، الحركات).",
+    "maxGrade": "1",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 4
+  },
+  {
+    "id": 101,
+    "secondaryId": 21,
+    "detailText": "إيجاز المنطقة الأمنية (Briefing)",
+    "maxGrade": "10",
+    "inputType": "single",
+    "tableSchema": null,
+    "sortOrder": 0
+  },
+  {
+    "id": 153,
+    "secondaryId": 29,
+    "detailText": "أرشفة الوثائق والبرقيات والسجلات إلكترونياً وورقياً.",
+    "maxGrade": "1",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 6
+  },
+  {
+    "id": 154,
+    "secondaryId": 29,
+    "detailText": "جاهزية غرفة السيطرة اللاسلكية وتوفر أجهزة الشحن ورافعة القدرة الكهربائية وسجل الحوادث اليومي.",
+    "maxGrade": "1",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 7
+  },
+  {
+    "id": 156,
+    "secondaryId": 29,
+    "detailText": "كفاءة شبكة الاتصالات بين المنطقة الأمنية والدوريات، ومدى توفر اجهزة الاتصالات اللاسلكية (المحمولة، الثابتة) لمقر القاطع وعجلات الدوريات والدراجات النارية، ومدى صلاحيتها.",
+    "maxGrade": "1",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 9
+  },
+  {
+    "id": 157,
+    "secondaryId": 29,
+    "detailText": "مدى العمل بسجل الحوادث في مقر القاطع والدوريات واضباراة وصولات التسليم.",
+    "maxGrade": "1",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 10
+  },
+  {
+    "id": 158,
+    "secondaryId": 29,
+    "detailText": "التقييم.",
+    "maxGrade": "1",
+    "inputType": "single",
+    "tableSchema": null,
+    "sortOrder": 11
+  },
+  {
+    "id": 159,
+    "secondaryId": 29,
+    "detailText": "دوريات النجدة",
+    "maxGrade": "1",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 12
+  },
+  {
+    "id": 160,
+    "secondaryId": 29,
+    "detailText": "ادامة الأسلحة بشكل اسبوعي.",
+    "maxGrade": "1",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 13
+  },
+  {
+    "id": 161,
+    "secondaryId": 29,
+    "detailText": "انواع الاسلحة المتوفرة نوع نصف اخمس و هي مدامة بشكل جيد وتجري يومياً و اسبوعياً.",
+    "maxGrade": "1",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 14
+  },
+  {
+    "id": 162,
+    "secondaryId": 29,
+    "detailText": "وجود مشاجب نظامية عبارة عن ابنية و هي مؤمنة بشكل جيد مع توفر كامرات مراقبة والسجلات الخاصة بالمشاجب مفتوحة ومدامة.",
+    "maxGrade": "1",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 15
+  },
+  {
+    "id": 163,
+    "secondaryId": 29,
+    "detailText": "مستوى اللياقة البدنية للمنتسبين جيدة و هنالك اهتمام بالقيافة العسكرية.",
+    "maxGrade": "1",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 16
+  },
+  {
+    "id": 164,
+    "secondaryId": 29,
+    "detailText": "اشراك المنتسبين بدورات (الرمي , السياقة , والحاسوب , القتال الاعزل )",
+    "maxGrade": "1",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 17
+  },
+  {
+    "id": 166,
+    "secondaryId": 29,
+    "detailText": "تم اجراء ممارسة افتراضية للوقوف على سرعة الاستجابة لحادث بالتنسيق مع مركز التنسيق (911) و كان وقت الوصول ضمن السقف الزمني المحدد.",
+    "maxGrade": "1",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 19
+  },
+  {
+    "id": 167,
+    "secondaryId": 30,
+    "detailText": "آمر القاطع",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 0
+  },
+  {
+    "id": 168,
+    "secondaryId": 30,
+    "detailText": "الايجاز معد وفق اسس التفتيش.",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 1
+  },
+  {
+    "id": 169,
+    "secondaryId": 30,
+    "detailText": "المواقف الرسمية ونسب التكامل (الاشخاص، الاسلحة، الاعتدة، الآليات، اجهزة الاتصالات).",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 2
+  },
+  {
+    "id": 170,
+    "secondaryId": 30,
+    "detailText": "عائدية البناية والارض.",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 3
+  },
+  {
+    "id": 171,
+    "secondaryId": 30,
+    "detailText": "مدى الإلمام بقاطع المسؤولية والطرق والتقاطعات الحيوية.",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 4
+  },
+  {
+    "id": 172,
+    "secondaryId": 30,
+    "detailText": "توزيع الدوريات والمفارز بشكل أمثل حسب أولوية التقاطعات (أ، ب، ج).",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 5
+  },
+  {
+    "id": 173,
+    "secondaryId": 30,
+    "detailText": "صلاحية أجهزة الاتصالات اللاسلكية المؤمنة مع قيادة المنطقة والدوريات.",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 6
+  },
+  {
+    "id": 174,
+    "secondaryId": 30,
+    "detailText": "مدى التنسيق مع الأجهزة الأمنية الأخرى ضمن القاطع.",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 7
+  },
+  {
+    "id": 175,
+    "secondaryId": 30,
+    "detailText": "الإشراف الميداني المباشر على الحوادث المهمة وتوثيقها.",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 8
+  },
+  {
+    "id": 176,
+    "secondaryId": 30,
+    "detailText": "فتح وادامة السجلات واللوحات التعريفية في مكتبه.",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 9
+  },
+  {
+    "id": 177,
+    "secondaryId": 30,
+    "detailText": "تقييم الخطط الموضوعة لإدارة الزحام المروري والعقد المرورية.",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 10
+  },
+  {
+    "id": 178,
+    "secondaryId": 30,
+    "detailText": "مدى التنسيق مع الدوائر الخدمية (البلديات، هيئة النقل) لتحسين حركة السير.",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 11
+  },
+  {
+    "id": 179,
+    "secondaryId": 30,
+    "detailText": "التقييم.",
+    "maxGrade": "0.5",
+    "inputType": "single",
+    "tableSchema": null,
+    "sortOrder": 12
+  },
+  {
+    "id": 180,
+    "secondaryId": 30,
+    "detailText": "مدى العمل وفق الهيكل التنظيمي والوصف الوظيفي والقياس.",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 13
+  },
+  {
+    "id": 181,
+    "secondaryId": 30,
+    "detailText": "موقف الموارد البشرية (الضباط، المراتب، الموظفين) ومطابقة الملاك مع الموجود.",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 14
+  },
+  {
+    "id": 182,
+    "secondaryId": 30,
+    "detailText": "موقف الأسلحة والاعتدة والآليات وأجهزة الاتصالات وبيان نسب التكامل والجاهزية.",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 15
+  },
+  {
+    "id": 183,
+    "secondaryId": 30,
+    "detailText": "تقييم مستوى التدريب والتأهيل للضباط والمنتسبين واشراكهم بدورات (مرورية، قتال اعزل، سياقة).",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 16
+  },
+  {
+    "id": 233,
+    "secondaryId": 31,
+    "detailText": "توفر مدخرات التدريب والأجهزة المساعدة جزئيًا مع بعض الملاحظات.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 26
+  },
+  {
+    "id": 234,
+    "secondaryId": 31,
+    "detailText": "توفر مدخرات التدريب والأجهزة المساعدة متوفرة جزئيًا مع بعض الملاحظات.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 27
+  },
+  {
+    "id": 108,
+    "secondaryId": 21,
+    "detailText": "التقييم العام لمدير المنطقة الأمنية.",
+    "maxGrade": "5",
+    "inputType": "single",
+    "tableSchema": null,
+    "sortOrder": 7
+  },
+  {
+    "id": 185,
+    "secondaryId": 30,
+    "detailText": "حقيبة آمر الدورية وتشمل (قانون المرور، دفتر قرارات الحكم، دفتر تنظيم المخططات المرورية).",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 18
+  },
+  {
+    "id": 186,
+    "secondaryId": 30,
+    "detailText": "الدراجات النارية: نفس معايير الدوريات الآلية مع مراعاة التجهيزات الخاصة بالدراجات (خوذة، قمصلة جلد، برجس، بوت، كفوف جلدية، كسارات).",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 19
+  },
+  {
+    "id": 187,
+    "secondaryId": 30,
+    "detailText": "فحص الاستجابة السريعة وقياس زمن وصول الدوريات لحادث افتراضي وتقييم الإجراءات المتخذة عن طريق الاستجابة والسيطرة (911).",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 20
+  },
+  {
+    "id": 188,
+    "secondaryId": 30,
+    "detailText": "وجود مظلة مرورية ملائمة، مع تكامل مستلزمات رجل المرور (عصا ضوئية، سترة فسفورية، صافرة).",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 21
+  },
+  {
+    "id": 189,
+    "secondaryId": 30,
+    "detailText": "الأداء التنفيذي والميداني",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 22
+  },
+  {
+    "id": 190,
+    "secondaryId": 30,
+    "detailText": "فحص تنظيم حركة السير والمرور، والسيطرة على التقاطعات (برجل المرور أو بالإشارة الضوئية).",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 23
+  },
+  {
+    "id": 191,
+    "secondaryId": 30,
+    "detailText": "تحليل إحصاءات المخالفات المرورية وأنواعها والمبالغ المحصلة.",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 24
+  },
+  {
+    "id": 192,
+    "secondaryId": 30,
+    "detailText": "مدى استخدام التقنيات الحديثة (كاميرات مراقبة) في ضبط المخالفات.",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 25
+  },
+  {
+    "id": 193,
+    "secondaryId": 30,
+    "detailText": "إجراءات ضبط المخالفات المرورية وفق القانون.",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 26
+  },
+  {
+    "id": 194,
+    "secondaryId": 30,
+    "detailText": "موقف إحصائيات الحوادث (دهس، اصطدام، انقلاب... الخ) وتحليل نسب الارتفاع والانخفاض واعداد التوصيات لمعالجة ارتفاع نسب الحوادث اعلاه.",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 27
+  },
+  {
+    "id": 196,
+    "secondaryId": 30,
+    "detailText": "البنية التحتية والدعم اللوجستي",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 29
+  },
+  {
+    "id": 197,
+    "secondaryId": 30,
+    "detailText": "البنية التحتية للقاطع، ومدى توفر ووضوح العلامات المرورية (الشاخصة والأرضية) والإشارات الضوئية.",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 30
+  },
+  {
+    "id": 198,
+    "secondaryId": 30,
+    "detailText": "تحديد التقاطعات التي تخلو من الرقابة واقتراح المعالجات.",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 31
+  },
+  {
+    "id": 199,
+    "secondaryId": 30,
+    "detailText": "تقييم مدى ملائمة ساحات حجز المركبات وإجراءات حماية الممتلكات.",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 32
+  },
+  {
+    "id": 200,
+    "secondaryId": 30,
+    "detailText": "تقييم جاهزية ورشة الآليات والمستودعات (الزيوت، المواد الاحتياطية).",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 33
+  },
+  {
+    "id": 201,
+    "secondaryId": 30,
+    "detailText": "تنظيم وأمن المشاجب (مستودع الأسلحة والعتاد).",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 34
+  },
+  {
+    "id": 202,
+    "secondaryId": 30,
+    "detailText": "العلاقة بين رجل المرور والمجتمع",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 35
+  },
+  {
+    "id": 203,
+    "secondaryId": 30,
+    "detailText": "مستوى نشر الوعي المروري بين المواطنين (الاعلانات والبوسترات).",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 36
+  },
+  {
+    "id": 204,
+    "secondaryId": 30,
+    "detailText": "مستوى رضا الجمهور عن الخدمات المقدمة من خلال استبيان.",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 37
+  },
+  {
+    "id": 205,
+    "secondaryId": 30,
+    "detailText": "المظهر العام والقيافة النظامية والانضباط لجميع المنتسبين.",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 38
+  },
+  {
+    "id": 206,
+    "secondaryId": 30,
+    "detailText": "التقييم.",
+    "maxGrade": "0.5",
+    "inputType": "single",
+    "tableSchema": null,
+    "sortOrder": 39
+  },
+  {
+    "id": 207,
+    "secondaryId": 31,
+    "detailText": "ضابط المركز",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 0
+  },
+  {
+    "id": 208,
+    "secondaryId": 31,
+    "detailText": "التنظيم والإدارة",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 1
+  },
+  {
+    "id": 209,
+    "secondaryId": 31,
+    "detailText": "متابعة الأوامر الإدارية والقانونية بشكل كامل ودقيق.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 2
+  },
+  {
+    "id": 210,
+    "secondaryId": 31,
+    "detailText": "الشؤون القانونية",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 3
+  },
+  {
+    "id": 211,
+    "secondaryId": 31,
+    "detailText": "متابعة المجالس واللجان التحقيقية والعقوبات الانضباطية.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 4
+  },
+  {
+    "id": 212,
+    "secondaryId": 31,
+    "detailText": "الإجراءات المتخذة بشأن الغياب والهروب والمفقودات.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 5
+  },
+  {
+    "id": 213,
+    "secondaryId": 31,
+    "detailText": "الالتزام بحقوق الإنسان والقوانين النافذة.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 6
+  },
+  {
+    "id": 214,
+    "secondaryId": 31,
+    "detailText": "الالتزام بحقوق الإنسان والقوانين النافذة التزام كامل.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 7
+  },
+  {
+    "id": 215,
+    "secondaryId": 31,
+    "detailText": "إدامة الآليات منتظمة وتوفر الخزين الاستراتيجي للوقود والزيوت.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 8
+  },
+  {
+    "id": 216,
+    "secondaryId": 31,
+    "detailText": "توفر كاميرات المراقبة (الداش كام) والتجهيزات الحديثة.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 9
+  },
+  {
+    "id": 217,
+    "secondaryId": 31,
+    "detailText": "الاتصالات والسيطرة",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 10
+  },
+  {
+    "id": 218,
+    "secondaryId": 31,
+    "detailText": "جاهزية أجهزة الاتصال اللاسلكي الثابتة والمحمولة.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 11
+  },
+  {
+    "id": 219,
+    "secondaryId": 31,
+    "detailText": "توفر غرفة سيطرة نموذجية مجهزة بالخرائط والرموز والاحصائيات والسجلات الخاصة بها.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 12
+  },
+  {
+    "id": 220,
+    "secondaryId": 31,
+    "detailText": "صلاحية أنظمة الإنذار والإنارة البديلة فعالة بشكل جيد.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 13
+  },
+  {
+    "id": 221,
+    "secondaryId": 31,
+    "detailText": "انظمة الإنذار والإنارة البديلة تعمل جزئياً.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 14
+  },
+  {
+    "id": 222,
+    "secondaryId": 31,
+    "detailText": "المشجب والأسلحة",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 15
+  },
+  {
+    "id": 223,
+    "secondaryId": 31,
+    "detailText": "تأمين غرفة المشجب وتوفر الشروط الأمنية (أبواب حديدية، أقفال، عزل كهربائي).",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 16
+  },
+  {
+    "id": 224,
+    "secondaryId": 31,
+    "detailText": "توفر سجلات المشجب.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 17
+  },
+  {
+    "id": 225,
+    "secondaryId": 31,
+    "detailText": "الجانب العملياتي والميداني",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 18
+  },
+  {
+    "id": 226,
+    "secondaryId": 31,
+    "detailText": "اجراء ممارسة ميدانية لحادث افتراضي وفحص (الجاهزية والاستجابة، وقت الاستجابة من تلقي البلاغ حتى انطلاق الفرقة، وقت الوصول إلى موقع الحادث، التقدير الصحيح للموقف من قبل قائد الفرقة).",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 19
+  },
+  {
+    "id": 227,
+    "secondaryId": 31,
+    "detailText": "التدريب على الحركات اليدوية والفورية (وفق معايير NFPA).",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 20
+  },
+  {
+    "id": 228,
+    "secondaryId": 31,
+    "detailText": "التدريب على استخدام السلالم وأجهزة الإنقاذ المتنوعة.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 21
+  },
+  {
+    "id": 229,
+    "secondaryId": 31,
+    "detailText": "فحص اللياقة البدنية للمنتسبين وفق برنامج اللياقة (NFPA, OSHA).",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 22
+  },
+  {
+    "id": 230,
+    "secondaryId": 31,
+    "detailText": "توفر سجلات التدريب والكراسات المعتمدة.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 23
+  },
+  {
+    "id": 231,
+    "secondaryId": 31,
+    "detailText": "توفر مدخرات التدريب والأجهزة المساعدة.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 24
+  },
+  {
+    "id": 236,
+    "secondaryId": 31,
+    "detailText": "الجانب الوقائي والإعلامي",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 29
+  },
+  {
+    "id": 237,
+    "secondaryId": 31,
+    "detailText": "عدد المحاضرات التوعوية للمواطنين والمؤسسات.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 30
+  },
+  {
+    "id": 238,
+    "secondaryId": 31,
+    "detailText": "المحاضرات التوعوية للمواطنين والمؤسسات منفذة مع بعض الملاحظات وتم التوجيه بها.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 31
+  },
+  {
+    "id": 239,
+    "secondaryId": 31,
+    "detailText": "المحاضرات التوعوية للمواطنين والمؤسسات منفذة بشكل منتظم وموثق",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 32
+  },
+  {
+    "id": 240,
+    "secondaryId": 31,
+    "detailText": "وجود محاضرات توعوية للمواطنين والمؤسسات مع ملاحظات بسيطة.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 33
+  },
+  {
+    "id": 242,
+    "secondaryId": 31,
+    "detailText": "توزيع النشرات والبوسترات الإرشادية.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 35
+  },
+  {
+    "id": 243,
+    "secondaryId": 31,
+    "detailText": "التوثيق الإعلامي للحوادث والتدريبات.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 36
+  },
+  {
+    "id": 244,
+    "secondaryId": 31,
+    "detailText": "جرد المشاريع الحيوية وحسب التصنيف (أ، ب، ج).",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 37
+  },
+  {
+    "id": 245,
+    "secondaryId": 31,
+    "detailText": "موافقات الدفاع المدني للمشاريع المشيدة حديثاً.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 38
+  },
+  {
+    "id": 246,
+    "secondaryId": 31,
+    "detailText": "متابعة كشف المشاريع المخالفة لقانون الدفاع المدني رقم (44) لسنة 2013.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 39
+  },
+  {
+    "id": 247,
+    "secondaryId": 31,
+    "detailText": "توفر خطط الوقاية والسلامة الصناعية السنوية.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 40
+  },
+  {
+    "id": 248,
+    "secondaryId": 31,
+    "detailText": "جانب البنى التحتية والخدمات",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 41
+  },
+  {
+    "id": 249,
+    "secondaryId": 31,
+    "detailText": "نظافة وترتيب قاعات المنام والاستراحات والمطبخ.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 42
+  },
+  {
+    "id": 250,
+    "secondaryId": 31,
+    "detailText": "نظافة وترتيب قاعات المنام والاستراحات والمطبخ نظيفة ومرتبة.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 43
+  },
+  {
+    "id": 251,
+    "secondaryId": 31,
+    "detailText": "توفر الوسائل الترفيهية وأجهزة التبريد.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 44
+  },
+  {
+    "id": 252,
+    "secondaryId": 31,
+    "detailText": "صلاحية الحمامات والتجهيزات الصحية.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 45
+  },
+  {
+    "id": 253,
+    "secondaryId": 31,
+    "detailText": "توفر منظومة كاميرات.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 46
+  },
+  {
+    "id": 254,
+    "secondaryId": 31,
+    "detailText": "توفر مطافئ الحرائق المتنوعة وأجهزة الإنذار المبكر.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 47
+  },
+  {
+    "id": 255,
+    "secondaryId": 31,
+    "detailText": "التقييم.",
+    "maxGrade": "0.41",
+    "inputType": "single",
+    "tableSchema": null,
+    "sortOrder": 48
+  },
+  {
+    "id": 256,
+    "secondaryId": 32,
+    "detailText": "المواقف الرسمية ونسب التكامل (الاشخاص، الاسلحة، الاعتدة، الآليات، اجهزة الاتصالات).",
+    "maxGrade": "2.86",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 0
+  },
+  {
+    "id": 257,
+    "secondaryId": 32,
+    "detailText": "مدى الإلمام بقاطع المسؤولية والمهام والواجبات والصلاحيات.",
+    "maxGrade": "2.86",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 1
+  },
+  {
+    "id": 258,
+    "secondaryId": 32,
+    "detailText": "الاعداد الورقي لخطتي (الدفاع المحلي، إطفاء الحرائق) ومستوى تنفيذها.",
+    "maxGrade": "2.86",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 2
+  },
+  {
+    "id": 259,
+    "secondaryId": 32,
+    "detailText": "فتح وادامة السجلات والاضابير الإدارية.",
+    "maxGrade": "2.86",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 3
+  },
+  {
+    "id": 260,
+    "secondaryId": 32,
+    "detailText": "فعالية نظام المناوبة (نظام البديل) وتغطية الخدمة.",
+    "maxGrade": "2.86",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 4
+  },
+  {
+    "id": 261,
+    "secondaryId": 32,
+    "detailText": "مدى تكامل عمل المفارز مع خطة الأمن المناطقي وارتباطها بمدير المنطقة.",
+    "maxGrade": "2.86",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 5
+  },
+  {
+    "id": 262,
+    "secondaryId": 32,
+    "detailText": "مدى التنسيق مع القواطع المجاورة.",
+    "maxGrade": "2.86",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 6
+  },
+  {
+    "id": 263,
+    "secondaryId": 33,
+    "detailText": "ضابط المركز",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 0
+  },
+  {
+    "id": 264,
+    "secondaryId": 33,
+    "detailText": "المواقف الرسمية ونسب التكامل (الاشخاص، الاسلحة، الاعتدة، الآليات، اجهزة الاتصالات).",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 1
+  },
+  {
+    "id": 265,
+    "secondaryId": 33,
+    "detailText": "مدى التزام ضابط المركز بتنفيذ الواجبات والتعليمات الواردة بالدليل الاسترشادي.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 2
+  },
+  {
+    "id": 266,
+    "secondaryId": 33,
+    "detailText": "الاشراف على اجراء التعداد اليومي ومتابعة انتظام الدوام الرسمي.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 3
+  },
+  {
+    "id": 267,
+    "secondaryId": 33,
+    "detailText": "اجراء التحقيق من قبله شخصياً في الحوادث المهمة.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 4
+  },
+  {
+    "id": 269,
+    "secondaryId": 33,
+    "detailText": "متابعة الكفاءة التحقيقية لضباط التحقيق وسير الإجراءات التحقيقية ومدى تنفيذ القرارات القضائية والالتزام بأخلاقيات المهنة والحفاظ على سرية المعلومات التحقيقية.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 6
+  },
+  {
+    "id": 270,
+    "secondaryId": 33,
+    "detailText": "توفر قاعدة معلومات عن المجرمين وارباب السوابق وقاعدة بيانات المسح الميداني لقاطع المسؤولية وحفظ البيانات في هارد خارجي وتحديثه بشكل دوري.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 7
+  },
+  {
+    "id": 271,
+    "secondaryId": 33,
+    "detailText": "مأمور المركز",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 8
+  },
+  {
+    "id": 272,
+    "secondaryId": 33,
+    "detailText": "كفاءته ومتابعته للواجبات والقيافة العسكرية للمنتسبين وادامة مرافق المركز.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 9
+  },
+  {
+    "id": 273,
+    "secondaryId": 33,
+    "detailText": "متابعة اوامر القسم الثاني فيما يخص فقرات الغياب والهروب والعقوبات والاجازات.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 10
+  },
+  {
+    "id": 274,
+    "secondaryId": 33,
+    "detailText": "وحدة الإدارة",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 11
+  },
+  {
+    "id": 275,
+    "secondaryId": 33,
+    "detailText": "توفر لوحات المواقف الرسمية.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 12
+  },
+  {
+    "id": 276,
+    "secondaryId": 33,
+    "detailText": "العمل بقانون الحفاظ على الوثائق رقم (37) لسنة 2016 الخاص بترحيل وتصنيف الوثائق.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 13
+  },
+  {
+    "id": 277,
+    "secondaryId": 33,
+    "detailText": "توفر غرفة خاصة بالأرشفة الورقية للكتب الرسمية للسنوات السابقة والقضايا التحقيقية المغلقة والمحسومة.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 14
+  },
+  {
+    "id": 278,
+    "secondaryId": 33,
+    "detailText": "مدى العمل بنظام البديل.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 15
+  },
+  {
+    "id": 279,
+    "secondaryId": 33,
+    "detailText": "مدى العمل على سياق تداول البريد الرسمي.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 16
+  },
+  {
+    "id": 280,
+    "secondaryId": 33,
+    "detailText": "فتح وادامة السجلات المطلوبة والاضابير.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 17
+  },
+  {
+    "id": 281,
+    "secondaryId": 33,
+    "detailText": "مدى اشراك ضباط ومنتسبي المركز بدورات تطويرية في مجال عمليات الشرطة والتحقيق الجنائي وفق خطة التدريب الوزارية.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 18
+  },
+  {
+    "id": 282,
+    "secondaryId": 33,
+    "detailText": "سجل الدورات والكراسات التدريبية.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 19
+  },
+  {
+    "id": 283,
+    "secondaryId": 33,
+    "detailText": "تيسر ساحة للتدريب والتعداد الصباحي.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 20
+  },
+  {
+    "id": 284,
+    "secondaryId": 33,
+    "detailText": "تنفيذ خطط الدفاع المحلي ومكافحة الحريق بصورة دورية وتوفر وسائل اطفاء الحرائق والمستلزمات الاسعاف الأولية.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 21
+  },
+  {
+    "id": 285,
+    "secondaryId": 33,
+    "detailText": "نتائج الرمي السنوي لكافة منتسبي المركز.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 22
+  },
+  {
+    "id": 286,
+    "secondaryId": 33,
+    "detailText": "السيطرة",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 23
+  },
+  {
+    "id": 287,
+    "secondaryId": 33,
+    "detailText": "كفاءة العاملين في السيطرة.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 24
+  },
+  {
+    "id": 342,
+    "secondaryId": 35,
+    "detailText": "إجراءات متابعة المطلوبين والمشتبه بهم.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 17
+  },
+  {
+    "id": 343,
+    "secondaryId": 35,
+    "detailText": "التنسيق مع الأجهزة الأخرى في التنفيذ.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 18
+  },
+  {
+    "id": 344,
+    "secondaryId": 35,
+    "detailText": "جانب التقنية والمعلوماتية",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 19
+  },
+  {
+    "id": 345,
+    "secondaryId": 35,
+    "detailText": "ادامة ادخال البيانات وتصنيفها حسب نوع الجرائم.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 20
+  },
+  {
+    "id": 347,
+    "secondaryId": 35,
+    "detailText": "توفر قاعدة بيانات مركزية مؤمنة (ممكس) ومدى استخدامها، وحماية بياناتها وسرية المعلومات.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 22
+  },
+  {
+    "id": 348,
+    "secondaryId": 35,
+    "detailText": "حماية البيانات وسرية المعلومات.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 23
+  },
+  {
+    "id": 349,
+    "secondaryId": 35,
+    "detailText": "متابعة عمل منظومة كاميرات المراقبة (أهلية ورسمية).",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 24
+  },
+  {
+    "id": 350,
+    "secondaryId": 35,
+    "detailText": "استخدام الأنظمة التقنية في الرصد والتحليل.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 25
+  },
+  {
+    "id": 351,
+    "secondaryId": 35,
+    "detailText": "تأمين سرية الاتصالات ونقل البيانات.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 26
+  },
+  {
+    "id": 352,
+    "secondaryId": 35,
+    "detailText": "موقف التقارير الاستخبارية (اليومية، الأسبوعية، الشهرية).",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 27
+  },
+  {
+    "id": 353,
+    "secondaryId": 35,
+    "detailText": "دقة الجداول الإحصائية للنشاطات والحوادث.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 28
+  },
+  {
+    "id": 354,
+    "secondaryId": 35,
+    "detailText": "تحليل البيانات لإنتاج رؤى استخبارية.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 29
+  },
+  {
+    "id": 355,
+    "secondaryId": 35,
+    "detailText": "جانب التحقيقية والمتابعة",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 30
+  },
+  {
+    "id": 356,
+    "secondaryId": 35,
+    "detailText": "موقف الأوراق التحقيقية المسجلة والمنجزة وغير المنجزة ونسبة الانجاز.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 31
+  },
+  {
+    "id": 357,
+    "secondaryId": 35,
+    "detailText": "إجراءات التحقيق مع الموقوفين ومراعاة حقوق الإنسان.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 32
+  },
+  {
+    "id": 358,
+    "secondaryId": 35,
+    "detailText": "متابعة المبرزات الجرمية والأمانات.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 33
+  },
+  {
+    "id": 359,
+    "secondaryId": 35,
+    "detailText": "عدد شبكات التنظيمات الارهابية وعصابات الجريمة المنظمة وربط الصلات ما بين كافة المحافظات.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 34
+  },
+  {
+    "id": 360,
+    "secondaryId": 35,
+    "detailText": "تحليل الوثائق والخرائط المتعلقة بالإرهاب والجريمة المنظمة.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 35
+  },
+  {
+    "id": 361,
+    "secondaryId": 35,
+    "detailText": "موقف الحركات الدينية المتطرفة والأحزاب.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 36
+  },
+  {
+    "id": 362,
+    "secondaryId": 35,
+    "detailText": "اختراق التنظيمات الإرهابية وكشف مخططاتها.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 37
+  },
+  {
+    "id": 363,
+    "secondaryId": 35,
+    "detailText": "متابعة البريد الخاص بجمع المعلومات والتنسيق مع الأجهزة الأمنية الأخرى لمقاطعة المعلومات وفق نموذج الهدف.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 38
+  },
+  {
+    "id": 364,
+    "secondaryId": 35,
+    "detailText": "جانب الإدارية والتنسيقية",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 39
+  },
+  {
+    "id": 365,
+    "secondaryId": 35,
+    "detailText": "جانب التدريب والتأهيل",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 40
+  },
+  {
+    "id": 680,
+    "secondaryId": 21,
+    "detailText": "اختبار تحقق رسمي من صفحة التنفيذ 1780391181746",
+    "maxGrade": "5",
+    "inputType": "single",
+    "tableSchema": null,
+    "sortOrder": 0
+  },
+  {
+    "id": 366,
+    "secondaryId": 35,
+    "detailText": "عدد الدورات التدريبية في مجال (الجمع والتحليل، التحقيق، ادارة المصادر، الأمن السبراني، الانظمة التقنية).",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 41
+  },
+  {
+    "id": 367,
+    "secondaryId": 35,
+    "detailText": "ورش عمل حول حقوق الإنسان وأخلاقيات المهنة.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 42
+  },
+  {
+    "id": 368,
+    "secondaryId": 36,
+    "detailText": "آمر القوة (فوج ـ سرية)",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 0
+  },
+  {
+    "id": 369,
+    "secondaryId": 36,
+    "detailText": "إيجاز عن تاريخ تشكيل الفوج والمهمة الرئيسية والتدريبية والمبادرات والمقترحات لتطوير الفوج.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 1
+  },
+  {
+    "id": 370,
+    "secondaryId": 36,
+    "detailText": "دوره في تطوير الضباط الإحداث وضباط الصف.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 2
+  },
+  {
+    "id": 371,
+    "secondaryId": 36,
+    "detailText": "دوره في أكمال جاهزية الفوج.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 3
+  },
+  {
+    "id": 372,
+    "secondaryId": 36,
+    "detailText": "دوره في أعداد الفرص الملائمة للتدريب والخطة المستقبلية لتطوير الفوج.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 4
+  },
+  {
+    "id": 373,
+    "secondaryId": 36,
+    "detailText": "دوره في متابعة سد النقص للفوج والنتائج المتحققة",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 5
+  },
+  {
+    "id": 375,
+    "secondaryId": 36,
+    "detailText": "دوره في تطوير المقاتلين (ضباط، مراتب).",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 7
+  },
+  {
+    "id": 376,
+    "secondaryId": 36,
+    "detailText": "المامه بمنطقة المسؤولية للفوج والوحدات الجانبية (سعة القاطع، توزيع السرايا) والخطط اللازمة لتامينها.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 8
+  },
+  {
+    "id": 377,
+    "secondaryId": 36,
+    "detailText": "التقييم.",
+    "maxGrade": "0.16",
+    "inputType": "single",
+    "tableSchema": null,
+    "sortOrder": 9
+  },
+  {
+    "id": 378,
+    "secondaryId": 36,
+    "detailText": "فوق الوسط",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 10
+  },
+  {
+    "id": 379,
+    "secondaryId": 36,
+    "detailText": "المعاون",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 11
+  },
+  {
+    "id": 380,
+    "secondaryId": 36,
+    "detailText": "يفحص بالنقاط أعلاه ليصبح جاهزا لتوليه مسؤولية قيادة الفوج عندما يتطلب الموقف ذلك.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 12
+  },
+  {
+    "id": 381,
+    "secondaryId": 36,
+    "detailText": "مؤهل لتوليه مسؤولية قيادة الفو متابع للتدريب ودقة إعداد وصايا ومناهج التدريب.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 13
+  },
+  {
+    "id": 382,
+    "secondaryId": 36,
+    "detailText": "متابع لموقع القيادة وادامته من كافة النواحي.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 14
+  },
+  {
+    "id": 383,
+    "secondaryId": 36,
+    "detailText": "متابع لأعمال الفوج.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 15
+  },
+  {
+    "id": 384,
+    "secondaryId": 36,
+    "detailText": "لديه سجل ايجاز البديل.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 16
+  },
+  {
+    "id": 385,
+    "secondaryId": 36,
+    "detailText": "(مؤهل ـ غير مؤهل)  لتوليه مسؤولية قيادة الفوج عند الحاجة.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 17
+  },
+  {
+    "id": 386,
+    "secondaryId": 36,
+    "detailText": "(متابعته ـ غير متابع) للتدريب ودقة إعداد وصايا ومناهج التدريب.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 18
+  },
+  {
+    "id": 387,
+    "secondaryId": 36,
+    "detailText": "غير متابع للتدريب ودقة إعداد وصايا ومناهج التدريب.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 19
+  },
+  {
+    "id": 388,
+    "secondaryId": 36,
+    "detailText": "(متابع ـ غير متابع) لموقع القيادة وادامته من كافة النواحي.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 20
+  },
+  {
+    "id": 389,
+    "secondaryId": 36,
+    "detailText": "متابع لموقع القيادة وادامته من كافة النواحي.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 21
+  },
+  {
+    "id": 390,
+    "secondaryId": 36,
+    "detailText": "(متابع ـ غير متابع) لاعمال الفوج.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 22
+  },
+  {
+    "id": 391,
+    "secondaryId": 36,
+    "detailText": "(لديه ـ ليس لديه) سجل ايجاز البديل.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 23
+  },
+  {
+    "id": 392,
+    "secondaryId": 36,
+    "detailText": "لديه سجل ايجاز البديل.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 24
+  },
+  {
+    "id": 393,
+    "secondaryId": 36,
+    "detailText": "(ملم ـ غير ملم) بالعمليات الجاريه والمستقبليه ضمن قاطع المسؤوليه.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 25
+  },
+  {
+    "id": 394,
+    "secondaryId": 36,
+    "detailText": "ملم بالعمليات الجارية والمستقبلية ضمن قاطع المسؤولية.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 26
+  },
+  {
+    "id": 395,
+    "secondaryId": 36,
+    "detailText": "المساعد",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 27
+  },
+  {
+    "id": 396,
+    "secondaryId": 36,
+    "detailText": "الايجاز",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 28
+  },
+  {
+    "id": 397,
+    "secondaryId": 36,
+    "detailText": "(ملم – غير ملم ) بواجباته ومدى اهتمامه بالجوانب الإدارية.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 29
+  },
+  {
+    "id": 398,
+    "secondaryId": 36,
+    "detailText": "غير ملم  بواجباته ومدى اهتمامه بالجوانب الإدارية.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 30
+  },
+  {
+    "id": 400,
+    "secondaryId": 36,
+    "detailText": "(متابع – غير متابع) لمكتب الادارة واوامر القسم الثاني.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 32
+  },
+  {
+    "id": 401,
+    "secondaryId": 36,
+    "detailText": "(متابع – غير متابع) للمطعم و نوعية الارزاق.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 33
+  },
+  {
+    "id": 402,
+    "secondaryId": 36,
+    "detailText": "غير متابع للمطعم و نوعية الارزاق.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 34
+  },
+  {
+    "id": 403,
+    "secondaryId": 36,
+    "detailText": "متابع للمطعم و نوعية الارزاق جيدة كمية ونوعية.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 35
+  },
+  {
+    "id": 404,
+    "secondaryId": 36,
+    "detailText": "(متابع – غير متابع) للسرايا وزياراتها.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 36
+  },
+  {
+    "id": 405,
+    "secondaryId": 36,
+    "detailText": "(متابع – غير متابع) للاسكان والأمور الإدارية.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 37
+  },
+  {
+    "id": 406,
+    "secondaryId": 36,
+    "detailText": "غير متابع  للاسكان والأمور الإدارية.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 38
+  },
+  {
+    "id": 407,
+    "secondaryId": 36,
+    "detailText": "التقييم.",
+    "maxGrade": "0.16",
+    "inputType": "single",
+    "tableSchema": null,
+    "sortOrder": 39
+  },
+  {
+    "id": 408,
+    "secondaryId": 36,
+    "detailText": "التخطيط للتدريب",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 40
+  },
+  {
+    "id": 409,
+    "secondaryId": 36,
+    "detailText": "وجود خطة لتدريب الفوج.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 41
+  },
+  {
+    "id": 410,
+    "secondaryId": 36,
+    "detailText": "تيسر مذكرة التدريب (بقسميها الأول والثاني).",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 42
+  },
+  {
+    "id": 412,
+    "secondaryId": 36,
+    "detailText": "وجود سجل الدورات الداخلية والخارجية للضباط والمراتب ومدى ادامتها.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 44
+  },
+  {
+    "id": 413,
+    "secondaryId": 36,
+    "detailText": "وجود سجل وإضبارة تقارير سير التدريب.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 45
+  },
+  {
+    "id": 414,
+    "secondaryId": 36,
+    "detailText": "وجود سجل وأضبارة تقارير سير التدريب غير مدام",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 46
+  },
+  {
+    "id": 415,
+    "secondaryId": 36,
+    "detailText": "وجود اضبارة وصايا ومحاضرات أيام الضباط.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 47
+  },
+  {
+    "id": 416,
+    "secondaryId": 36,
+    "detailText": "وجود سجل دورات ضباط والمراتب.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 48
+  },
+  {
+    "id": 417,
+    "secondaryId": 36,
+    "detailText": "وجود اعداد وصايا ومناهج التدريب وتنظيمها بموجب كراسة اعداد المناهج.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 49
+  },
+  {
+    "id": 418,
+    "secondaryId": 36,
+    "detailText": "الحركات (موقع القيادة)",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 50
+  },
+  {
+    "id": 420,
+    "secondaryId": 36,
+    "detailText": "(وجود ـ عدم وجود ) خرائط (الموقف العام، الموقف الخاص، موقف الاستخبارات).",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 52
+  },
+  {
+    "id": 421,
+    "secondaryId": 36,
+    "detailText": "(تيسر ـ عدم تيسر)  الاتصالات السلكية واللاسلكية (بعيدة – قريبة) عن موقع القيادة.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 53
+  },
+  {
+    "id": 422,
+    "secondaryId": 36,
+    "detailText": "(وجود ـ عدم وجود) سياق الحركة الفورية (وجود الاعداد الورقي او عدم وجود).",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 54
+  },
+  {
+    "id": 423,
+    "secondaryId": 36,
+    "detailText": "وجود سياق الحركة الفورية وخطتي الدفاع المحلي ومكافحة الحرائق (اعداد ورقي وتنفيذ ممارسات).",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 55
+  },
+  {
+    "id": 424,
+    "secondaryId": 36,
+    "detailText": "خطتي الدفاع المحلي ومكافحة الحرائق (اعداد ورقي وتنفيذ ممارسات).",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 56
+  },
+  {
+    "id": 425,
+    "secondaryId": 36,
+    "detailText": "عدم وجود سياقات العمل الثابتة والاوامر الثابتة.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 57
+  },
+  {
+    "id": 426,
+    "secondaryId": 36,
+    "detailText": "محتويات المكتب",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 58
+  },
+  {
+    "id": 428,
+    "secondaryId": 36,
+    "detailText": "ادامة الاجهزة وصلاحيتها (حاسبات، استنساخ،  طابعة ملونة وعادية، تالفة ورق).",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 60
+  },
+  {
+    "id": 429,
+    "secondaryId": 36,
+    "detailText": "تكامل محتويات صندوق الحركة الفورية.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 61
+  },
+  {
+    "id": 430,
+    "secondaryId": 36,
+    "detailText": "وجود سجلات (أوامر القسم الأول، الصادر والوارد للكتب والرسائل، كشف الخفارة، المواقف، المحالين على التقاعد، فسخ العقد، الاجازات الدورية، موقف المجالس التحقيقية، العيادات والاجازات المرضية والعلاج خارج البلاد، التفتيشات، اللجان، التبليغات والاوامر، الواجبات، قدم ضباط الصف، الهيكل التنظيمي، فصيلة الدم والتبرع بالدم، أرباب الحرف، كشف الموظفين).",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 62
+  },
+  {
+    "id": 431,
+    "secondaryId": 36,
+    "detailText": "وجود لوحات (واجبات المفوض الكاتب، نظام البديلين، الاعلانات، المواقف الشهرية، سياق تداول البريد، اسماء تعريفية، مفتاح الاضابير، فهرست السجلات، وصايا أمن المكتب، توزيع البريد الداخلي والخارجي، المتابعة، الانارة البديلة، مستحقي الترقية، القوة العمومية، الاسلحة، الاعتدة، الاليات، أجهزة الاتصالات).",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 63
+  },
+  {
+    "id": 432,
+    "secondaryId": 36,
+    "detailText": "رئيس عرفاء الفوج",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 64
+  },
+  {
+    "id": 433,
+    "secondaryId": 36,
+    "detailText": "المام بواجباته ومدى كفائته في السيطرة على ضباط الصف والمنتسبين وتنظيم الاعمال داخل المقر.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 65
+  },
+  {
+    "id": 434,
+    "secondaryId": 36,
+    "detailText": "اهتمام بالقيافة الشخصية والضبط العسكري ومتابعة تكامل تجهيزات المقاتلين.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 66
+  },
+  {
+    "id": 435,
+    "secondaryId": 36,
+    "detailText": "اعداد الموجود اليومي وفق سجل التعداد اليومي وتوزيعه للواجبات بصورة عادلة في نقاط الحراسة للمقر والواجبات الاخرى.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 67
+  },
+  {
+    "id": 436,
+    "secondaryId": 36,
+    "detailText": "متابعته لسكن المنتسبين وتأمين مستلزمات الراحة لهم.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 68
+  },
+  {
+    "id": 437,
+    "secondaryId": 36,
+    "detailText": "قطع الدلالة ومخطط توضيحي لمرافق الفوج.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 69
+  },
+  {
+    "id": 438,
+    "secondaryId": 36,
+    "detailText": "دوره وفعاليته بسياق استلام الموجود والعرض الصباحي.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 70
+  },
+  {
+    "id": 439,
+    "secondaryId": 36,
+    "detailText": "دوره جيد في سياق استلام الموجود مع فقط لائحة العرض الصباحي.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 71
+  },
+  {
+    "id": 440,
+    "secondaryId": 36,
+    "detailText": "دوره وفعاليته بسياق استلام الموجود والعرض الصباحي فوق الوسط.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 72
+  },
+  {
+    "id": 441,
+    "secondaryId": 36,
+    "detailText": "دوره غير جيد في سياق استلام الموجود مع فقط لائحة العرض الصباحي.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 73
+  },
+  {
+    "id": 442,
+    "secondaryId": 36,
+    "detailText": "عرض مشاكل المنتسبين على الامر لغرض حلها.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 74
+  },
+  {
+    "id": 443,
+    "secondaryId": 36,
+    "detailText": "متابعته لنظافة مرافق الوحدة بمستوى وسط.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 75
+  },
+  {
+    "id": 446,
+    "secondaryId": 36,
+    "detailText": "الاتصالات اللاسلكية مع المقرات العليا والدنيا.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 78
+  },
+  {
+    "id": 447,
+    "secondaryId": 36,
+    "detailText": "الاتصالات السلكية داخل المقر.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 79
+  },
+  {
+    "id": 448,
+    "secondaryId": 36,
+    "detailText": "تيسر وصايا ومناهج تدريب الاتصالات والعمل بها.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 80
+  },
+  {
+    "id": 449,
+    "secondaryId": 36,
+    "detailText": "تيسر الاتصالات الجوالة (عجلة امر الوحدة وضباط الارتباط، خدمة السعاة).",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 81
+  },
+  {
+    "id": 450,
+    "secondaryId": 36,
+    "detailText": "الجانب التدريبي",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 82
+  },
+  {
+    "id": 451,
+    "secondaryId": 36,
+    "detailText": "صلاحية ساحات التدريب وتيسر الميادين المختلفة والصفوف الدراسية.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 83
+  },
+  {
+    "id": 452,
+    "secondaryId": 36,
+    "detailText": "مدخرات ومساعدات التدريب والكراسات التدريبية في ساحة العرض.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 84
+  },
+  {
+    "id": 453,
+    "secondaryId": 36,
+    "detailText": "توفر مدخرات ومساعدات التدريب والكراسات التدريبية في ساحة العرض.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 85
+  },
+  {
+    "id": 454,
+    "secondaryId": 36,
+    "detailText": "توفر مدخرات ومساعدات التدريب والكراسات التدريبية في ساحة العرض وسط.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 86
+  },
+  {
+    "id": 455,
+    "secondaryId": 36,
+    "detailText": "تنفيذ مناهج التدريب حسب ما مخطط له.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 87
+  },
+  {
+    "id": 456,
+    "secondaryId": 36,
+    "detailText": "محتويات اضبارة التدريب (اعداد خطة التدريب، بطاقة تهيئة الدرس، منهج التوقيتات، منهاج التدريب الأسبوعي).",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 88
+  },
+  {
+    "id": 457,
+    "secondaryId": 36,
+    "detailText": "الساعات المطلوبة للتدريب الصحي في منهج التدريب الاسبوعي.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 89
+  },
+  {
+    "id": 458,
+    "secondaryId": 36,
+    "detailText": "تخصيص الساعات المطلوبة للتدريب الصحي.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 90
+  },
+  {
+    "id": 459,
+    "secondaryId": 36,
+    "detailText": "تخصيص الساعات المطلوبة للتدريب الصحي في منهج التدريب الاسبوعي.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 91
+  },
+  {
+    "id": 461,
+    "secondaryId": 36,
+    "detailText": "الكراسات والمحاضرات التدريبية ووسائل الايضاح والنماذج المقطعية الخاصة بالتدريب الصحي حسب منهج التدريب الاسبوعي.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 93
+  },
+  {
+    "id": 462,
+    "secondaryId": 36,
+    "detailText": "عينة من المنتسبين بموامضيع التدريب الصحي.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 94
+  },
+  {
+    "id": 463,
+    "secondaryId": 36,
+    "detailText": "تخصيص الساعات المطلوبة للتدريب الصحي وتم اجراء اختبار عينة من المنتسبين بالتدريب الصحي والاسعافات الاولية وحمل الجريح.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 95
+  },
+  {
+    "id": 464,
+    "secondaryId": 36,
+    "detailText": "الرمي",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 96
+  },
+  {
+    "id": 465,
+    "secondaryId": 36,
+    "detailText": "تهيئة ميادين الرمي ومتطلباتها.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 97
+  },
+  {
+    "id": 466,
+    "secondaryId": 36,
+    "detailText": "تصفير الأسلحة.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 98
+  },
+  {
+    "id": 467,
+    "secondaryId": 36,
+    "detailText": "اوضاع الرمي ومدى تطبيقها بدقة.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 99
+  },
+  {
+    "id": 468,
+    "secondaryId": 36,
+    "detailText": "تمرين الرمي للبندقية والمسدس لجميع الضباط في الوحدة.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 100
+  },
+  {
+    "id": 469,
+    "secondaryId": 36,
+    "detailText": "التدريب البدني",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 101
+  },
+  {
+    "id": 470,
+    "secondaryId": 36,
+    "detailText": "تيسر وتنفيذ وصايا ومناهج التدريب البدني والرياضة المسائية.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 102
+  },
+  {
+    "id": 471,
+    "secondaryId": 36,
+    "detailText": "معدات واجهزة التدريب البدني.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 103
+  },
+  {
+    "id": 472,
+    "secondaryId": 36,
+    "detailText": "فحص الكادر التدريبي.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 104
+  },
+  {
+    "id": 473,
+    "secondaryId": 36,
+    "detailText": "كفاءة الكادر التدريبي جيدة",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 105
+  },
+  {
+    "id": 474,
+    "secondaryId": 36,
+    "detailText": "الميادين والملاعب ومستوى ادامتها.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 106
+  },
+  {
+    "id": 475,
+    "secondaryId": 36,
+    "detailText": "اجراء فحص الكفاءة البدنية وتشمل الآتي:",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 107
+  },
+  {
+    "id": 476,
+    "secondaryId": 36,
+    "detailText": "الاسكان والبنى التحتية",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 108
+  },
+  {
+    "id": 477,
+    "secondaryId": 36,
+    "detailText": "تيسر قاعات منام ملائمة ومدى أستيعابها وترتيب اسرتها ودواليبها.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 109
+  },
+  {
+    "id": 478,
+    "secondaryId": 36,
+    "detailText": "توفر الانارة الداخلية والانارة البديلة في قاعات المنام والمكاتب والانارة الخارجية في الساحات والكراجات والشوارع.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 110
+  },
+  {
+    "id": 479,
+    "secondaryId": 36,
+    "detailText": "توفر الانارة الداخلية والانارة البديلة في قاعات المنام والمكاتب وعدم وجود الانارة الخارجية في الساحات والكراجات والشوارع.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 111
+  },
+  {
+    "id": 480,
+    "secondaryId": 36,
+    "detailText": "توفر الانارة الداخلية والانارة البديلة في قاعات المنام والمكاتب والانارة الخارجية في الساحات والمرآب والطرق.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 112
+  },
+  {
+    "id": 481,
+    "secondaryId": 36,
+    "detailText": "مدى الاهتمام بنظافة الوحدة والمساحات الخضراء.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 113
+  },
+  {
+    "id": 482,
+    "secondaryId": 36,
+    "detailText": "توفر التهوية الجيدة (الشبابيك، المراوح) لقاعات المنام والمكاتب.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 114
+  },
+  {
+    "id": 483,
+    "secondaryId": 36,
+    "detailText": "توفر أجهزة التكييف لقاعات المنام والمكاتب.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 115
+  },
+  {
+    "id": 484,
+    "secondaryId": 36,
+    "detailText": "توفر أجهزة التكييف لقاعات المنام والمكاتب وجيدة.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 116
+  },
+  {
+    "id": 485,
+    "secondaryId": 36,
+    "detailText": "تيسر قائمة بأسماء شاغلي قاعات المنام والمكاتب.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 117
+  },
+  {
+    "id": 486,
+    "secondaryId": 36,
+    "detailText": "تيسر أدوات مكافحة الحريق بالقرب من قاعات المنام وداخل الأبنية.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 118
+  },
+  {
+    "id": 487,
+    "secondaryId": 36,
+    "detailText": "مدى نظافة المجاميع الصحية المخصصة لقاعات المنام والمكاتب وتيسر مفرغات الهواء فيها.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 119
+  },
+  {
+    "id": 488,
+    "secondaryId": 36,
+    "detailText": "تيسر المنظفات والمعقمات وأدوات التنظيف في المجاميع الصحية.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 120
+  },
+  {
+    "id": 489,
+    "secondaryId": 36,
+    "detailText": "سرايا البندقيات",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 121
+  },
+  {
+    "id": 491,
+    "secondaryId": 36,
+    "detailText": "رئيس عرفاء السرية (كفاءته، متابعته في تنظيم السرية، متابعته تجهيزات وسكن المنتسبين، اعداد الموجود اليومي، الاهتمام بساحة العرض).",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 123
+  },
+  {
+    "id": 492,
+    "secondaryId": 36,
+    "detailText": "كفاءة ر.ع السرية جيدة من ناحية التنظيم والمتابعة.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 124
+  },
+  {
+    "id": 493,
+    "secondaryId": 36,
+    "detailText": "كفاءة رئيس عرفاء السرية جيدة في التنظيم والمتابعة والسكن واعداد الموجود.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 125
+  },
+  {
+    "id": 494,
+    "secondaryId": 36,
+    "detailText": "مستودع السرية (نظافته، ترتيبه، أدوات مكافحة الحريق، بطاقة).",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 126
+  },
+  {
+    "id": 549,
+    "secondaryId": 37,
+    "detailText": "مستوى تأهيل العاملين على أجهزة كشف المتفجرات.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 52
+  },
+  {
+    "id": 497,
+    "secondaryId": 37,
+    "detailText": "أمر السيطرة ومعاونيه",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 0
+  },
+  {
+    "id": 498,
+    "secondaryId": 37,
+    "detailText": "مدى مطابقة الإيجاز المقدم مع المهمة الفعلية وأسس التفتيش.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 1
+  },
+  {
+    "id": 499,
+    "secondaryId": 37,
+    "detailText": "كفاءة أمر السيطرة في القيادة والإدارة وتحمل المسؤولية.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 2
+  },
+  {
+    "id": 500,
+    "secondaryId": 37,
+    "detailText": "مستوى أداء المعاون وضابط الشفت وإلمامهم بمهامهم.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 3
+  },
+  {
+    "id": 501,
+    "secondaryId": 37,
+    "detailText": "الإشراف الميداني الفعال على عمل السيطرة.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 4
+  },
+  {
+    "id": 502,
+    "secondaryId": 37,
+    "detailText": "التنسيق مع الأجهزة الأمنية الساندة.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 5
+  },
+  {
+    "id": 504,
+    "secondaryId": 37,
+    "detailText": "اجراء ممارسات افتراضية لفحص كفاءة الكلاب البوليسية وجميع أجهزة الكشف التابعة الى مديرية مكافحة المتفجرات.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 7
+  },
+  {
+    "id": 505,
+    "secondaryId": 37,
+    "detailText": "تم اجراء ممارسة افتراضية داخل السيطرة، وفحص مفارز الكلاب البوليسية وأجهزة الكشف التابعة الى مديرية مكافحة المتفجرات، وكان مستوى التنفيذ (فوق الوسط)",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 8
+  },
+  {
+    "id": 506,
+    "secondaryId": 37,
+    "detailText": "متابعة ادامة كافة السجلات الخاصة برصد المخالفات من قبل كافة الأجهزة الأمنية المتواجدة في السيطرة.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 9
+  },
+  {
+    "id": 507,
+    "secondaryId": 37,
+    "detailText": "التقييم.",
+    "maxGrade": "0.32",
+    "inputType": "single",
+    "tableSchema": null,
+    "sortOrder": 10
+  },
+  {
+    "id": 508,
+    "secondaryId": 37,
+    "detailText": "التنظيم والإجراءات الإدارية",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 11
+  },
+  {
+    "id": 509,
+    "secondaryId": 37,
+    "detailText": "تنظيم المكاتب والسجلات الإدارية والمالية وإدامتها.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 12
+  },
+  {
+    "id": 510,
+    "secondaryId": 37,
+    "detailText": "وصايا أمن المكتب والمعلومات.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 13
+  },
+  {
+    "id": 511,
+    "secondaryId": 37,
+    "detailText": "سياق تداول البريد وتنظيم الأرشيف (ورقي وإلكتروني).",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 14
+  },
+  {
+    "id": 512,
+    "secondaryId": 37,
+    "detailText": "آلية الاستماع لشكاوى المنتسبين وحلها.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 15
+  },
+  {
+    "id": 513,
+    "secondaryId": 37,
+    "detailText": "تنفيذ الأوامر الإدارية الصادرة من المراجع العليا.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 16
+  },
+  {
+    "id": 514,
+    "secondaryId": 37,
+    "detailText": "غرفة الحركات",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 17
+  },
+  {
+    "id": 515,
+    "secondaryId": 37,
+    "detailText": "تنظيم غرفة الحركات والتجهيزات الأساسية.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 18
+  },
+  {
+    "id": 516,
+    "secondaryId": 37,
+    "detailText": "مدى ادامة وتنفيذ خطتي  (الدفاع المحلي، مكافحة الحريق).",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 19
+  },
+  {
+    "id": 517,
+    "secondaryId": 37,
+    "detailText": "كفاءة وفاعلية أجهزة الاتصالات السلكية واللاسلكية والاتصالات البديلة.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 20
+  },
+  {
+    "id": 518,
+    "secondaryId": 37,
+    "detailText": "اكتمال السجلات  (سجل الحوادث، البرقيات، الزيارات).",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 21
+  },
+  {
+    "id": 519,
+    "secondaryId": 37,
+    "detailText": "توفر المواقف واللوحات الإيضاحية المطلوبة.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 22
+  },
+  {
+    "id": 520,
+    "secondaryId": 37,
+    "detailText": "توفر اللوحات الإيضاحية المطلوبة في نقطة السيطرة.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 23
+  },
+  {
+    "id": 521,
+    "secondaryId": 37,
+    "detailText": "البنية التحتية والاتصالات",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 24
+  },
+  {
+    "id": 522,
+    "secondaryId": 37,
+    "detailText": "ملاءمة قاعات المنام والخدمات (مطابخ، مجاميع صحية، تكييف).",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 25
+  },
+  {
+    "id": 523,
+    "secondaryId": 37,
+    "detailText": "توفر خط كهرباء طوارئ (مولدات) وصلاحيتها.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 26
+  },
+  {
+    "id": 524,
+    "secondaryId": 37,
+    "detailText": "توفر أدوات مكافحة الحريق في جميع المرافق.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 27
+  },
+  {
+    "id": 525,
+    "secondaryId": 37,
+    "detailText": "الوضع العام للنظافة والمظهر العام للسيطرة (داخلياً وخارجياً).",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 28
+  },
+  {
+    "id": 526,
+    "secondaryId": 37,
+    "detailText": "كفاءة ضابط الآليات وإلمامه بواجباته.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 29
+  },
+  {
+    "id": 527,
+    "secondaryId": 37,
+    "detailText": "اكتمال السجلات الفنية للآليات (ذمة، صيانة، إدامة).",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 30
+  },
+  {
+    "id": 528,
+    "secondaryId": 37,
+    "detailText": "الحالة الفنية للعجلات ومدى جاهزيتها.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 31
+  },
+  {
+    "id": 529,
+    "secondaryId": 37,
+    "detailText": "الحالة الفنية للعجلات ومدى جاهزيتها جيدة وعددها (4) عجلات مختلفة الانواع.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 32
+  },
+  {
+    "id": 530,
+    "secondaryId": 37,
+    "detailText": "تنظيم مستودع الوقود والزيوت ونقطة الإدامة.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 33
+  },
+  {
+    "id": 531,
+    "secondaryId": 37,
+    "detailText": "توفر رحبة العجلات ومعدات الإطفاء الخاصة بها.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 34
+  },
+  {
+    "id": 532,
+    "secondaryId": 37,
+    "detailText": "توفر رحبة العجلات رحبة عجلات بسيطة من حيث المساحة وعدم توفر مسقفات العجلات ومعدات الإطفاء الخاصة بها.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 35
+  },
+  {
+    "id": 533,
+    "secondaryId": 37,
+    "detailText": "كفاءة ضابط الميرة وإجراءات التخزين الآمن.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 36
+  },
+  {
+    "id": 534,
+    "secondaryId": 37,
+    "detailText": "كفاءة ضابط الميرة في إجراءات التخزين الآمن بمستوى وسط.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 37
+  },
+  {
+    "id": 535,
+    "secondaryId": 37,
+    "detailText": "تحصين المشجب وأمنه (كاميرات مراقبة، كفالات).",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 38
+  },
+  {
+    "id": 536,
+    "secondaryId": 37,
+    "detailText": "آلية صرف الأسلحة والاعتدة والمعدات.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 39
+  },
+  {
+    "id": 537,
+    "secondaryId": 37,
+    "detailText": "آلية صرف الأسلحة والاعتدة والمعدات منظمة بشكل جيد.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 40
+  },
+  {
+    "id": 538,
+    "secondaryId": 37,
+    "detailText": "دقة سجلات الذمة ومطابقتها للواقع.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 41
+  },
+  {
+    "id": 539,
+    "secondaryId": 37,
+    "detailText": "نسبة تكامل الأسلحة والعتاد ونسبة العاطل.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 42
+  },
+  {
+    "id": 540,
+    "secondaryId": 37,
+    "detailText": "إنجاز المجالس التحقيقية المتعلقة بالذمة.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 43
+  },
+  {
+    "id": 541,
+    "secondaryId": 37,
+    "detailText": "الجاهزية الاختصاصية والتجهيزات المتخصصة",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 44
+  },
+  {
+    "id": 542,
+    "secondaryId": 37,
+    "detailText": "جاهزية العجلات الاختصاصية (كشف متفجرات، مخدرات) وأجهزتها.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 45
+  },
+  {
+    "id": 543,
+    "secondaryId": 37,
+    "detailText": "فعالية منظومة كاميرات المراقبة وتغطيتها.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 46
+  },
+  {
+    "id": 544,
+    "secondaryId": 37,
+    "detailText": "تحديث قواعد البيانات (المطلوبين، العجلات المسروقة).",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 47
+  },
+  {
+    "id": 545,
+    "secondaryId": 37,
+    "detailText": "تصميم السيطرة (منحنيات تفتيش، مسقفات، مطبات، قطع دلالة).",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 48
+  },
+  {
+    "id": 546,
+    "secondaryId": 37,
+    "detailText": "توفر التحصينات والأسيجة الأمنية وأبراج المراقبة.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 49
+  },
+  {
+    "id": 547,
+    "secondaryId": 37,
+    "detailText": "توفر الدوائر الساندة (الإسعاف، الدفاع المدني).",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 50
+  },
+  {
+    "id": 548,
+    "secondaryId": 37,
+    "detailText": "إدامة حضائر الكلاب البوليسية والرعاية البيطرية.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 51
+  },
+  {
+    "id": 604,
+    "secondaryId": 38,
+    "detailText": "أقسام شؤون الإقامة",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 45
+  },
+  {
+    "id": 551,
+    "secondaryId": 37,
+    "detailText": "التأكد من عدم وجود طرق فرعية تتجاوز السيطرة.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 54
+  },
+  {
+    "id": 552,
+    "secondaryId": 37,
+    "detailText": "التدريب والكفاءة القتالية",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 55
+  },
+  {
+    "id": 554,
+    "secondaryId": 37,
+    "detailText": "مستوى الإتقان في التدريب العسكري الأساسي (حركات المشاة، الأسلحة).",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 57
+  },
+  {
+    "id": 555,
+    "secondaryId": 37,
+    "detailText": "تنفيذ خطة الرمي السنوية ومستوى دقة الرماة.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 58
+  },
+  {
+    "id": 556,
+    "secondaryId": 37,
+    "detailText": "الالتزام ببرامج التدريب البدني وتوفر الميادين المناسبة.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 59
+  },
+  {
+    "id": 557,
+    "secondaryId": 37,
+    "detailText": "اكتمال سجلات التدريب (المذكرات، الخطط، الدورات).",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 60
+  },
+  {
+    "id": 558,
+    "secondaryId": 37,
+    "detailText": "مدى مشاركة المنتسبين في الدورات التخصصية والداخلية.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 61
+  },
+  {
+    "id": 559,
+    "secondaryId": 38,
+    "detailText": "جودة الإيجاز المقدم من المدير ومدى مطابقته للواقع.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 0
+  },
+  {
+    "id": 560,
+    "secondaryId": 38,
+    "detailText": "مــدى إلمام المدير بواجباته ومـهام قسمه.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 1
+  },
+  {
+    "id": 561,
+    "secondaryId": 38,
+    "detailText": "فعالية نظام البديلين وضمان استمرارية العمل.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 2
+  },
+  {
+    "id": 562,
+    "secondaryId": 38,
+    "detailText": "مدى التنسيق مع أمر المنطقة الأمنية ودمج العمل ضمن خطة الأمن المناطقي.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 3
+  },
+  {
+    "id": 563,
+    "secondaryId": 38,
+    "detailText": "لا يوجد التنسيق مع أمر المنطقة الأمنية ضمن خطة الأمن المناطقي.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 4
+  },
+  {
+    "id": 565,
+    "secondaryId": 38,
+    "detailText": "تنظيم السجلات والإجراءات الإدارية.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 6
+  },
+  {
+    "id": 566,
+    "secondaryId": 38,
+    "detailText": "تقييم الإجراءات الأمنية لحماية المنشآت والموظفين والمراجعين.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 7
+  },
+  {
+    "id": 567,
+    "secondaryId": 38,
+    "detailText": "جاهزية خطط الدفاع المحلي والطوارئ.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 8
+  },
+  {
+    "id": 568,
+    "secondaryId": 38,
+    "detailText": "وجود الإعداد الورقي لخطتي الدفاع المحلي واطفاء الحرائق.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 9
+  },
+  {
+    "id": 569,
+    "secondaryId": 38,
+    "detailText": "وجود الإعداد الورقي لخطتي الدفاع المحلي واطفاء الحرائق ويجري الممارسة عليها مع وجود سجل لتلافي السلبيات بالممارسات.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 10
+  },
+  {
+    "id": 570,
+    "secondaryId": 38,
+    "detailText": "عدم وجود لوحات دلالة بأسماء المنتسبين المشمولين بالخطة مع بدلائهم.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 11
+  },
+  {
+    "id": 571,
+    "secondaryId": 38,
+    "detailText": "تدريب المنتسبين على التعامل مع الحوادث الأمنية.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 12
+  },
+  {
+    "id": 572,
+    "secondaryId": 38,
+    "detailText": "إجراءات تأمين الوثائق من مخاطر الحريق بشكل متوسط.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 13
+  },
+  {
+    "id": 573,
+    "secondaryId": 38,
+    "detailText": "تأمين الوثائق والمستندات الرسمية من الضياع أو التزوير.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 14
+  },
+  {
+    "id": 574,
+    "secondaryId": 38,
+    "detailText": "مطابقة الملاك البشري (الضباط، المراتب، الموظفين) مع الموجود والنشاط الفعلي.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 15
+  },
+  {
+    "id": 575,
+    "secondaryId": 38,
+    "detailText": "جرد الأسلحة والعتاد والآليات وأجهزة الاتصالات وبيان نسب التكامل والجاهزية.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 16
+  },
+  {
+    "id": 576,
+    "secondaryId": 38,
+    "detailText": "وجود أسلحة واعتدة وأجهزة اتصالات غير مطابقة مع الملاك وهي غير مدامة ولم يتم خزنها بالصورة الصحيحة.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 17
+  },
+  {
+    "id": 577,
+    "secondaryId": 38,
+    "detailText": "تقيم كفاءة البنى التحتية (المباني، القاعات، الخدمات).",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 18
+  },
+  {
+    "id": 578,
+    "secondaryId": 38,
+    "detailText": "أقسام الجنسية والمعلومات المدنية",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 19
+  },
+  {
+    "id": 579,
+    "secondaryId": 38,
+    "detailText": "كفاءة الأنظمة البرمجية وقواعد البيانات المستخدمة.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 20
+  },
+  {
+    "id": 580,
+    "secondaryId": 38,
+    "detailText": "كفاءة الأنظمة البرمجية وقواعد البيانات المستخدمة. متوسطة وتحتاج الى تطوير.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 21
+  },
+  {
+    "id": 581,
+    "secondaryId": 38,
+    "detailText": "أماكن حفظ الاستمارات (نموذج 1) والأوليات منظم وأمن عالي.\\",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 22
+  },
+  {
+    "id": 582,
+    "secondaryId": 38,
+    "detailText": "كفاءة الأنظمة البرمجية وقواعد البيانات المستخدمة تحتاج الى تطوير.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 23
+  },
+  {
+    "id": 583,
+    "secondaryId": 38,
+    "detailText": "دقة وسرعة إصدار البطاقة الوطنية الموحدة.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 24
+  },
+  {
+    "id": 584,
+    "secondaryId": 38,
+    "detailText": "دقة وسرعة إصدار البطاقة الوطنية الموحدة عالي جدا ضمن التوقيت المحدد.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 25
+  },
+  {
+    "id": 585,
+    "secondaryId": 38,
+    "detailText": "دقة وسرعة إصدار البطاقة الوطنية الموحدة مع تأخير محدود.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 26
+  },
+  {
+    "id": 586,
+    "secondaryId": 38,
+    "detailText": "توفر الأجهزة والحاسبات الحديثة والاستفادة منها.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 27
+  },
+  {
+    "id": 587,
+    "secondaryId": 38,
+    "detailText": "توفر الأجهزة والحاسبات الحديثة ويجري العمل بها برغم تقدم الآجال.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 28
+  },
+  {
+    "id": 588,
+    "secondaryId": 38,
+    "detailText": "الأجهزة والحاسبات الحديثة متوفرة جزئياً.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 29
+  },
+  {
+    "id": 589,
+    "secondaryId": 38,
+    "detailText": "تنظيم وأمن أماكن حفظ الاستمارات (نموذج 1) والأوليات.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 30
+  },
+  {
+    "id": 590,
+    "secondaryId": 38,
+    "detailText": "أماكن حفظ الاستمارات (نموذج 1) والأوليات منظمة ومدامة.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 31
+  },
+  {
+    "id": 591,
+    "secondaryId": 38,
+    "detailText": "أقسام وشعب مكتب المعلومات المركزي",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 32
+  },
+  {
+    "id": 592,
+    "secondaryId": 38,
+    "detailText": "دقة إجراءات تدقيق المعاملات وإصدار بطاقات السكن.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 33
+  },
+  {
+    "id": 593,
+    "secondaryId": 38,
+    "detailText": "الالتزام بالتعليمات الخاصة بالتوقيع من قبل ضابط المكتب حصرا على بطاقة السكن.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 34
+  },
+  {
+    "id": 594,
+    "secondaryId": 38,
+    "detailText": "صحة ودقة إدخال البيانات وأرشفتها إلكترونياً.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 35
+  },
+  {
+    "id": 595,
+    "secondaryId": 38,
+    "detailText": "إدخال البيانات بشكل دقيق ومؤرشفة بالكامل.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 36
+  },
+  {
+    "id": 596,
+    "secondaryId": 38,
+    "detailText": "وضوح إجراءات العمل للمراجعين (اللوحات الإرشادية).",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 37
+  },
+  {
+    "id": 597,
+    "secondaryId": 38,
+    "detailText": "وجود اللوحات الإرشادية بشكل واضح ومعلقة.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 38
+  },
+  {
+    "id": 598,
+    "secondaryId": 38,
+    "detailText": "عدم وجود اللوحات الإرشادية بشكل واضح ومعلقة.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 39
+  },
+  {
+    "id": 599,
+    "secondaryId": 38,
+    "detailText": "الالتزام بالتعليمات وعدم تفويض التوقيع.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 40
+  },
+  {
+    "id": 601,
+    "secondaryId": 38,
+    "detailText": "تأمين الوثائق من المخاطر (الحرائق، العبث).",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 42
+  },
+  {
+    "id": 602,
+    "secondaryId": 38,
+    "detailText": "إجراءات تأمين الوثائق من مخاطر الحريق بشكل ضعيف.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 43
+  },
+  {
+    "id": 603,
+    "secondaryId": 38,
+    "detailText": "إجراءات تأمين الوثائق من مخاطر الحريق بشكل جيد.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 44
+  },
+  {
+    "id": 606,
+    "secondaryId": 38,
+    "detailText": "متابعة من قبل قسمي العرب والأجانب حال صدور سمات الدخول وانتهائها بشكل دقيق.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 47
+  },
+  {
+    "id": 607,
+    "secondaryId": 38,
+    "detailText": "متابعة من قبل قسمي العرب والأجانب حال صدور سمات الدخول وانتهائها بشكل ضعيف.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 48
+  },
+  {
+    "id": 608,
+    "secondaryId": 38,
+    "detailText": "متابعة من قبل قسمي العرب والأجانب حال صدور سمات الدخول وانتهائها بشكل جيد.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 49
+  },
+  {
+    "id": 609,
+    "secondaryId": 38,
+    "detailText": "فعالية متابعة تنفيذ أوامر (الإبعاد، الإخراج، منع السفر... الخ).",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 50
+  },
+  {
+    "id": 610,
+    "secondaryId": 38,
+    "detailText": "تكامل السجلات والبيانات مع الجهات المعنية.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 51
+  },
+  {
+    "id": 611,
+    "secondaryId": 38,
+    "detailText": "أقسام شؤون الجوازات",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 52
+  },
+  {
+    "id": 612,
+    "secondaryId": 38,
+    "detailText": "دقة تدقيق المستمسكات ومطابقتها لأصولها.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 53
+  },
+  {
+    "id": 614,
+    "secondaryId": 38,
+    "detailText": "التزام الكامل بالإجراءات في إصدار جوازات السفر (أول مرة، بدل تالف/ ضائع).",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 55
+  },
+  {
+    "id": 615,
+    "secondaryId": 38,
+    "detailText": "كفاءة أنظمة الأرشفة الإلكترونية للوثائق.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 56
+  },
+  {
+    "id": 616,
+    "secondaryId": 38,
+    "detailText": "كفاءة أنظمة الأرشفة الإلكترونية للوثائق عالي جداً.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 57
+  },
+  {
+    "id": 617,
+    "secondaryId": 38,
+    "detailText": "دقة استيفاء الرسوم والحسابات المالية.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 58
+  },
+  {
+    "id": 618,
+    "secondaryId": 38,
+    "detailText": "المنافذ الحدودية (بري، بحري، جوي)",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 59
+  },
+  {
+    "id": 619,
+    "secondaryId": 38,
+    "detailText": "تقييم أداء الشعب الرئيسية (شعبة التنفيذ، شعبة المنع، شعبة الوافدين والمغادرين، تكنولوجيا المعلومات).",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 60
+  },
+  {
+    "id": 620,
+    "secondaryId": 38,
+    "detailText": "مدى تكامل العمل بين هذه الشعب.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 61
+  },
+  {
+    "id": 621,
+    "secondaryId": 38,
+    "detailText": "فعالية عمليات التدقيق على الوافدين والمغادرين.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 62
+  },
+  {
+    "id": 622,
+    "secondaryId": 38,
+    "detailText": "كفاءة ضبط الوثائق المزورة في المنفذ.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 63
+  },
+  {
+    "id": 623,
+    "secondaryId": 38,
+    "detailText": "كفاءة متوسطه للوثائق المزورة في المنفذ.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 64
+  },
+  {
+    "id": 624,
+    "secondaryId": 38,
+    "detailText": "كفاءة عالية واكتشاف سريع للوثائق المزورة في المنفذ.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 65
+  },
+  {
+    "id": 625,
+    "secondaryId": 38,
+    "detailText": "دقة وسرعة تحديث قوائم الممنوعين من السفر والمطلوبين.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 66
+  },
+  {
+    "id": 626,
+    "secondaryId": 38,
+    "detailText": "مستوى الخدمات المقدمة للمسافرين.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 67
+  },
+  {
+    "id": 627,
+    "secondaryId": 38,
+    "detailText": "جاهزية الأنظمة التقنية والتكنولوجية المستخدمة.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 68
+  },
+  {
+    "id": 628,
+    "secondaryId": 38,
+    "detailText": "حالة البنى التحتية للمنفذ وملاءمتها للعمل.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 69
+  },
+  {
+    "id": 629,
+    "secondaryId": 38,
+    "detailText": "النزاهة والشفافية ومكافحة الفساد",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 70
+  },
+  {
+    "id": 630,
+    "secondaryId": 38,
+    "detailText": "مدى الالتزام بالتعليمات والأنظمة الإدارية والمالية.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 71
+  },
+  {
+    "id": 631,
+    "secondaryId": 38,
+    "detailText": "التزام بالتعليمات والأنظمة الإدارية والمالية بشكل كامل.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 72
+  },
+  {
+    "id": 632,
+    "secondaryId": 38,
+    "detailText": "فحص الشكاوى المقدمة من المراجعين وآلية معالجتها.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 73
+  },
+  {
+    "id": 633,
+    "secondaryId": 38,
+    "detailText": "التدقيق على السجلات المالية (سجل محاسبة 66) ومطابقتها.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 74
+  },
+  {
+    "id": 634,
+    "secondaryId": 38,
+    "detailText": "فحص إجراءات التأكد من هوية المراجعين.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 75
+  },
+  {
+    "id": 635,
+    "secondaryId": 38,
+    "detailText": "التدقيق على الأختام الرسمية (مثل ختم الصورة) لمنع التزوير.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 76
+  },
+  {
+    "id": 636,
+    "secondaryId": 38,
+    "detailText": "تقييم الإجراءات المشددة لحماية البطاقات والجوازات الخام.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 77
+  },
+  {
+    "id": 637,
+    "secondaryId": 38,
+    "detailText": "المتابعة والتقييم",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 78
+  },
+  {
+    "id": 638,
+    "secondaryId": 38,
+    "detailText": "متوسط زمن إنهاء المعاملة للمراجع.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 79
+  },
+  {
+    "id": 640,
+    "secondaryId": 38,
+    "detailText": "عدد الوثائق المزورة المضبوطة.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 81
+  },
+  {
+    "id": 641,
+    "secondaryId": 38,
+    "detailText": "إجراء مقابلات مع المدراء والمنتسبين لتحديد الصعوبات.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 82
+  },
+  {
+    "id": 642,
+    "secondaryId": 38,
+    "detailText": "تحليل أوجه القصور في الدعم الفني أو اللوجستي أو البشري.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 83
+  },
+  {
+    "id": 643,
+    "secondaryId": 39,
+    "detailText": "تحديد نوع الهدف وأهميته وتأمين القوة اللازمة لحمايته.",
+    "maxGrade": "1.82",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 0
+  },
+  {
+    "id": 644,
+    "secondaryId": 39,
+    "detailText": "بيان عدد الأهداف المحمية والغير محمية والمطابقة مع الموجود الفعلي وحسب تصنيف الأهداف.",
+    "maxGrade": "1.82",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 1
+  },
+  {
+    "id": 646,
+    "secondaryId": 39,
+    "detailText": "اجراء المقابلات الأسبوعية والاستماع والنظر بطلبات كافة منسوبي حماية المنشات.",
+    "maxGrade": "1.82",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 3
+  },
+  {
+    "id": 647,
+    "secondaryId": 39,
+    "detailText": "ادامة كافة السجلات المطلوبة للاعمال اليومية.",
+    "maxGrade": "1.82",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 4
+  },
+  {
+    "id": 648,
+    "secondaryId": 39,
+    "detailText": "توفر العنصر النسوي لتفتيش المراجعات للدوائر الحكومية وبيان مدى الحاجة.",
+    "maxGrade": "1.82",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 5
+  },
+  {
+    "id": 649,
+    "secondaryId": 39,
+    "detailText": "توفر العنصر النسوي (المفتشات) في كافة الاهداف لتفتيش المراجعات.",
+    "maxGrade": "1.82",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 6
+  },
+  {
+    "id": 650,
+    "secondaryId": 39,
+    "detailText": "التدريب وبيان مدى قابلية المنتسبين في استخدام الاسلحة الخفيفة.",
+    "maxGrade": "1.82",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 7
+  },
+  {
+    "id": 651,
+    "secondaryId": 39,
+    "detailText": "اجراء الرمي السنوي أو الفصلي وبيان مدى كفاءة المنتسبين.",
+    "maxGrade": "1.82",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 8
+  },
+  {
+    "id": 652,
+    "secondaryId": 39,
+    "detailText": "بيان الاتصالات ومدى صلاحيتها.",
+    "maxGrade": "1.82",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 9
+  },
+  {
+    "id": 653,
+    "secondaryId": 39,
+    "detailText": "التقييم.",
+    "maxGrade": "1.82",
+    "inputType": "single",
+    "tableSchema": null,
+    "sortOrder": 10
+  },
+  {
+    "id": 654,
+    "secondaryId": 40,
+    "detailText": "عائديه الأرض",
+    "maxGrade": "0.91",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 0
+  },
+  {
+    "id": 655,
+    "secondaryId": 40,
+    "detailText": "موجود الكلي () منهم () ضابط و() منتسب و()موظف.",
+    "maxGrade": "0.91",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 1
+  },
+  {
+    "id": 656,
+    "secondaryId": 40,
+    "detailText": "موجود المقر () منهم () ضابط و() منتسب و()موظف.",
+    "maxGrade": "0.91",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 2
+  },
+  {
+    "id": 657,
+    "secondaryId": 40,
+    "detailText": "يتالف:",
+    "maxGrade": "0.91",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 3
+  },
+  {
+    "id": 658,
+    "secondaryId": 40,
+    "detailText": "سارية العلم العراقي (مدامة ـ غير مدامة).",
+    "maxGrade": "0.91",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 4
+  },
+  {
+    "id": 659,
+    "secondaryId": 40,
+    "detailText": "سارية العلم العراقي مدامة.",
+    "maxGrade": "0.91",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 5
+  },
+  {
+    "id": 660,
+    "secondaryId": 40,
+    "detailText": "آلية توزيع الارزاق",
+    "maxGrade": "0.91",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 6
+  },
+  {
+    "id": 661,
+    "secondaryId": 40,
+    "detailText": "آلية توزيع الارزاق/اكتفاء ذاتي",
+    "maxGrade": "0.91",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 7
+  },
+  {
+    "id": 662,
+    "secondaryId": 40,
+    "detailText": "لجنة استلام وتوزيع الارزاق",
+    "maxGrade": "0.91",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 8
+  },
+  {
+    "id": 663,
+    "secondaryId": 40,
+    "detailText": "لجنة الارزاق متكونة من ثلاث ضباط بموجب الكتاب ذو العدد   في   /   /2025، الصادر من مقر الفوج بأمرة العقيد (        ) وعضوية النقيب (     ) والملازم (    ) ويتم استقطاع مبلغ الارزاق (90) الف دينار عراقي من جميع الضباط والمراتب وبأشراف مساعد آمر الفوج ويتم توزيع الارزاق الجافة والطرية على السرايا.",
+    "maxGrade": "0.91",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 9
+  },
+  {
+    "id": 664,
+    "secondaryId": 40,
+    "detailText": "غرفة المطبخ وأدواته.",
+    "maxGrade": "0.91",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 10
+  },
+  {
+    "id": 665,
+    "secondaryId": 40,
+    "detailText": "غرفة المطبخ نظامية والأدوات الموجودة نظيفة وتتوفر فيها الشروط الصحية.",
+    "maxGrade": "0.91",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 11
+  },
+  {
+    "id": 666,
+    "secondaryId": 40,
+    "detailText": "غرفة المطبخ وأدواته نظيفة ومدامة",
+    "maxGrade": "0.91",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 12
+  },
+  {
+    "id": 667,
+    "secondaryId": 40,
+    "detailText": "لوحات قياس الارزاق وجدول توقيتات الاطعام.",
+    "maxGrade": "0.91",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 13
+  },
+  {
+    "id": 668,
+    "secondaryId": 40,
+    "detailText": "توفر لوحات قياس الارزاق وجدول توقيتات الاطعام.",
+    "maxGrade": "0.91",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 14
+  },
+  {
+    "id": 669,
+    "secondaryId": 40,
+    "detailText": "مستودعات( للأرزاق الجافة وللأرزاق الطرية والمياه والمنظفات).",
+    "maxGrade": "0.91",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 15
+  },
+  {
+    "id": 670,
+    "secondaryId": 40,
+    "detailText": "توفر مستودعات (للأرزاق الجافة وللأرزاق الطرية والمياه والمنظفات) منظمة وفق                 بطاقة المذخر.",
+    "maxGrade": "0.91",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 16
+  },
+  {
+    "id": 671,
+    "secondaryId": 40,
+    "detailText": "توفر مستودعات( للأرزاق الجافة وللأرزاق الطرية والمياه والمنظفات) مدامة           ونظيفة.",
+    "maxGrade": "0.91",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 17
+  },
+  {
+    "id": 672,
+    "secondaryId": 40,
+    "detailText": "اعداد الطباخين () منتسبين مع عدم وجود البطاقات الصحية.",
+    "maxGrade": "0.91",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 18
+  },
+  {
+    "id": 673,
+    "secondaryId": 40,
+    "detailText": "اعداد الطباخين (8) منتسبين ولديهم شهادة صحية.",
+    "maxGrade": "0.91",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 19
+  },
+  {
+    "id": 674,
+    "secondaryId": 40,
+    "detailText": "الزي الرسمي للطباخين.",
+    "maxGrade": "0.91",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 20
+  },
+  {
+    "id": 675,
+    "secondaryId": 40,
+    "detailText": "تم اجراء الاستبيان على المنتسبين عن نوعية وكمية الارزاق لوجبة وكانت النتيجة",
+    "maxGrade": "0.91",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 21
+  },
+  {
+    "id": 116,
+    "secondaryId": 24,
+    "detailText": "متابعة البريد اليومي وإدامة السجلات ووضع أولويات إدارية وتسهيل تداول البريد والأرشفة الإلكترونية.",
+    "maxGrade": "5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 0
+  },
+  {
+    "id": 142,
+    "secondaryId": 28,
+    "detailText": "تنظيم دوام الموظفين وضبط الحضور والانصراف (البصمة الإلكترونية أو سجلات الدوام الرسمية).",
+    "maxGrade": "3",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 3
+  },
+  {
+    "id": 143,
+    "secondaryId": 28,
+    "detailText": "الالتزام بتوجيهات وتعليمات المراجع العليا في إدارة الموارد البشرية والمنتسبين.",
+    "maxGrade": "3",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 4
+  },
+  {
+    "id": 152,
+    "secondaryId": 29,
+    "detailText": "مدى العمل بالهيكل التنظيمي والوصف الوظيفي والقياس لقاطع نجدة بمستوى شعبة في المحافظات ومستوى قسم في بغداد وتفعيل شعبه ووحداته.",
+    "maxGrade": "1",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 5
+  },
+  {
+    "id": 165,
+    "secondaryId": 29,
+    "detailText": "اجراء ممارسة افتراضية للوقوف على سرعة الاستجابة لحادث بالتنسيق مع مركز الاستجابة السريعة (911) لدوريات النجدة واختيار رقعة جغرافية مشتركة لمعرفة وقت الوصول القياسي والاجراءات المتخذة من قبل آمر الدورية ومدى المام المنتسبين بالتعليمات والقوانين النافذة.",
+    "maxGrade": "1",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 18
+  },
+  {
+    "id": 184,
+    "secondaryId": 30,
+    "detailText": "دوريات المرور الآلية: التقييم الفني للعجلات والجاهزية (لافتات ضوئية، أجهزة الاتصال الثابتة والمحمولة، أجهزة لوحية ذات مواصفات عالية تستخدم للاستعلام عن عائديه المركبة واشارات ضبط المركبات والسرقات، واستخدام نظام GPS)، تكامل طاقم الدورية وتدريبه.",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 17
+  },
+  {
+    "id": 195,
+    "secondaryId": 30,
+    "detailText": "الإجراءات المتبعة في معالجة موقع الحادث وتوثيقه (حصر منطقة الحادث وتحديدها، تهيئة الطرق البديلة في حالة قطعها، اشعار ضابط المركز المعني بمنطقة الحادث ودوريات النجدة، تأمين حضور عجلات الاسعاف والدفاع المدني وحسب الحاجة).",
+    "maxGrade": "0.5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 28
+  },
+  {
+    "id": 235,
+    "secondaryId": 31,
+    "detailText": "توفر مدخرات التدريب والأجهزة المساعدة مع وجود بعض الملاحظات.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 28
+  },
+  {
+    "id": 241,
+    "secondaryId": 31,
+    "detailText": "عدد المحاضرات التوعوية للمواطنين والمؤسسات منفذة مع ملاحظات بسيطة.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 34
+  },
+  {
+    "id": 268,
+    "secondaryId": 33,
+    "detailText": "متابعة العمل بالربط الشبكي ووجود كادر متخصص والعمل بالأرشفة الالكترونية والورقية واتمتة القضايا التحقيقية ونسبة الإنجاز.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 5
+  },
+  {
+    "id": 299,
+    "secondaryId": 33,
+    "detailText": "تنظيم المبارز الجرمية والامانات وفق السياقات الأصولية ووضع البطاقة التعريفية عليها وتنظيم اضبارة لكل مبرز جرمي وتحديث السجلات الخاصة بها.",
+    "maxGrade": "0.41",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 36
+  },
+  {
+    "id": 341,
+    "secondaryId": 35,
+    "detailText": "عدد أوامر القبض المنفذة وغير المنفذة.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 16
+  },
+  {
+    "id": 346,
+    "secondaryId": 35,
+    "detailText": "تحديث قاعدة البيانات للمطلوبين وأرباب السوابق والمطلق سراحهم بجرائم الارهاب والجريمة المنظمة.",
+    "maxGrade": "0.47",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 21
+  },
+  {
+    "id": 374,
+    "secondaryId": 36,
+    "detailText": "مدى هيمنته على السرايا ومتابعة تامين متطلباتها (التعبوية، التدريبية، الادارية، الفنية).",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 6
+  },
+  {
+    "id": 399,
+    "secondaryId": 36,
+    "detailText": "ملم بواجباته ومدى اهتمامه بالجوانب الإدارية.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 31
+  },
+  {
+    "id": 411,
+    "secondaryId": 36,
+    "detailText": "وجود اعداد وصايا ومناهج التدريب وتنظيمها بموجب كراسة اعداد المناهج.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 43
+  },
+  {
+    "id": 419,
+    "secondaryId": 36,
+    "detailText": "(تكامل ـ عدم تكامل) موقع القيادة (لوحة رسائل المعركة، لوحة موقع الضباط، بيان المواقع، نظام البديلين، مسلح خشب، سجل المعلومات، باب خروج للطوارئ).",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 51
+  },
+  {
+    "id": 427,
+    "secondaryId": 36,
+    "detailText": "تيسر لوحات (واجبات المفوض الكاتب، نظام البديلين، الاعلانات، المواقف الشهرية، سياق تداول البريد، اسماء تعريفية، مفتاح الاضابير، فهرست السجلات، وصايا أمن المكتب، توزيع البريد الداخلي والخارجي، المتابعة، الانارة البديلة، مستحقي الترقية، القوة العمومية، الاسلحة، الاعتدة، الاليات، أجهزة الاتصالات).",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 59
+  },
+  {
+    "id": 444,
+    "secondaryId": 36,
+    "detailText": "الاتصالات والنظم المعلوماتية",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 76
+  },
+  {
+    "id": 445,
+    "secondaryId": 36,
+    "detailText": "تيسر غرفة الاتصالات وتكامل تجهيزاتها (السجلات، لوحات الاتصالات، مخططات الشبكة).",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 77
+  },
+  {
+    "id": 460,
+    "secondaryId": 36,
+    "detailText": "تخصيص الساعات المطلوبة للتدريب الصحي وتم اجراء اختبار عينة من المنتسبين بالتدريب الصحي والاسعافات الاولية وحمل الجريح.",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 92
+  },
+  {
+    "id": 490,
+    "secondaryId": 36,
+    "detailText": "مدى هيمنة آمر السرية وألمامه بواجباته، ومدى تيسر (الايجاز، المفكرة، سجل الهيكل التنظيمي، سجل أيجاز البديل).",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 122
+  },
+  {
+    "id": 495,
+    "secondaryId": 36,
+    "detailText": "تيسر خطط (الدفاع المحلي، مكافحة الحريق، سياق الحركة الفورية).",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 127
+  },
+  {
+    "id": 496,
+    "secondaryId": 36,
+    "detailText": "تيسر (وصايا ومناهج التدريب، مدخرات التدريب وسجلات التدريب، كراسات ومحاضرات التدريب، مدى تكامل محتويات اضبارة المعلم).",
+    "maxGrade": "0.16",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 128
+  },
+  {
+    "id": 503,
+    "secondaryId": 37,
+    "detailText": "فحص نشاطات الأجهزة الأمنية المتواجدة داخل السيطرة ومدى التنسيق مابينهم واحالة المخالفين الى الدوائر التحقيقية وحسب الاختصاص الوظيفي بموجب وصولات استلام وحسب الإجراءات الأصولية المتبعة.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 6
+  },
+  {
+    "id": 550,
+    "secondaryId": 37,
+    "detailText": "توفر الكادر النسوي وأماكن تفتيش النساء.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 53
+  },
+  {
+    "id": 553,
+    "secondaryId": 37,
+    "detailText": "الالتزام بتنفيذ المهمة التدريبية والخطة السنوية.",
+    "maxGrade": "0.32",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 56
+  },
+  {
+    "id": 564,
+    "secondaryId": 38,
+    "detailText": "لا يوجد تنسيق مع آمر المنطقة الأمنية ولا زال العمل بالارتباط الاداري والحركات بمرجعه.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 5
+  },
+  {
+    "id": 600,
+    "secondaryId": 38,
+    "detailText": "الالتزام بالتعليمات وتفويض التوقيع معمول به بنظام البديل",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 41
+  },
+  {
+    "id": 605,
+    "secondaryId": 38,
+    "detailText": "دقة متابعة دخول وإقامة ومغادرة العرب والأجانب.",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 46
+  },
+  {
+    "id": 613,
+    "secondaryId": 38,
+    "detailText": "التزام الإجراءات في إصدار جوازات السفر (أول مرة، بدل تالف/ ضائع).",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 54
+  },
+  {
+    "id": 639,
+    "secondaryId": 38,
+    "detailText": "نسبة الرضا العام للمراجعين (من خلال استبيانات عينية).",
+    "maxGrade": "0.24",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 80
+  },
+  {
+    "id": 645,
+    "secondaryId": 39,
+    "detailText": "متابعة اللياقة البدنية وتوحيد القيافة وادامة الأسلحة والاعتدة والاليات وتامين الاتصال مابين الأهداف والمقر الرئيسي.",
+    "maxGrade": "1.82",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 2
+  },
+  {
+    "id": 102,
+    "secondaryId": 21,
+    "detailText": "المواقف الرسمية ونسب التكامل (الاشخاص، الاسلحة، الاعتدة، الآليات، اجهزة الاتصالات).",
+    "maxGrade": "10",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 1
+  },
+  {
+    "id": 103,
+    "secondaryId": 21,
+    "detailText": "مدى المامه بقاطع المسؤولية وتحديد نقاط القوة والضعف واسلوب معالجتها.",
+    "maxGrade": "5",
+    "inputType": "single",
+    "tableSchema": null,
+    "sortOrder": 2
+  },
+  {
+    "id": 106,
+    "secondaryId": 21,
+    "detailText": "قدرته على قيادة الأجهزة الأمنية العاملة بأمرته وإدارة الخلية الاستخبارية.",
+    "maxGrade": "5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 5
+  },
+  {
+    "id": 107,
+    "secondaryId": 21,
+    "detailText": "قدرته في أتخـاذ القـرار المناسب في الحوادث الأمنية والمسح الميداني والأتمتة وحصر السلاح بيد الدولة.",
+    "maxGrade": "5",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 6
+  },
+  {
+    "id": 114,
+    "secondaryId": 23,
+    "detailText": "متابعة أنظمة المراقبة والاتصالات والكاميرات والأجهزة اللاسلكية ومنظومات الإنذار.",
+    "maxGrade": "7.5",
+    "inputType": "multiple",
+    "tableSchema": null,
+    "sortOrder": 0
+  },
+  {
+    "id": 155,
+    "secondaryId": 29,
+    "detailText": "عدد الدوريات الآلية (  4  ) الدراجات النارية (  4    ) الراجلة ( 4    ) وتوزيعها ضمن قاطع المسؤولية حسب الاهمية.",
+    "maxGrade": "1",
+    "inputType": "multi",
+    "tableSchema": null,
+    "sortOrder": 8
+  }
+]

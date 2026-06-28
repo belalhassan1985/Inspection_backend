@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
@@ -8,10 +12,7 @@ export class RiskLevelOptionsService {
   async findAll(includeInactive = true) {
     return this.prisma.riskLevelOption.findMany({
       where: includeInactive ? undefined : { isActive: true },
-      orderBy: [
-        { sortOrder: 'asc' },
-        { id: 'asc' },
-      ],
+      orderBy: [{ sortOrder: 'asc' }, { id: 'asc' }],
     });
   }
 
@@ -27,7 +28,7 @@ export class RiskLevelOptionsService {
     return this.prisma.riskLevelOption.create({
       data: {
         ...data,
-        sortOrder: data.sortOrder ?? ((maxSort._max.sortOrder ?? 0) + 1),
+        sortOrder: data.sortOrder ?? (maxSort._max.sortOrder ?? 0) + 1,
       },
     });
   }
@@ -63,7 +64,9 @@ export class RiskLevelOptionsService {
   }
 
   private async ensureExists(id: number) {
-    const existing = await this.prisma.riskLevelOption.findUnique({ where: { id } });
+    const existing = await this.prisma.riskLevelOption.findUnique({
+      where: { id },
+    });
     if (!existing) {
       throw new NotFoundException('Risk level option not found');
     }
@@ -72,7 +75,8 @@ export class RiskLevelOptionsService {
 
   private normalizePayload(data: any, isCreate: boolean) {
     const code = typeof data.code === 'string' ? data.code.trim() : undefined;
-    const nameAr = typeof data.nameAr === 'string' ? data.nameAr.trim() : undefined;
+    const nameAr =
+      typeof data.nameAr === 'string' ? data.nameAr.trim() : undefined;
 
     if (isCreate && !code) {
       throw new BadRequestException('Code is required');
@@ -81,16 +85,22 @@ export class RiskLevelOptionsService {
       throw new BadRequestException('Arabic name is required');
     }
     if (code && !/^[a-zA-Z0-9_-]+$/i.test(code)) {
-      throw new BadRequestException('Code must contain letters, numbers, underscores, or dashes only');
+      throw new BadRequestException(
+        'Code must contain letters, numbers, underscores, or dashes only',
+      );
     }
 
     const payload: any = {};
     if (code !== undefined) payload.code = code;
     if (nameAr !== undefined) payload.nameAr = nameAr;
-    if (data.color !== undefined) payload.color = data.color ? String(data.color).trim() : '#718096';
-    if (data.sortOrder !== undefined && data.sortOrder !== null) payload.sortOrder = Number(data.sortOrder) || 0;
+    if (data.color !== undefined)
+      payload.color = data.color ? String(data.color).trim() : '#718096';
+    if (data.sortOrder !== undefined && data.sortOrder !== null)
+      payload.sortOrder = Number(data.sortOrder) || 0;
     if (data.isActive !== undefined) payload.isActive = !!data.isActive;
-    if (data.severityWeight !== undefined) payload.severityWeight = data.severityWeight != null ? Number(data.severityWeight) : null;
+    if (data.severityWeight !== undefined)
+      payload.severityWeight =
+        data.severityWeight != null ? Number(data.severityWeight) : null;
     return payload;
   }
 }

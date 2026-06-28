@@ -47,6 +47,9 @@ model User {
   uploadedEvidence   RecommendationEvidence[]  @relation("UserUploadedEvidence")
   recommendationComments RecommendationComment[] @relation("UserRecommendationComments")
   inboxNotifications InboxNotification[] @relation("UserInboxNotifications")
+  assignedSpecializations InspectorSpecialization[] @relation("InspectorSpecializationAssignedBy")
+  assignedCampaignMembers CampaignMember[] @relation("CampaignMemberAssignedBy")
+  assignedCampaignGroupAssignments CampaignGroupAssignment[] @relation("CampaignGroupAssignedBy")
 
   @@map("users")
 }
@@ -162,8 +165,8 @@ model Campaign {
   assignmentText         String                   @map("assignment_text")
   assignmentReference    String                   @map("assignment_reference") @db.VarChar(100)
   assignmentDate         DateTime                 @map("assignment_date") @db.Date
-  leaderId               String?                  @map("leader_id") @db.Uuid
-  deputyId               String?                  @map("deputy_id") @db.Uuid
+  leaderId               String?                  @map("leader_id") @db.Uuid // @deprecated — use CampaignMember role=LEADER
+  deputyId               String?                  @map("deputy_id") @db.Uuid // @deprecated — use CampaignMember role=DEPUTY
   purpose                String?
   entityId               String?                  @map("entity_id") @db.Uuid
   formationNumber        String?                  @map("formation_number") @db.VarChar(100)
@@ -182,6 +185,7 @@ model Campaign {
   template               CriteriaTemplate?        @relation(fields: [templateId], references: [id])
   inspections            Inspection[]
   reportPresentation     ReportPresentation?
+  campaignGroupAssignments CampaignGroupAssignment[]
   
   // العلاقات الجديدة للمتابعة
   recommendationTrackings RecommendationTracking[]
@@ -190,30 +194,164 @@ model Campaign {
 }
 
 model CampaignMember {
-  campaignId  String    @map("campaign_id") @db.Uuid
-  inspectorId String    @map("inspector_id") @db.Uuid
-  campaign    Campaign  @relation(fields: [campaignId], references: [id], onDelete: Cascade)
-  inspector   Inspector @relation(fields: [inspectorId], references: [id], onDelete: Cascade)
+  campaignId  String     @map("campaign_id") @db.Uuid
+  inspectorId String     @map("inspector_id") @db.Uuid
+  role        DutyRole   @default(MEMBER)
+  assignedAt  DateTime   @default(now()) @map("assigned_at") @db.Timestamp(6)
+  assignedById String?   @map("assigned_by_id") @db.Uuid
+
+  campaign    Campaign   @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  inspector   Inspector  @relation(fields: [inspectorId], references: [id], onDelete: Cascade)
+  assignedBy  User?      @relation("CampaignMemberAssignedBy", fields: [assignedById], references: [id])
 
   @@id([campaignId, inspectorId])
+  @@index([role])
   @@map("campaign_members")
 }
 
+model CampaignGroupAssignment {
+  id         Int      @id @default(autoincrement())
+  campaignId String   @map("campaign_id") @db.Uuid
+  groupId    Int      @map("group_id")
+  role       String?  @map("role") @db.VarChar(20)
+  assignedAt DateTime @default(now()) @map("assigned_at") @db.Timestamp(6)
+  assignedById String? @map("assigned_by_id") @db.Uuid
+
+  campaign   Campaign         @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  group      InspectionGroup  @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  assignedBy User?            @relation("CampaignGroupAssignedBy", fields: [assignedById], references: [id])
+
+  @@unique([campaignId, groupId])
+  @@index([campaignId])
+  @@index([groupId])
+  @@map("campaign_group_assignments")
+}
+
 model Inspector {
-  id                 String           @id @default(uuid()) @db.Uuid
-  fullName           String           @map("full_name") @db.VarChar(150)
-  department         String?          @db.VarChar(150)
-  phone              String?          @db.VarChar(50)
-  notes              String?
-  isActive           Boolean          @default(true) @map("is_active")
-  createdAt          DateTime         @default(now()) @map("created_at") @db.Timestamp(6)
-  updatedAt          DateTime         @updatedAt @map("updated_at") @db.Timestamp(6)
+  id                       String           @id @default(uuid()) @db.Uuid
+  fullName                 String           @map("full_name") @db.VarChar(150)
+  rank                     String?          @map("rank") @db.VarChar(100)
+  title                    String?          @map("title") @db.VarChar(100)
+  specialization           String?          @map("specialization") @db.VarChar(200)
+  photoUrl                 String?          @map("photo_url") @db.VarChar(500)
+  photoUpdatedAt           DateTime?        @map("photo_updated_at") @db.Timestamp(6)
+  email                    String?          @map("email") @db.VarChar(150)
+  office                   String?          @map("office") @db.VarChar(100)
+  yearsOfService           Int?             @map("years_of_service")
+  department               String?          @db.VarChar(150)
+  phone                    String?          @db.VarChar(50)
+  notes                    String?          @db.Text
+  isActive                 Boolean          @default(true) @map("is_active")
+  availabilityStatus       AvailabilityStatus? @default(AVAILABLE) @map("availability_status")
+  availabilityReason       String?          @map("availability_reason") @db.VarChar(255)
+  availabilityUntil        DateTime?        @map("availability_until") @db.Date
+  availabilityUpdatedAt    DateTime?        @map("availability_updated_at") @db.Timestamp(6)
+  availabilityChangedBy    String?          @map("availability_changed_by") @db.Uuid
+  profileNotes             String?          @map("profile_notes") @db.Text
+  primaryGroupId           Int?             @map("primary_group_id")
+  lastFieldParticipationAt DateTime?        @map("last_field_participation_at") @db.Timestamp(6)
+  activityScore            Decimal?         @default(0) @map("activity_score") @db.Decimal(5, 2)
+  createdAt                DateTime         @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt                DateTime         @updatedAt @map("updated_at") @db.Timestamp(6)
   
-  campaignsDeputized Campaign[]       @relation("CampaignDeputyInspector")
-  campaignsLed       Campaign[]       @relation("CampaignLeaderInspector")
-  campaignMembers    CampaignMember[]
+  campaignsDeputized      Campaign[]               @relation("CampaignDeputyInspector")
+  campaignsLed            Campaign[]               @relation("CampaignLeaderInspector")
+  campaignMembers         CampaignMember[]
+  groupMemberships        InspectorGroupMember[]
+  assignmentMemberships   InspectorAssignmentMember[]
+  importQueueSuggestions  ImportQueueItem[]
+  primaryGroup            InspectionGroup?          @relation("PrimaryGroup", fields: [primaryGroupId], references: [id])
+  workloadSnapshots       WorkloadSnapshot[]
+  inspectorSpecializations InspectorSpecialization[]
   
   @@map("inspectors")
+}
+
+model InspectionGroup {
+  id              Int       @id @default(autoincrement())
+  name            String    @unique @db.VarChar(255)
+  code            String?   @db.VarChar(100)
+  description     String?   @db.Text
+  sourceReference String?   @map("source_reference") @db.VarChar(100)
+  isActive        Boolean   @default(true) @map("is_active")
+  createdAt       DateTime  @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt       DateTime  @updatedAt @map("updated_at") @db.Timestamp(6)
+
+  members            InspectorGroupMember[]
+  primaryInspectors  Inspector[]             @relation("PrimaryGroup")
+  readinessSnapshots GroupReadinessSnapshot[]
+  campaignGroupAssignments CampaignGroupAssignment[]
+
+  @@map("inspection_groups")
+}
+
+model InspectorGroupMember {
+  id          Int      @id @default(autoincrement())
+  inspectorId String   @map("inspector_id") @db.Uuid
+  groupId     Int      @map("group_id")
+  roleInGroup String?  @map("role_in_group") @db.VarChar(100)
+  isLeader    Boolean  @default(false) @map("is_leader")
+  memberOrder Int?     @map("member_order")
+  sourceRawName String? @map("source_raw_name") @db.VarChar(500)
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+
+  inspector Inspector      @relation(fields: [inspectorId], references: [id], onDelete: Cascade)
+  group     InspectionGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
+
+  @@unique([inspectorId, groupId])
+  @@map("inspector_group_members")
+}
+
+model GroupReadinessSnapshot {
+  id                   Int      @id @default(autoincrement())
+  groupId              Int      @map("group_id")
+  snapshotDate         DateTime @default(now()) @map("snapshot_date") @db.Date
+  readinessScore       Decimal  @map("readiness_score") @db.Decimal(5, 2)
+  readinessLevel       String   @map("readiness_level") @db.VarChar(20)
+
+  availabilityScore    Decimal  @map("availability_score") @db.Decimal(5, 2)
+  workloadScore        Decimal  @map("workload_score") @db.Decimal(5, 2)
+  leaderScore          Decimal  @map("leader_score") @db.Decimal(5, 2)
+
+  totalMembers         Int      @map("total_members")
+  availableMembers     Int      @map("available_members")
+  overloadedMembers    Int      @map("overloaded_members")
+  hasLeaderAssigned    Boolean  @map("has_leader_assigned")
+  leaderIsAvailable    Boolean  @map("leader_is_available")
+
+  group InspectionGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
+
+  @@unique([groupId, snapshotDate])
+  @@map("group_readiness_snapshots")
+}
+
+model InspectorAssignment {
+  id              Int       @id @default(autoincrement())
+  name            String    @db.VarChar(255)
+  assignmentType  String    @map("assignment_type") @db.VarChar(50)
+  description     String?   @db.Text
+  referenceNumber String?   @map("reference_number") @db.VarChar(100)
+  isActive        Boolean   @default(true) @map("is_active")
+  createdAt       DateTime  @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt       DateTime  @updatedAt @map("updated_at") @db.Timestamp(6)
+
+  members InspectorAssignmentMember[]
+
+  @@map("inspector_assignments")
+}
+
+model InspectorAssignmentMember {
+  id           Int      @id @default(autoincrement())
+  inspectorId  String   @map("inspector_id") @db.Uuid
+  assignmentId Int      @map("assignment_id")
+  note         String?  @db.Text
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+
+  inspector  Inspector           @relation(fields: [inspectorId], references: [id], onDelete: Cascade)
+  assignment InspectorAssignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+
+  @@unique([inspectorId, assignmentId])
+  @@map("inspector_assignment_members")
 }
 
 model Inspection {
@@ -335,7 +473,7 @@ model CampaignRecommendation {
   children           CampaignRecommendation[] @relation("RecHierarchy")
   
   // الحقول والعلاقات الجديدة للمتابعة والمشتقات
-  riskLevel          RiskLevel?               @map("risk_level")
+  riskLevel          String?                  @map("risk_level") @db.VarChar(50)
   impactCategory     ImpactCategory?          @map("impact_category")
   tracking           RecommendationTracking?
 
@@ -441,7 +579,7 @@ model RecommendationTracking {
   
   status                     RecommendationStatus    @default(ISSUED)
   progressPercent            Int                     @default(0) @map("progress_percent")
-  riskLevel                  RiskLevel               @map("risk_level")
+  riskLevel                  String                  @map("risk_level") @db.VarChar(50)
   impactCategory             ImpactCategory          @map("impact_category")
   escalationLevel            Int                     @default(0) @map("escalation_level")
   
@@ -584,6 +722,139 @@ model SlaBreachLog {
 
   @@unique([trackingId, milestoneType])
   @@map("sla_breach_logs")
+}
+
+model ImportSession {
+  id               String           @id @default(uuid()) @db.Uuid
+  filename         String           @db.VarChar(500)
+  totalEntries     Int              @default(0) @map("total_entries")
+  normalizedCount  Int              @default(0) @map("normalized_count")
+  matchedCount     Int              @default(0) @map("matched_count")
+  unmatchedCount   Int              @default(0) @map("unmatched_count")
+  pendingCount     Int              @default(0) @map("pending_count")
+  linkedCount      Int              @default(0) @map("linked_count")
+  createdCount     Int              @default(0) @map("created_count")
+  skippedCount     Int              @default(0) @map("skipped_count")
+  status           String           @default("pending") @db.VarChar(20) // pending, processing, completed
+  createdAt        DateTime         @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt        DateTime         @updatedAt @map("updated_at") @db.Timestamp(6)
+
+  items ImportQueueItem[]
+
+  @@map("import_sessions")
+}
+
+model ImportQueueItem {
+  id               Int       @id @default(autoincrement())
+  sessionId        String    @map("session_id") @db.Uuid
+  rawName          String    @map("raw_name") @db.VarChar(500)
+  normalizedName   String    @map("normalized_name") @db.VarChar(500)
+  rankGuess        String?   @map("rank_guess") @db.VarChar(100)
+  sourceGroup      String?   @map("source_group") @db.VarChar(255)
+  sourceAssignment String?   @map("source_assignment") @db.VarChar(255)
+  notes            String?   @db.Text
+  suggestedInspectorId String? @map("suggested_inspector_id") @db.Uuid
+  confidenceScore  Int?      @map("confidence_score") // 0-100
+  status           String    @default("pending") @db.VarChar(20) // pending, linked, created, skipped
+  createdAt        DateTime  @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt        DateTime  @updatedAt @map("updated_at") @db.Timestamp(6)
+
+  session ImportSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  suggestedInspector Inspector? @relation(fields: [suggestedInspectorId], references: [id], onDelete: SetNull)
+
+  @@map("import_queue_items")
+}
+
+model WorkloadSnapshot {
+  id             String   @id @default(uuid()) @db.Uuid
+  inspectorId    String   @map("inspector_id") @db.Uuid
+  score          Float
+  level          String   @db.VarChar(20)
+  leaderCount    Int      @default(0) @map("leader_count")
+  deputyCount    Int      @default(0) @map("deputy_count")
+  memberCount    Int      @default(0) @map("member_count")
+  leaderWeighted Float    @default(0) @map("leader_weighted")
+  deputyWeighted Float    @default(0) @map("deputy_weighted")
+  memberWeighted Float    @default(0) @map("member_weighted")
+  inspectionSum  Int      @default(0) @map("inspection_sum")
+  openRecSum     Int      @default(0) @map("open_rec_sum")
+  snapshotDate   DateTime @default(now()) @map("snapshot_date") @db.Date
+
+  inspector Inspector @relation(fields: [inspectorId], references: [id], onDelete: Cascade)
+
+  @@unique([inspectorId, snapshotDate])
+  @@index([snapshotDate])
+  @@map("workload_snapshots")
+}
+
+enum DutyRole {
+  LEADER
+  DEPUTY
+  MEMBER
+}
+
+enum ProficiencyLevel {
+  BASIC
+  PRACTITIONER
+  ADVANCED
+  EXPERT
+}
+
+model SpecializationCategory {
+  id          Int              @id @default(autoincrement())
+  name        String           @db.VarChar(200)
+  description String?          @db.Text
+  sortOrder   Int              @default(0) @map("sort_order")
+  isActive    Boolean          @default(true) @map("is_active")
+  createdAt   DateTime         @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt   DateTime         @updatedAt @map("updated_at") @db.Timestamp(6)
+
+  specializations Specialization[]
+
+  @@map("specialization_categories")
+}
+
+model Specialization {
+  id          Int              @id @default(autoincrement())
+  categoryId  Int              @map("category_id")
+  name        String           @db.VarChar(200)
+  description String?          @db.Text
+  isActive    Boolean          @default(true) @map("is_active")
+  sortOrder   Int              @default(0) @map("sort_order")
+  createdAt   DateTime         @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt   DateTime         @updatedAt @map("updated_at") @db.Timestamp(6)
+
+  category                SpecializationCategory    @relation(fields: [categoryId], references: [id])
+  inspectorSpecializations InspectorSpecialization[]
+
+  @@map("specializations")
+}
+
+model InspectorSpecialization {
+  id               Int              @id @default(autoincrement())
+  inspectorId      String           @map("inspector_id") @db.Uuid
+  specializationId Int              @map("specialization_id")
+  proficiencyLevel ProficiencyLevel @default(BASIC) @map("proficiency_level")
+  isPrimary        Boolean          @default(false) @map("is_primary")
+  notes            String?          @db.Text
+  assignedById     String?          @map("assigned_by_id") @db.Uuid
+  assignedAt       DateTime         @default(now()) @map("assigned_at") @db.Timestamp(6)
+
+  inspector      Inspector      @relation(fields: [inspectorId], references: [id], onDelete: Cascade)
+  specialization Specialization @relation(fields: [specializationId], references: [id], onDelete: Cascade)
+  assignedBy     User?          @relation("InspectorSpecializationAssignedBy", fields: [assignedById], references: [id])
+
+  @@unique([inspectorId, specializationId])
+  @@map("inspector_specializations")
+}
+
+enum AvailabilityStatus {
+  AVAILABLE
+  ON_LEAVE
+  ON_MISSION
+  TRAINING
+  MEDICAL
+  UNAVAILABLE
 }
 
 enum SecurityClassificationLevel {

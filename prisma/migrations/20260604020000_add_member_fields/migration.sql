@@ -1,0 +1,4 @@
+ALTER TABLE inspector_group_members 
+  ADD COLUMN IF NOT EXISTS is_leader BOOLEAN NOT NULL DEFAULT false,
+  ADD COLUMN IF NOT EXISTS member_order INTEGER,
+  ADD COLUMN IF NOT EXISTS source_raw_name VARCHAR(500);

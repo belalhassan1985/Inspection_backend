@@ -1,0 +1,41 @@
+{
+  "totalCampaigns": 3,
+  "looResults": [
+    {
+      "name": "المجر",
+      "fragmentCount": 12,
+      "officialPages": 2,
+      "predictedPages": 3,
+      "delta": 1,
+      "contentCapacityUsed": 43.88
+    },
+    {
+      "name": "لجنة تفتيش المنطقة الامنية الخامسة /ابي الخصيب",
+      "fragmentCount": 891,
+      "officialPages": 35,
+      "predictedPages": 35,
+      "delta": 0,
+      "contentCapacityUsed": 174.41
+    },
+    {
+      "name": "لجنة تفتيش المنطقة الامنية الثالثة /داقوق",
+      "fragmentCount": 715,
+      "officialPages": 28,
+      "predictedPages": 32,
+      "delta": 4,
+      "contentCapacityUsed": 162.71
+    }
+  ],
+  "stats": {
+    "avgAbsDelta": 1.67,
+    "zeroCount": 1,
+    "oneCount": 2,
+    "asymptote": 171.16,
+    "decay": 133.41,
+    "scale": 200,
+    "perPageOverhead": 167.28,
+    "fixedOverhead": -3395.58
+  },
+  "productionImportsCount": 0,
+  "decision": "GO"
+}

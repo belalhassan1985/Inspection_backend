@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Put, Delete, Body, Param, ParseIntPipe, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Body,
+  Param,
+  ParseIntPipe,
+  UseGuards,
+} from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { CriteriaTemplatesService } from './criteria-templates.service';
 import { RolesGuard } from '../auth/roles.guard';
@@ -27,8 +37,13 @@ export class CriteriaTemplatesController {
   @Roles('ADMIN', 'EDITOR')
   @Post('create-from-current')
   @ApiOperation({ summary: 'إنشاء قالب من جميع الأسس الحالية' })
-  async createFromCurrent(@Body() body: { name?: string; description?: string }) {
-    return this.criteriaTemplatesService.createFromAllCriteria(body?.name, body?.description);
+  async createFromCurrent(
+    @Body() body: { name?: string; description?: string },
+  ) {
+    return this.criteriaTemplatesService.createFromAllCriteria(
+      body?.name,
+      body?.description,
+    );
   }
 
   @Get(':id')
@@ -40,7 +55,10 @@ export class CriteriaTemplatesController {
   @Roles('ADMIN', 'EDITOR')
   @Put(':id')
   @ApiOperation({ summary: 'تعديل قالب أسس' })
-  async update(@Param('id') id: string, @Body() body: { name?: string; description?: string }) {
+  async update(
+    @Param('id') id: string,
+    @Body() body: { name?: string; description?: string },
+  ) {
     return this.criteriaTemplatesService.update(id, body);
   }
 
@@ -58,7 +76,11 @@ export class CriteriaTemplatesController {
     @Param('id') id: string,
     @Body() body: { primaryId: number; sortOrder?: number },
   ) {
-    return this.criteriaTemplatesService.addItem(id, body.primaryId, body.sortOrder);
+    return this.criteriaTemplatesService.addItem(
+      id,
+      body.primaryId,
+      body.sortOrder,
+    );
   }
 
   @Roles('ADMIN', 'EDITOR')

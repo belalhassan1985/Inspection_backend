@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
@@ -115,7 +119,9 @@ export class EntitiesService {
       const inputNameNorm = this.normalizeArabic(positionHolder || '');
 
       for (const conflict of conflicts) {
-        const conflictNameNorm = this.normalizeArabic(conflict.positionHolder || '');
+        const conflictNameNorm = this.normalizeArabic(
+          conflict.positionHolder || '',
+        );
 
         if (inputNameNorm !== conflictNameNorm) {
           throw new BadRequestException(
@@ -143,12 +149,17 @@ export class EntitiesService {
         positionStatus: positionData.positionStatus,
         statisticalNumber: positionData.statisticalNumber,
         positionHolder: positionData.positionHolder,
-        joinedDate: positionData.joinedDate ? new Date(positionData.joinedDate) : null,
-        isActive: positionData.isActive !== undefined ? positionData.isActive : true,
+        joinedDate: positionData.joinedDate
+          ? new Date(positionData.joinedDate)
+          : null,
+        isActive:
+          positionData.isActive !== undefined ? positionData.isActive : true,
         rank: positionData.rank || null,
         education: positionData.education || null,
         notes: positionData.notes || null,
-        yearsOfService: positionData.yearsOfService ? parseInt(positionData.yearsOfService, 10) : null,
+        yearsOfService: positionData.yearsOfService
+          ? parseInt(positionData.yearsOfService, 10)
+          : null,
         evaluation: positionData.evaluation || null,
         cadreStatus: positionData.cadreStatus || null,
       },
@@ -173,12 +184,17 @@ export class EntitiesService {
         positionStatus: positionData.positionStatus,
         statisticalNumber: positionData.statisticalNumber,
         positionHolder: positionData.positionHolder,
-        joinedDate: positionData.joinedDate ? new Date(positionData.joinedDate) : null,
-        isActive: positionData.isActive !== undefined ? positionData.isActive : true,
+        joinedDate: positionData.joinedDate
+          ? new Date(positionData.joinedDate)
+          : null,
+        isActive:
+          positionData.isActive !== undefined ? positionData.isActive : true,
         rank: positionData.rank || null,
         education: positionData.education || null,
         notes: positionData.notes || null,
-        yearsOfService: positionData.yearsOfService ? parseInt(positionData.yearsOfService, 10) : null,
+        yearsOfService: positionData.yearsOfService
+          ? parseInt(positionData.yearsOfService, 10)
+          : null,
         evaluation: positionData.evaluation || null,
         cadreStatus: positionData.cadreStatus || null,
       },

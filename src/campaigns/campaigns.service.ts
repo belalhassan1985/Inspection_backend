@@ -8,11 +8,26 @@ export class CampaignsService {
   async findAll() {
     return this.prisma.campaign.findMany({
       include: {
-        leader: { select: { id: true, fullName: true, department: true, phone: true } },
-        deputy: { select: { id: true, fullName: true, department: true, phone: true } },
+        leader: {
+          select: { id: true, fullName: true, department: true, phone: true },
+        },
+        deputy: {
+          select: { id: true, fullName: true, department: true, phone: true },
+        },
         entity: true,
         template: { select: { id: true, name: true, isDefault: true } },
-        members: { include: { inspector: { select: { id: true, fullName: true, department: true, phone: true } } } },
+        members: {
+          include: {
+            inspector: {
+              select: {
+                id: true,
+                fullName: true,
+                department: true,
+                phone: true,
+              },
+            },
+          },
+        },
       },
       orderBy: { createdAt: 'desc' },
     });
@@ -22,11 +37,26 @@ export class CampaignsService {
     const campaign = await this.prisma.campaign.findUnique({
       where: { id },
       include: {
-        leader: { select: { id: true, fullName: true, department: true, phone: true } },
-        deputy: { select: { id: true, fullName: true, department: true, phone: true } },
+        leader: {
+          select: { id: true, fullName: true, department: true, phone: true },
+        },
+        deputy: {
+          select: { id: true, fullName: true, department: true, phone: true },
+        },
         entity: true,
         template: { select: { id: true, name: true, isDefault: true } },
-        members: { include: { inspector: { select: { id: true, fullName: true, department: true, phone: true } } } },
+        members: {
+          include: {
+            inspector: {
+              select: {
+                id: true,
+                fullName: true,
+                department: true,
+                phone: true,
+              },
+            },
+          },
+        },
         notes: true,
         recommendations: true,
         appendices: true,
@@ -64,8 +94,8 @@ export class CampaignsService {
     return campaign;
   }
 
-  async create(data: any) {
-    const { memberIds, ...rest } = data;
+  async create(data: any, userId?: string) {
+    const { memberIds, leaderId, deputyId, ...rest } = data;
 
     // Auto-assign default template if none specified
     let templateId = rest.templateId || null;
@@ -83,7 +113,6 @@ export class CampaignsService {
         });
       }
 
-      // Ensure default template has all current primary criteria linked
       const linkedCount = await this.prisma.criteriaTemplateItem.count({
         where: { templateId: defaultTemplate.id },
       });
@@ -112,8 +141,8 @@ export class CampaignsService {
         assignmentText: rest.assignmentText,
         assignmentReference: rest.assignmentReference,
         assignmentDate: new Date(rest.assignmentDate),
-        leaderId: rest.leaderId || null,
-        deputyId: rest.deputyId || null,
+        leaderId: leaderId || null,
+        deputyId: deputyId || null,
         purpose: rest.purpose,
         entityId: rest.entityId || null,
         formationNumber: rest.formationNumber,
@@ -125,19 +154,25 @@ export class CampaignsService {
     });
 
     if (memberIds && memberIds.length > 0) {
-      await this.prisma.campaignMember.createMany({
-        data: memberIds.map((inspectorId: string) => ({
+      const members = memberIds.map((inspectorId: string) => {
+        let role: string = 'MEMBER';
+        if (inspectorId === leaderId) role = 'LEADER';
+        else if (inspectorId === deputyId) role = 'DEPUTY';
+        return {
           campaignId: campaign.id,
           inspectorId,
-        })),
+          role,
+          assignedById: userId || undefined,
+        };
       });
+      await this.prisma.campaignMember.createMany({ data: members });
     }
 
     return this.findOne(campaign.id);
   }
 
-  async update(id: string, data: any) {
-    const { memberIds, ...rest } = data;
+  async update(id: string, data: any, userId?: string) {
+    const { memberIds, leaderId, deputyId, ...rest } = data;
     await this.prisma.campaign.update({
       where: { id },
       data: {
@@ -145,9 +180,11 @@ export class CampaignsService {
         type: rest.type,
         assignmentText: rest.assignmentText,
         assignmentReference: rest.assignmentReference,
-        assignmentDate: rest.assignmentDate ? new Date(rest.assignmentDate) : undefined,
-        leaderId: rest.leaderId,
-        deputyId: rest.deputyId,
+        assignmentDate: rest.assignmentDate
+          ? new Date(rest.assignmentDate)
+          : undefined,
+        leaderId: leaderId !== undefined ? leaderId : undefined,
+        deputyId: deputyId !== undefined ? deputyId : undefined,
         purpose: rest.purpose,
         entityId: rest.entityId,
         formationNumber: rest.formationNumber,
@@ -159,18 +196,104 @@ export class CampaignsService {
     });
 
     if (memberIds !== undefined) {
-      await this.prisma.campaignMember.deleteMany({ where: { campaignId: id } });
+      await this.prisma.campaignMember.deleteMany({
+        where: { campaignId: id },
+      });
       if (memberIds.length > 0) {
-        await this.prisma.campaignMember.createMany({
-          data: memberIds.map((inspectorId: string) => ({
+        const members = memberIds.map((inspectorId: string) => {
+          let role: string = 'MEMBER';
+          if (inspectorId === leaderId) role = 'LEADER';
+          else if (inspectorId === deputyId) role = 'DEPUTY';
+          return {
             campaignId: id,
             inspectorId,
-          })),
+            role,
+            assignedById: userId || undefined,
+          };
         });
+        await this.prisma.campaignMember.createMany({ data: members });
       }
     }
 
     return this.findOne(id);
+  }
+
+  // Role-aware member management
+  async setMemberRole(
+    campaignId: string,
+    inspectorId: string,
+    role: string,
+    userId?: string,
+  ) {
+    await this.prisma.campaignMember.upsert({
+      where: { campaignId_inspectorId: { campaignId, inspectorId } },
+      update: { role: role as any, assignedById: userId || null },
+      create: {
+        campaignId,
+        inspectorId,
+        role: role as any,
+        assignedById: userId || null,
+      },
+    });
+
+    // Sync deprecated leaderId/deputyId from CampaignMember role rows
+    await this.syncLeaderDeputyFromMembers(campaignId);
+    return this.findOne(campaignId);
+  }
+
+  async removeMember(campaignId: string, inspectorId: string) {
+    await this.prisma.campaignMember.delete({
+      where: { campaignId_inspectorId: { campaignId, inspectorId } },
+    });
+    await this.syncLeaderDeputyFromMembers(campaignId);
+    return this.findOne(campaignId);
+  }
+
+  private async syncLeaderDeputyFromMembers(campaignId: string) {
+    const members = await this.prisma.campaignMember.findMany({
+      where: { campaignId },
+      select: { inspectorId: true, role: true },
+    });
+    const leaderId =
+      members.find((m) => m.role === 'LEADER')?.inspectorId || null;
+    const deputyId =
+      members.find((m) => m.role === 'DEPUTY')?.inspectorId || null;
+    await this.prisma.campaign.update({
+      where: { id: campaignId },
+      data: { leaderId, deputyId },
+    });
+  }
+
+  // Group assignment endpoints
+  async assignGroup(
+    campaignId: string,
+    groupId: number,
+    role?: string,
+    userId?: string,
+  ) {
+    await this.prisma.campaignGroupAssignment.create({
+      data: {
+        campaignId,
+        groupId,
+        role: role || null,
+        assignedById: userId || null,
+      },
+    });
+    return this.findOne(campaignId);
+  }
+
+  async removeGroupAssignment(campaignId: string, groupId: number) {
+    await this.prisma.campaignGroupAssignment.delete({
+      where: { campaignId_groupId: { campaignId, groupId } },
+    });
+    return this.findOne(campaignId);
+  }
+
+  async getGroupAssignments(campaignId: string) {
+    return this.prisma.campaignGroupAssignment.findMany({
+      where: { campaignId },
+      include: { group: true },
+    });
   }
 
   async remove(id: string) {
